@@ -192,6 +192,70 @@
     .rise{animation:none;opacity:1;transform:none}
     .varieties{transition:none}
   }
+
+  /* ── join / hiring (quiet, secondary) ──────────────── */
+  .join{
+    width:100%;max-width:34rem;
+    display:flex;flex-direction:column;align-items:center;gap:.8rem;
+    padding-top:clamp(1.7rem,5vw,2.5rem);
+    border-top:1px solid var(--line);
+  }
+  .join__eyebrow{
+    color:var(--gold);font-size:.7rem;font-weight:600;
+    letter-spacing:.3em;text-transform:uppercase;
+  }
+  .join__line{
+    margin:0;color:rgba(247,242,230,.78);
+    font-size:clamp(.95rem,2.6vw,1.02rem);line-height:1.6;max-width:42ch;
+  }
+  .join__roles{
+    margin:.15rem 0 0;font-family:var(--serif);font-style:italic;
+    font-size:clamp(1.05rem,3.2vw,1.25rem);line-height:1.5;
+    color:var(--cream);max-width:34ch;
+  }
+  .join__roles .sep{color:var(--gold);font-style:normal;padding:0 .3em}
+  .join__cta{
+    margin-top:.35rem;color:var(--gold-soft);text-decoration:none;
+    font-size:.9rem;font-weight:600;letter-spacing:.02em;
+    border-bottom:1px solid rgba(231,196,126,.35);padding-bottom:2px;
+    transition:border-color .2s var(--ease),color .2s var(--ease);
+  }
+  .join__cta:hover{color:#fff;border-color:var(--gold-soft)}
+
+  .join__students{
+    margin:.1rem 0 0;color:var(--sage);
+    font-size:.85rem;line-height:1.55;max-width:40ch;
+  }
+  .join__reassure{
+    margin:.1rem 0 0;color:var(--sage);opacity:.85;
+    font-size:.78rem;letter-spacing:.01em;
+  }
+  .camp__scarcity{
+    margin:.1rem 0 0;color:var(--gold-soft);
+    font-size:.82rem;letter-spacing:.04em;
+  }
+
+  /* ── vision / community (narrative, the heart) ──────── */
+  .vision{
+    width:100%;max-width:36rem;
+    display:flex;flex-direction:column;align-items:center;gap:1rem;
+    padding-top:clamp(1.8rem,5vw,2.6rem);
+    border-top:1px solid var(--line);
+  }
+  .vision__head{
+    margin:0;font-family:var(--serif);font-weight:400;
+    font-size:clamp(1.5rem,5.4vw,2.1rem);line-height:1.12;
+    color:var(--cream);max-width:18ch;
+  }
+  .vision__head em{font-style:italic;color:var(--gold-soft)}
+  .vision__body{
+    margin:0;color:rgba(247,242,230,.8);
+    font-size:clamp(.97rem,2.6vw,1.05rem);line-height:1.72;max-width:48ch;
+  }
+  .vision__close{
+    margin:.15rem 0 0;font-family:var(--serif);font-style:italic;
+    font-size:clamp(1.05rem,3vw,1.2rem);color:var(--gold-soft);max-width:34ch;
+  }
 </style>
 </head>
 <body>
@@ -573,7 +637,31 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
       <p class="note" id="note" role="status" aria-live="polite">One email when we open. Nothing else.</p>
     </div>
 
-    <p class="meta rise d6" style="animation-delay:.95s">
+    <section class="vision rise d6" style="animation-delay:.90s" aria-label="What we're growing toward">
+      <span class="join__eyebrow">What we're growing toward</span>
+      <h2 class="vision__head">More than a place to <em>pick fruit.</em></h2>
+      <p class="vision__body">We imagine Rai Orchards as a gathering place as much as a farm — seasons marked by harvest days and open evenings, a market where growers, makers, and cooks share a table, and a kitchen that turns what we pick into something worth lingering over.</p>
+      <p class="vision__body">We want it to be a place where children learn where food comes from with their hands in the soil, where the countryside feels close again, and where a community takes root around good food, patient work, and the land that makes it all possible.</p>
+      <p class="vision__close">It begins, as it always has for our family, with care for the land.</p>
+    </section>
+
+    <section class="join rise d6" style="animation-delay:1.00s" aria-label="Growing a team">
+      <span class="join__eyebrow">Hands we're seeking</span>
+      <p class="join__line">We're planting more than fruit, and looking for a few people who understand that good things take care, and time.</p>
+      <p class="join__roles">Kitchen &amp; recipes <span class="sep">·</span> Events &amp; gatherings <span class="sep">·</span> Community &amp; wellbeing <span class="sep">·</span> Teaching children the land <span class="sep">·</span> Numbers &amp; insight <span class="sep">·</span> Apparel &amp; design</p>
+      <p class="join__students">And a few places for students who'd rather learn with their hands in the soil.</p>
+      <a class="join__cta" href="mailto:info@raiorchards.ca?subject=Working%20with%20Rai%20Orchards">If something here speaks to you, write to us.</a>
+      <p class="join__reassure">We read every note, and we answer slowly and well.</p>
+    </section>
+
+    <section class="join rise d6" style="animation-delay:1.10s" aria-label="The robotics camp">
+      <span class="join__eyebrow">Field &amp; circuit</span>
+      <p class="join__line">An agritech and robotics camp held among the trees — small by design, for students who want to build as well as wonder.</p>
+      <p class="camp__scarcity">Seats are few, and chosen with care.</p>
+      <a class="join__cta" href="mailto:info@raiorchards.ca?subject=Robotics%20camp%20enquiry">Enquire about a seat.</a>
+    </section>
+
+    <p class="meta rise d6" style="animation-delay:1.18s">
       <span>Soft open</span><span class="meta__dot" aria-hidden="true"></span><span>August 2026</span>
     </p>
   </main>
