@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Bachelor Party Planner 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0b14;
+  --surface: #111120;
+  --card: #171728;
+  --border: rgba(255,255,255,0.07);
+  --border-hi: rgba(255,255,255,0.18);
+  --gold: #f5c842;
+  --gold-soft: #f7d97a;
+  --gold-bg: rgba(245,200,66,0.1);
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,0.1);
+  --red: #f87171;
+  --red-bg: rgba(248,113,113,0.1);
+  --yellow: #fbbf24;
+  --yellow-bg: rgba(251,191,36,0.1);
+  --text: #f0f0ef;
+  --muted: rgba(240,240,239,0.5);
+  --muted-2: rgba(240,240,239,0.28);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-xs: 5px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+html,body{min-height:100%}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.5;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:3px}
+
+/* ── Confetti background ── */
+.bg-dots{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-dots::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle,rgba(245,200,66,.06) 1px,transparent 1px),
+    radial-gradient(circle,rgba(74,222,128,.04) 1px,transparent 1px);
+  background-size:40px 40px,60px 60px;
+  background-position:0 0,20px 20px;
+}
+
+/* ── Header ── */
+.header{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:1rem 1.25rem;position:sticky;top:0;z-index:100;
+}
+.header-inner{max-width:660px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.header-left{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.header-title{font-size:1rem;font-weight:800;color:var(--gold);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.header-sub{font-size:.74rem;color:var(--muted);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.header-actions{display:flex;gap:.4rem;flex-shrink:0}
+
+/* ── Tabs ── */
+.tab-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:61px;z-index:99;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav-inner{max-width:660px;margin:0 auto;display:flex}
+.tab-btn{
+  flex:1;min-width:76px;padding:.65rem .4rem;
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);font-size:.75rem;font-weight:600;
+  letter-spacing:.03em;text-transform:uppercase;
+  border-bottom:2px solid transparent;
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+  white-space:nowrap;font-family:inherit;
+}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── Main ── */
+.main{max-width:660px;margin:0 auto;padding:1.1rem .9rem 5rem;position:relative;z-index:1}
+.tab-section{display:none}
+.tab-section.active{display:block}
+
+/* ── Cards ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;margin-bottom:.7rem}
+.card-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.85rem}
+.card-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.85rem}
+
+/* ── Buttons ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.3rem;
+  padding:.45rem .85rem;border-radius:var(--radius-sm);border:none;cursor:pointer;
+  font-family:inherit;font-size:.84rem;font-weight:600;
+  transition:all .2s var(--ease);white-space:nowrap;
+}
+.btn-gold{background:var(--gold);color:#0b0b14}
+.btn-gold:hover{background:var(--gold-soft)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--text);border-color:var(--border-hi)}
+.btn-sm{padding:.28rem .6rem;font-size:.78rem}
+.btn-icon{padding:.3rem;border-radius:var(--radius-xs);background:transparent;border:none;cursor:pointer;color:var(--muted);transition:color .15s;font-size:.95rem}
+.btn-icon:hover{color:var(--red)}
+
+/* ── Inputs ── */
+.inp{
+  width:100%;padding:.5rem .8rem;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text);
+  font-family:inherit;font-size:.88rem;outline:none;
+  transition:border-color .2s var(--ease),background .2s var(--ease);
+}
+.inp:focus{border-color:var(--gold);background:rgba(255,255,255,.07)}
+.inp::placeholder{color:var(--muted-2)}
+input[type="date"].inp{color-scheme:dark}
+.inp-row{display:flex;gap:.45rem;align-items:stretch}
+.inp-prefix{
+  display:flex;align-items:center;padding:0 .65rem;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-right:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);
+  color:var(--muted);font-size:.9rem;
+}
+
+/* ── Meta fields ── */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.meta-field{display:flex;flex-direction:column;gap:.25rem}
+.meta-field.full{grid-column:1/-1}
+.meta-field label{font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* ── Countdown badge ── */
+.countdown{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--gold-bg);border:1px solid rgba(245,200,66,.25);
+  color:var(--gold);font-size:.78rem;font-weight:700;
+  padding:.3rem .75rem;border-radius:99px;
+}
+
+/* ── Crew ── */
+.crew-list{display:flex;flex-direction:column;gap:.45rem}
+.crew-item{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.6rem .8rem;
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+  border-radius:var(--radius-sm);transition:border-color .2s;
+}
+.crew-item:hover{border-color:var(--border-hi)}
+.crew-av{
+  width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  background:var(--gold-bg);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.78rem;
+}
+.crew-name{
+  flex:1;background:none;border:none;outline:none;
+  color:var(--text);font-family:inherit;font-size:.88rem;font-weight:500;min-width:0;
+}
+.crew-name::placeholder{color:var(--muted-2)}
+.rsvp-btns{display:flex;gap:.2rem}
+.rsvp-btn{
+  padding:.22rem .5rem;border-radius:var(--radius-xs);
+  border:1px solid var(--border);background:transparent;
+  font-size:.7rem;font-weight:700;cursor:pointer;color:var(--muted);
+  transition:all .15s;font-family:inherit;
+}
+.rsvp-btn:hover{color:var(--text);border-color:var(--border-hi)}
+.rsvp-btn.active-in{background:var(--green-bg);color:var(--green);border-color:transparent}
+.rsvp-btn.active-maybe{background:var(--yellow-bg);color:var(--yellow);border-color:transparent}
+.rsvp-btn.active-out{background:var(--red-bg);color:var(--red);border-color:transparent}
+.stat-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill{display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .65rem;border-radius:99px;font-size:.78rem;font-weight:600}
+.pill-green{background:var(--green-bg);color:var(--green)}
+.pill-yellow{background:var(--yellow-bg);color:var(--yellow)}
+.pill-red{background:var(--red-bg);color:var(--red)}
+.pill-muted{background:rgba(255,255,255,.06);color:var(--muted)}
+
+/* ── Date grid ── */
+.grid-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.date-grid{border-collapse:collapse;width:100%;min-width:320px;font-size:.82rem}
+.date-grid th{padding:.35rem .5rem;color:var(--muted);font-weight:600;letter-spacing:.04em;border-bottom:1px solid var(--border);white-space:nowrap;text-align:center}
+.date-grid th.lh{text-align:left;padding-left:.2rem}
+.date-grid td{padding:.3rem .45rem;text-align:center;border-bottom:1px solid var(--border)}
+.date-grid tr:last-child td{border-bottom:none}
+.date-grid tr.best-date td{background:rgba(245,200,66,.04)}
+.d-cell{
+  width:26px;height:26px;border-radius:50%;
+  border:1.5px solid var(--border);background:transparent;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+  transition:all .15s;color:var(--muted);font-size:.7rem;font-family:inherit;
+}
+.d-cell:hover{border-color:var(--green);color:var(--green)}
+.d-cell.on{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.d-label{font-weight:500;color:var(--text);white-space:nowrap;font-size:.85rem}
+.d-count{font-weight:700;font-size:.82rem}
+.d-count.fc{color:var(--green)}.d-count.gc{color:var(--yellow)}.d-count.lc{color:var(--muted)}
+.d-del{background:none;border:none;cursor:pointer;color:var(--muted);padding:2px 4px;border-radius:3px;font-size:.95rem;transition:color .15s}
+.d-del:hover{color:var(--red)}
+.best-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:700;color:var(--gold);margin-left:.4rem;vertical-align:middle}
+
+/* ── Vote items ── */
+.vote-list{display:flex;flex-direction:column;gap:.45rem}
+.vote-item{padding:.7rem .85rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.vote-item-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem}
+.vote-item-name{font-weight:600;font-size:.9rem;flex:1;min-width:0}
+.vote-badge{background:var(--gold-bg);color:var(--gold);font-size:.72rem;font-weight:700;padding:.1rem .5rem;border-radius:99px;flex-shrink:0}
+.vote-chips{display:flex;flex-wrap:wrap;gap:.25rem}
+.vchip{
+  padding:.18rem .5rem;border-radius:99px;
+  font-size:.73rem;font-weight:600;cursor:pointer;
+  border:1.5px solid var(--border);background:transparent;color:var(--muted);
+  transition:all .15s;font-family:inherit;
+}
+.vchip:hover{color:var(--gold);border-color:var(--gold-soft)}
+.vchip.on{background:var(--gold-bg);color:var(--gold);border-color:transparent}
+
+/* ── Budget ── */
+.b-stats{display:flex;gap:.6rem;margin-bottom:.9rem;flex-wrap:wrap}
+.b-stat{flex:1;min-width:82px;text-align:center;padding:.7rem .4rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.b-stat .val{font-size:1.35rem;font-weight:800;color:var(--gold);line-height:1;margin-bottom:.18rem}
+.b-stat .lbl{font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.b-stat .val.over{color:var(--red)}
+.exp-list{display:flex;flex-direction:column;gap:.35rem}
+.exp-item{display:flex;align-items:center;gap:.6rem;padding:.5rem .8rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.exp-name{flex:1;font-size:.86rem;font-weight:500;min-width:0}
+.exp-per{font-size:.75rem;color:var(--muted)}
+.exp-amt{font-weight:700;font-size:.88rem}
+.prog{height:5px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin:.35rem 0}
+.prog-fill{height:100%;background:var(--gold);border-radius:99px;transition:width .4s ease}
+.prog-fill.over{background:var(--red)}
+
+/* ── Todos ── */
+.todo-list{display:flex;flex-direction:column;gap:.32rem}
+.todo-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .8rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);transition:opacity .2s}
+.todo-item.done{opacity:.45}
+.todo-chk{
+  width:20px;height:20px;border-radius:50%;border:2px solid var(--border);
+  background:transparent;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;font-size:.68rem;color:transparent;font-family:inherit;
+}
+.todo-chk:hover{border-color:var(--green)}
+.todo-item.done .todo-chk{background:var(--green);border-color:var(--green);color:#0b0b14}
+.todo-txt{flex:1;font-size:.86rem;min-width:0}
+.todo-item.done .todo-txt{text-decoration:line-through;color:var(--muted)}
+.todo-who{
+  font-size:.72rem;color:var(--muted);cursor:pointer;
+  padding:.12rem .38rem;border-radius:var(--radius-xs);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  transition:border-color .15s;font-family:inherit;white-space:nowrap;
+}
+.todo-who:hover{border-color:var(--border-hi)}
+.todo-del{background:none;border:none;cursor:pointer;color:var(--muted-2);padding:2px 4px;border-radius:3px;font-size:.95rem;transition:color .15s}
+.todo-del:hover{color:var(--red)}
+
+/* ── Divider ── */
+.div{height:1px;background:var(--border);margin:.85rem 0}
+
+/* ── Empty ── */
+.empty{text-align:center;padding:1.8rem 1rem;color:var(--muted);font-size:.86rem}
+.empty-ico{font-size:2rem;margin-bottom:.4rem}
+
+/* ── Hint ── */
+.hint{font-size:.78rem;color:var(--muted);margin-top:.35rem;font-style:italic}
+
+/* ── Modal ── */
+.overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.78);backdrop-filter:blur(5px);
+  display:none;align-items:center;justify-content:center;padding:1rem;
+}
+.overlay.open{display:flex}
+.modal{
+  background:var(--card);border:1px solid var(--border-hi);
+  border-radius:var(--radius);padding:1.4rem;width:100%;max-width:400px;
+  box-shadow:0 8px 40px rgba(0,0,0,.6);
+}
+.modal-title{font-size:.98rem;font-weight:700;margin-bottom:.9rem}
+.modal-btns{display:flex;gap:.4rem;justify-content:flex-end;margin-top:.9rem}
+.code-box{
+  width:100%;height:92px;padding:.65rem .75rem;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text);
+  font-family:'Courier New',monospace;font-size:.75rem;
+  resize:none;outline:none;
+}
+.code-box:focus{border-color:var(--gold)}
+
+/* ── Responsive ── */
+@media(max-width:420px){
+  .meta-grid{grid-template-columns:1fr}
+  .meta-field.full{grid-column:auto}
+  .b-stat .val{font-size:1.1rem}
+  .rsvp-btns{display:none}
+}
+@media(max-width:340px){
+  .tab-btn{min-width:60px;font-size:.68rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-dots" aria-hidden="true"></div>
+
+<div id="app">
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="header-title" id="hdr-title">🎉 Bachelor Party</div>
+        <div class="header-sub" id="hdr-sub">Planning Dashboard</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-ghost btn-sm" onclick="A.openShare()">Share</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav" role="tablist">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" data-tab="crew"   onclick="A.tab('crew')">🍺 Crew</button>
+      <button class="tab-btn"        data-tab="dates"  onclick="A.tab('dates')">📅 Dates</button>
+      <button class="tab-btn"        data-tab="ideas"  onclick="A.tab('ideas')">💡 Ideas</button>
+      <button class="tab-btn"        data-tab="budget" onclick="A.tab('budget')">💰 Budget</button>
+      <button class="tab-btn"        data-tab="todos"  onclick="A.tab('todos')">✅ Todos</button>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- ── Crew ── -->
+    <section class="tab-section active" id="tab-crew">
+      <div class="card">
+        <div class="card-label">Party Details</div>
+        <div class="meta-grid">
+          <div class="meta-field full">
+            <label>Party Title</label>
+            <input class="inp" id="m-title" placeholder="e.g. Jake's Stag Weekend" oninput="A.saveMeta()">
+          </div>
+          <div class="meta-field">
+            <label>Groom's Name</label>
+            <input class="inp" id="m-groom" placeholder="e.g. Jake" oninput="A.saveMeta()">
+          </div>
+          <div class="meta-field">
+            <label>Location</label>
+            <input class="inp" id="m-loc" placeholder="e.g. Las Vegas" oninput="A.saveMeta()">
+          </div>
+          <div class="meta-field full">
+            <label>Date</label>
+            <input class="inp" id="m-date" type="date" oninput="A.saveMeta()">
+          </div>
+        </div>
+        <div id="m-countdown" style="margin-top:.75rem"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label" style="margin:0">The Crew (6)</span>
+          <div class="stat-pills" id="crew-stats"></div>
+        </div>
+        <div class="crew-list" id="crew-list"></div>
+        <p class="hint">Set each crew member's name, then mark their RSVP status.</p>
+      </div>
+    </section>
+
+    <!-- ── Dates ── -->
+    <section class="tab-section" id="tab-dates">
+      <div class="card">
+        <div class="card-label">Add Candidate Dates</div>
+        <div class="inp-row">
+          <input class="inp" id="new-date" type="date">
+          <button class="btn btn-gold" onclick="A.addDate()">Add</button>
+        </div>
+        <p class="hint">Click each person's circle to mark them available on that date.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Availability Grid</div>
+        <div id="dates-out"></div>
+      </div>
+    </section>
+
+    <!-- ── Ideas ── -->
+    <section class="tab-section" id="tab-ideas">
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label" style="margin:0">✈️ Destinations</span>
+        </div>
+        <div class="inp-row" style="margin-bottom:.7rem">
+          <input class="inp" id="new-dest" placeholder="e.g. New Orleans" onkeydown="if(event.key==='Enter')A.addDest()">
+          <button class="btn btn-gold" onclick="A.addDest()">Add</button>
+        </div>
+        <div id="dest-out"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label" style="margin:0">🎲 Activities</span>
+        </div>
+        <div class="inp-row" style="margin-bottom:.7rem">
+          <input class="inp" id="new-act" placeholder="e.g. Go-Karts" onkeydown="if(event.key==='Enter')A.addAct()">
+          <button class="btn btn-gold" onclick="A.addAct()">Add</button>
+        </div>
+        <div id="act-out"></div>
+      </div>
+    </section>
+
+    <!-- ── Budget ── -->
+    <section class="tab-section" id="tab-budget">
+      <div class="card">
+        <div class="card-label">Budget per Person</div>
+        <div class="inp-row">
+          <span class="inp-prefix">$</span>
+          <input class="inp" id="b-target" type="number" min="0" placeholder="500"
+            style="border-radius:0 var(--radius-sm) var(--radius-sm) 0;border-left:none;"
+            oninput="A.saveBudget()">
+        </div>
+        <div id="b-summary" style="margin-top:.85rem"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label" style="margin:0">Expenses</span>
+          <span id="b-total" style="font-weight:700;font-size:.86rem;color:var(--gold)"></span>
+        </div>
+        <div class="inp-row" style="margin-bottom:.7rem">
+          <input class="inp" id="new-exp-name" placeholder="Item name" style="flex:2" onkeydown="if(event.key==='Enter')A.addExp()">
+          <span class="inp-prefix" style="border-radius:0;border-left:none;">$</span>
+          <input class="inp" id="new-exp-amt" type="number" min="0" placeholder="0"
+            style="flex:1;border-radius:0;border-left:none;" onkeydown="if(event.key==='Enter')A.addExp()">
+          <button class="btn btn-gold" onclick="A.addExp()">+</button>
+        </div>
+        <div class="exp-list" id="exp-list"></div>
+      </div>
+    </section>
+
+    <!-- ── Todos ── -->
+    <section class="tab-section" id="tab-todos">
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label" style="margin:0">Trip Checklist</span>
+          <span id="todo-prog-txt" style="font-size:.78rem;color:var(--muted)"></span>
+        </div>
+        <div class="prog"><div class="prog-fill" id="todo-prog-fill"></div></div>
+        <div style="height:.4rem"></div>
+        <div class="todo-list" id="todo-list"></div>
+        <div class="div"></div>
+        <div class="inp-row">
+          <input class="inp" id="new-todo" placeholder="Add a task..." onkeydown="if(event.key==='Enter')A.addTodo()">
+          <button class="btn btn-gold" onclick="A.addTodo()">Add</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Share Modal -->
+<div class="overlay" id="m-share">
+  <div class="modal">
+    <div class="modal-title">Share &amp; Sync Plan</div>
+    <p style="color:var(--muted);font-size:.83rem;margin-bottom:.85rem">
+      Share your plan with the crew by copying the code below and pasting it in your group chat.
+      They can import it to see the latest version.
+    </p>
+    <label style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:.35rem">Your Plan Code</label>
+    <textarea class="code-box" id="share-exp" readonly></textarea>
+    <button class="btn btn-gold" style="width:100%;margin-top:.45rem" onclick="A.copyCode()">Copy Code</button>
+    <div class="div"></div>
+    <label style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:.35rem">Import a Code</label>
+    <textarea class="code-box" id="share-imp" placeholder="Paste a plan code here..."></textarea>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="A.closeModal('m-share')">Cancel</button>
+      <button class="btn btn-gold" onclick="A.importCode()">Import</button>
+    </div>
+  </div>
+</div>
+
+<!-- Assignee Modal -->
+<div class="overlay" id="m-assign">
+  <div class="modal">
+    <div class="modal-title">Assign to crew member</div>
+    <div id="assign-opts" style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.5rem"></div>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="A.closeModal('m-assign')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const A = (function(){
+  /* ── Default state ───────────────────────────────────────── */
+  const DEF = {
+    _v:2,
+    meta:{title:"",groom:"",date:"",loc:""},
+    crew:[
+      {id:1,name:"",rsvp:"pending"},
+      {id:2,name:"",rsvp:"pending"},
+      {id:3,name:"",rsvp:"pending"},
+      {id:4,name:"",rsvp:"pending"},
+      {id:5,name:"",rsvp:"pending"},
+      {id:6,name:"",rsvp:"pending"},
+    ],
+    dates:[],
+    dests:[
+      {id:1,name:"Las Vegas",votes:[]},
+      {id:2,name:"Nashville",votes:[]},
+      {id:3,name:"Miami",votes:[]},
+      {id:4,name:"Montreal",votes:[]},
+    ],
+    acts:[
+      {id:1,name:"Go-Karts",votes:[]},
+      {id:2,name:"Paintball",votes:[]},
+      {id:3,name:"Bar Crawl",votes:[]},
+      {id:4,name:"Golf",votes:[]},
+      {id:5,name:"Escape Room",votes:[]},
+    ],
+    budget:{target:500,items:[]},
+    todos:[
+      {id:1,text:"Choose the date",done:false,who:null},
+      {id:2,text:"Book accommodation",done:false,who:null},
+      {id:3,text:"Book flights / transport",done:false,who:null},
+      {id:4,text:"Set up group chat",done:false,who:null},
+      {id:5,text:"Collect deposits from the crew",done:false,who:null},
+      {id:6,text:"Plan activities & book reservations",done:false,who:null},
+      {id:7,text:"Plan the night out",done:false,who:null},
+      {id:8,text:"Arrange a surprise for the groom",done:false,who:null},
+      {id:9,text:"Pack essentials (IDs, cash, chargers)",done:false,who:null},
+    ],
+    _nid:100,
+  };
+
+  let S = deep(DEF);
+  let curTab = "crew";
+  let pendingAssign = null;
+
+  /* ── Helpers ── */
+  function deep(o){return JSON.parse(JSON.stringify(o))}
+  function nid(){return S._nid++}
+  function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+  function $f(n){return isNaN(n)?0:Math.round(n)}
+  function fmt(n){return $f(n).toLocaleString("en-CA")}
+  function first(name){
+    if(!name)return"?";
+    const p=name.trim().split(/\s+/);
+    return p.length>1?p[0]:name.trim();
+  }
+  function initials(name){
+    if(!name||!name.trim())return"?";
+    return name.trim().split(/\s+/).map(w=>w[0]||"").join("").substring(0,2).toUpperCase();
+  }
+  function namedCrew(){return S.crew.filter(c=>c.name.trim())}
+  function crewCount(){
+    const ins=S.crew.filter(c=>c.rsvp==="in").length;
+    const named=namedCrew().length;
+    return ins||named||6;
+  }
+
+  /* ── Persist ── */
+  function save(){try{localStorage.setItem("bpp_v2",JSON.stringify(S))}catch(e){}}
+  function load(){
+    try{
+      const raw=localStorage.getItem("bpp_v2");
+      if(raw){const p=JSON.parse(raw);if(p&&p._v===2)S=p;}
+    }catch(e){}
+  }
+
+  /* ── Header ── */
+  function updateHeader(){
+    const t=S.meta.title||"Bachelor Party";
+    document.getElementById("hdr-title").textContent="🎉 "+t;
+    const parts=[];
+    if(S.meta.groom)parts.push(S.meta.groom+"'s trip");
+    if(S.meta.date){
+      const d=new Date(S.meta.date+"T00:00:00");
+      const days=Math.ceil((d-new Date())/86400000);
+      if(days>0)parts.push("T-"+days+" days");
+      else if(days===0)parts.push("TODAY!");
+    }
+    if(S.meta.loc)parts.push("→ "+S.meta.loc);
+    document.getElementById("hdr-sub").textContent=parts.join("  ·  ")||"Planning Dashboard";
+    // Countdown badge in crew tab
+    const cd=document.getElementById("m-countdown");
+    if(cd){
+      if(S.meta.date){
+        const d=new Date(S.meta.date+"T00:00:00");
+        const days=Math.ceil((d-new Date())/86400000);
+        cd.innerHTML=days>0
+          ?`<span class="countdown">🗓️ ${days} day${days!==1?"s":""} to go</span>`
+          :days===0?`<span class="countdown" style="background:rgba(74,222,128,.1);color:var(--green);border-color:rgba(74,222,128,.3)">🎉 It's today!</span>`
+          :`<span class="countdown" style="color:var(--muted)">Event passed</span>`;
+      }else{cd.innerHTML=""}
+    }
+  }
+
+  /* ── Tab switching ── */
+  function tab(t){
+    curTab=t;
+    document.querySelectorAll(".tab-section").forEach(s=>s.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===t));
+    document.getElementById("tab-"+t).classList.add("active");
+    render(t);
+  }
+  function render(t){
+    updateHeader();
+    switch(t){
+      case"crew":   renderCrew();   break;
+      case"dates":  renderDates();  break;
+      case"ideas":  renderIdeas();  break;
+      case"budget": renderBudget(); break;
+      case"todos":  renderTodos();  break;
+    }
+  }
+
+  /* ── Meta ── */
+  function saveMeta(){
+    S.meta.title=document.getElementById("m-title").value.trim();
+    S.meta.groom=document.getElementById("m-groom").value.trim();
+    S.meta.date =document.getElementById("m-date").value;
+    S.meta.loc  =document.getElementById("m-loc").value.trim();
+    save();updateHeader();
+  }
+  function fillMeta(){
+    document.getElementById("m-title").value=S.meta.title;
+    document.getElementById("m-groom").value=S.meta.groom;
+    document.getElementById("m-date").value =S.meta.date;
+    document.getElementById("m-loc").value  =S.meta.loc;
+  }
+
+  /* ── Crew ── */
+  function renderCrew(){
+    fillMeta();
+    const nc=namedCrew();
+    const ins=nc.filter(c=>c.rsvp==="in").length;
+    const maybe=nc.filter(c=>c.rsvp==="maybe").length;
+    const out=nc.filter(c=>c.rsvp==="out").length;
+    const pending=nc.filter(c=>c.rsvp==="pending").length;
+    let pillsHTML="";
+    if(ins)pillsHTML+=`<span class="pill pill-green">✓ ${ins} In</span>`;
+    if(maybe)pillsHTML+=`<span class="pill pill-yellow">? ${maybe} Maybe</span>`;
+    if(out)pillsHTML+=`<span class="pill pill-red">✗ ${out} Out</span>`;
+    if(pending&&nc.length>0)pillsHTML+=`<span class="pill pill-muted">${pending} Pending</span>`;
+    document.getElementById("crew-stats").innerHTML=pillsHTML;
+
+    const list=document.getElementById("crew-list");
+    list.innerHTML=S.crew.map(c=>`
+      <div class="crew-item">
+        <div class="crew-av" id="av-${c.id}">${esc(initials(c.name))}</div>
+        <input class="crew-name" placeholder="Friend's name" value="${esc(c.name)}"
+          oninput="A.updateName(${c.id},this.value)">
+        <div class="rsvp-btns">
+          <button class="rsvp-btn ${c.rsvp==="in"?"active-in":""}"    onclick="A.rsvp(${c.id},'in')">IN</button>
+          <button class="rsvp-btn ${c.rsvp==="maybe"?"active-maybe":""}" onclick="A.rsvp(${c.id},'maybe')">?</button>
+          <button class="rsvp-btn ${c.rsvp==="out"?"active-out":""}"  onclick="A.rsvp(${c.id},'out')">OUT</button>
+        </div>
+      </div>`).join("");
+  }
+  function updateName(id,name){
+    const c=S.crew.find(c=>c.id===id);if(!c)return;
+    c.name=name;save();
+    const av=document.getElementById("av-"+id);
+    if(av)av.textContent=initials(name);
+    // refresh stats without full re-render
+    const nc=namedCrew();
+    const ins=nc.filter(c=>c.rsvp==="in").length;
+    const maybe=nc.filter(c=>c.rsvp==="maybe").length;
+    const out=nc.filter(c=>c.rsvp==="out").length;
+    let h="";
+    if(ins)h+=`<span class="pill pill-green">✓ ${ins} In</span>`;
+    if(maybe)h+=`<span class="pill pill-yellow">? ${maybe} Maybe</span>`;
+    if(out)h+=`<span class="pill pill-red">✗ ${out} Out</span>`;
+    document.getElementById("crew-stats").innerHTML=h;
+  }
+  function rsvp(id,status){
+    const c=S.crew.find(c=>c.id===id);if(!c)return;
+    c.rsvp=c.rsvp===status?"pending":status;
+    save();renderCrew();
+  }
+
+  /* ── Dates ── */
+  function addDate(){
+    const inp=document.getElementById("new-date");
+    const val=inp.value;if(!val)return;
+    if(S.dates.some(d=>d.date===val)){inp.value="";return;}
+    S.dates.push({id:nid(),date:val,votes:[]});
+    S.dates.sort((a,b)=>a.date.localeCompare(b.date));
+    save();inp.value="";renderDates();
+  }
+  function removeDate(id){S.dates=S.dates.filter(d=>d.id!==id);save();renderDates();}
+  function toggleDate(dateId,crewId){
+    const d=S.dates.find(d=>d.id===dateId);if(!d)return;
+    const i=d.votes.indexOf(crewId);
+    if(i>=0)d.votes.splice(i,1);else d.votes.push(crewId);
+    save();renderDates();
+  }
+  function renderDates(){
+    const out=document.getElementById("dates-out");
+    if(S.dates.length===0){
+      out.innerHTML=`<div class="empty"><div class="empty-ico">📅</div>Add date options above.</div>`;return;
+    }
+    const nc=namedCrew();
+    if(nc.length===0){
+      out.innerHTML=`<div class="empty">Name your crew on the Crew tab first.</div>`;return;
+    }
+    const maxVotes=Math.max(...S.dates.map(d=>d.votes.length));
+    let html=`<div class="grid-wrap"><table class="date-grid">
+      <thead><tr>
+        <th class="lh">Date</th>
+        ${nc.map(c=>`<th title="${esc(c.name)}">${esc(first(c.name))}</th>`).join("")}
+        <th>Avail</th><th></th>
+      </tr></thead><tbody>`;
+    S.dates.forEach(d=>{
+      const cnt=d.votes.length;
+      const total=nc.length;
+      const isBest=cnt===maxVotes&&cnt>0;
+      const cc=cnt===total?"fc":cnt>=total*.6?"gc":"lc";
+      const dt=new Date(d.date+"T00:00:00");
+      const lbl=dt.toLocaleDateString("en-CA",{month:"short",day:"numeric",weekday:"short"});
+      html+=`<tr class="${isBest?"best-date":""}">
+        <td><span class="d-label">${esc(lbl)}${isBest?`<span class="best-badge">★ Best</span>`:""}</span></td>
+        ${nc.map(c=>{
+          const on=d.votes.includes(c.id);
+          return`<td><button class="d-cell ${on?"on":""}" onclick="A.toggleDate(${d.id},${c.id})" title="${esc(c.name)}">${on?"✓":""}</button></td>`;
+        }).join("")}
+        <td><span class="d-count ${cc}">${cnt}/${total}</span></td>
+        <td><button class="d-del" onclick="A.removeDate(${d.id})" title="Remove date">×</button></td>
+      </tr>`;
+    });
+    html+=`</tbody></table></div>`;
+    out.innerHTML=html;
+  }
+
+  /* ── Ideas (shared vote renderer) ── */
+  function voteHTML(items,toggleFn,removeFn){
+    if(items.length===0)return`<div class="empty" style="padding:.8rem 0">Nothing yet — add something above.</div>`;
+    const nc=namedCrew();
+    const sorted=[...items].sort((a,b)=>b.votes.length-a.votes.length);
+    return`<div class="vote-list">${sorted.map(it=>`
+      <div class="vote-item">
+        <div class="vote-item-head">
+          <span class="vote-item-name">${esc(it.name)}</span>
+          <span class="vote-badge">${it.votes.length} vote${it.votes.length!==1?"s":""}</span>
+          <button class="btn-icon" onclick="${removeFn}(${it.id})" title="Remove">×</button>
+        </div>
+        ${nc.length>0
+          ?`<div class="vote-chips">${nc.map(c=>{
+              const on=it.votes.includes(c.id);
+              return`<button class="vchip ${on?"on":""}" onclick="${toggleFn}(${it.id},${c.id})">${esc(first(c.name))}</button>`;
+            }).join("")}</div>`
+          :`<p style="font-size:.78rem;color:var(--muted)">Name crew members to record votes.</p>`}
+      </div>`).join("")}</div>`;
+  }
+  function addDest(){
+    const inp=document.getElementById("new-dest");
+    const n=inp.value.trim();if(!n)return;
+    S.dests.push({id:nid(),name:n,votes:[]});
+    save();inp.value="";renderIdeas();
+  }
+  function removeDest(id){S.dests=S.dests.filter(d=>d.id!==id);save();renderIdeas();}
+  function voteDest(id,cid){
+    const d=S.dests.find(d=>d.id===id);if(!d)return;
+    const i=d.votes.indexOf(cid);i>=0?d.votes.splice(i,1):d.votes.push(cid);
+    save();renderIdeas();
+  }
+  function addAct(){
+    const inp=document.getElementById("new-act");
+    const n=inp.value.trim();if(!n)return;
+    S.acts.push({id:nid(),name:n,votes:[]});
+    save();inp.value="";renderIdeas();
+  }
+  function removeAct(id){S.acts=S.acts.filter(a=>a.id!==id);save();renderIdeas();}
+  function voteAct(id,cid){
+    const a=S.acts.find(a=>a.id===id);if(!a)return;
+    const i=a.votes.indexOf(cid);i>=0?a.votes.splice(i,1):a.votes.push(cid);
+    save();renderIdeas();
+  }
+  function renderIdeas(){
+    document.getElementById("dest-out").innerHTML=voteHTML(S.dests,"A.voteDest","A.removeDest");
+    document.getElementById("act-out").innerHTML=voteHTML(S.acts,"A.voteAct","A.removeAct");
+  }
+
+  /* ── Budget ── */
+  function saveBudget(){
+    S.budget.target=parseFloat(document.getElementById("b-target").value)||0;
+    save();renderBudgetSummary();
+  }
+  function renderBudgetSummary(){
+    const tgt=S.budget.target;
+    const ppl=crewCount();
+    const total=S.budget.items.reduce((s,i)=>s+i.amount,0);
+    const pp=ppl>0?total/ppl:0;
+    const budgetTotal=tgt*ppl;
+    const pct=budgetTotal>0?Math.min((total/budgetTotal)*100,100):0;
+    const over=budgetTotal>0&&total>budgetTotal;
+    document.getElementById("b-summary").innerHTML=`
+      <div class="b-stats">
+        <div class="b-stat"><div class="val">$${fmt(total)}</div><div class="lbl">Total</div></div>
+        <div class="b-stat"><div class="val ${over?"over":""}">$${fmt(pp)}</div><div class="lbl">Per Person (${ppl})</div></div>
+        <div class="b-stat"><div class="val">$${fmt(tgt)}</div><div class="lbl">Budget/Person</div></div>
+      </div>
+      <div class="prog"><div class="prog-fill ${over?"over":""}" style="width:${pct}%"></div></div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.3rem">
+        ${budgetTotal>0
+          ?(over?`⚠️ $${fmt(pp-tgt)} over budget per person`:`$${fmt(tgt-pp)} remaining per person`)
+          :"Set a budget per person above."}
+      </p>`;
+    document.getElementById("b-total").textContent=total>0?`Total: $${fmt(total)}`:"";
+  }
+  function addExp(){
+    const ne=document.getElementById("new-exp-name");
+    const ae=document.getElementById("new-exp-amt");
+    const n=ne.value.trim();
+    const amt=parseFloat(ae.value)||0;
+    if(!n||amt<=0)return;
+    S.budget.items.push({id:nid(),name:n,amount:amt});
+    save();ne.value="";ae.value="";renderBudget();
+  }
+  function removeExp(id){S.budget.items=S.budget.items.filter(i=>i.id!==id);save();renderBudget();}
+  function renderBudget(){
+    document.getElementById("b-target").value=S.budget.target||"";
+    renderBudgetSummary();
+    const ppl=crewCount();
+    const list=document.getElementById("exp-list");
+    if(S.budget.items.length===0){
+      list.innerHTML=`<div class="empty" style="padding:.8rem 0">No expenses yet.</div>`;return;
+    }
+    list.innerHTML=S.budget.items.map(it=>`
+      <div class="exp-item">
+        <span class="exp-name">${esc(it.name)}</span>
+        <span class="exp-per">$${fmt(ppl>0?it.amount/ppl:it.amount)}/person</span>
+        <span class="exp-amt">$${fmt(it.amount)}</span>
+        <button class="btn-icon" onclick="A.removeExp(${it.id})" title="Remove">×</button>
+      </div>`).join("");
+  }
+
+  /* ── Todos ── */
+  function addTodo(){
+    const inp=document.getElementById("new-todo");
+    const t=inp.value.trim();if(!t)return;
+    S.todos.push({id:nid(),text:t,done:false,who:null});
+    save();inp.value="";renderTodos();
+  }
+  function toggleTodo(id){
+    const t=S.todos.find(t=>t.id===id);if(!t)return;
+    t.done=!t.done;save();renderTodos();
+  }
+  function removeTodo(id){S.todos=S.todos.filter(t=>t.id!==id);save();renderTodos();}
+  function openAssign(id){
+    pendingAssign=id;
+    const nc=namedCrew();
+    const t=S.todos.find(t=>t.id===id);
+    const opts=document.getElementById("assign-opts");
+    opts.innerHTML=[{id:null,name:"— Unassigned"},...nc].map(c=>`
+      <button class="btn btn-ghost" style="justify-content:flex-start;${t&&t.who===c.id?"border-color:var(--gold);color:var(--gold);":""}"
+        onclick="A.doAssign(${c.id===null?"null":c.id})">${esc(c.name||"— Unassigned")}</button>`).join("");
+    document.getElementById("m-assign").classList.add("open");
+  }
+  function doAssign(cid){
+    const t=S.todos.find(t=>t.id===pendingAssign);
+    if(t){t.who=cid;save();renderTodos();}
+    closeModal("m-assign");
+  }
+  function renderTodos(){
+    const done=S.todos.filter(t=>t.done).length;
+    const total=S.todos.length;
+    const pct=total>0?(done/total)*100:0;
+    document.getElementById("todo-prog-txt").textContent=`${done} / ${total} done`;
+    document.getElementById("todo-prog-fill").style.width=pct+"%";
+    const list=document.getElementById("todo-list");
+    if(total===0){list.innerHTML=`<div class="empty" style="padding:.5rem 0">All clear!</div>`;return;}
+    list.innerHTML=S.todos.map(t=>{
+      const assignee=t.who?S.crew.find(c=>c.id===t.who):null;
+      return`<div class="todo-item ${t.done?"done":""}">
+        <button class="todo-chk" onclick="A.toggleTodo(${t.id})">${t.done?"✓":""}</button>
+        <span class="todo-txt">${esc(t.text)}</span>
+        <button class="todo-who" onclick="A.openAssign(${t.id})">${assignee?esc(first(assignee.name)):"Assign"}</button>
+        <button class="todo-del" onclick="A.removeTodo(${t.id})" title="Remove">×</button>
+      </div>`;
+    }).join("");
+  }
+
+  /* ── Share / Import ── */
+  function openShare(){
+    const code=btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+    document.getElementById("share-exp").value=code;
+    document.getElementById("share-imp").value="";
+    document.getElementById("m-share").classList.add("open");
+  }
+  function copyCode(){
+    const area=document.getElementById("share-exp");
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(area.value).catch(()=>{area.select();document.execCommand("copy");});
+    }else{area.select();document.execCommand("copy");}
+    const btn=document.querySelector("#m-share .btn-gold");
+    const orig=btn.textContent;btn.textContent="Copied!";
+    setTimeout(()=>{btn.textContent=orig;},1600);
+  }
+  function importCode(){
+    const code=document.getElementById("share-imp").value.trim();
+    if(!code)return;
+    try{
+      const p=JSON.parse(decodeURIComponent(escape(atob(code))));
+      if(p&&p._v===2){
+        S=p;save();closeModal("m-share");
+        render(curTab);
+        alert("Plan imported! You're all synced up.");
+      }else{alert("This code doesn't match the current version. Try again.");}
+    }catch(e){alert("Couldn't read that code. Make sure you pasted it correctly.");}
+  }
+  function closeModal(id){document.getElementById(id).classList.remove("open");}
+
+  /* ── Init ── */
+  function init(){
+    load();render("crew");
+    document.querySelectorAll(".overlay").forEach(el=>{
+      el.addEventListener("click",e=>{if(e.target===el)el.classList.remove("open");});
+    });
+    document.addEventListener("keydown",e=>{
+      if(e.key==="Escape")document.querySelectorAll(".overlay.open").forEach(m=>m.classList.remove("open"));
+    });
+  }
+
+  return{
+    init,tab,
+    saveMeta,
+    updateName,rsvp,
+    addDate,removeDate,toggleDate,
+    addDest,removeDest,voteDest,
+    addAct,removeAct,voteAct,
+    saveBudget,addExp,removeExp,
+    addTodo,toggleTodo,removeTodo,openAssign,doAssign,
+    openShare,copyCode,importCode,closeModal,
+  };
+})();
+
+document.addEventListener("DOMContentLoaded",A.init);
+</script>
+</body>
+</html>
