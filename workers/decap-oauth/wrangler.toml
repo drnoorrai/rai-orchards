@@ -1,0 +1,6 @@
+name            = "rai-orchards-cms-auth"
+main            = "index.js"
+compatibility_date = "2024-09-23"
+
+# No routes needed — the Worker URL itself (*.workers.dev) is the base_url.
+# If you later want a custom domain, add a `routes` block here.
