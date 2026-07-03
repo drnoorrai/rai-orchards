@@ -1,0 +1,14 @@
+{
+  "apples": {
+    "label": "Apples",
+    "varieties": ["Honeycrisp", "Royal Gala", "Ambrosia", "Fuji"]
+  },
+  "pears": {
+    "label": "Pears",
+    "varieties": ["Bartlett", "Bosc OP-5", "Dewdrop"]
+  },
+  "peaches": {
+    "label": "Peaches",
+    "varieties": ["Allstar", "Early Blush", "Rising Star"]
+  }
+}

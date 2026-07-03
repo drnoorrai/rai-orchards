@@ -1,0 +1,10 @@
+{
+  "name": "rai-orchards-site",
+  "private": true,
+  "scripts": {
+    "build": "node build.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

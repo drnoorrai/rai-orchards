@@ -1,0 +1,9 @@
+{
+  "placeholder": "you@email.com",
+  "button": "Notify me",
+  "button_done": "Added",
+  "note": "One email when we open. Nothing else.",
+  "success": "You're on the list. We'll send one note when the gates open.",
+  "error_email": "That email doesn't look right. Mind checking it?",
+  "error_network": "That didn't go through. Try again in a moment."
+}
