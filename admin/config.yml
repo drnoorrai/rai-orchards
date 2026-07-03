@@ -1,0 +1,288 @@
+backend:
+  name: github
+  repo: drnoorrai/rai-orchards
+  branch: main
+  # ↓ REQUIRED — paste your deployed OAuth Worker URL here after completing Phase 3.
+  # Example: https://rai-orchards-cms-auth.yourname.workers.dev
+  base_url: https://PASTE_OAUTH_WORKER_URL_HERE
+
+# CRITICAL: saves become pull requests, not direct commits to main.
+# Nothing goes live until you review and merge the PR yourself.
+publish_mode: editorial_workflow
+
+# Placeholder media folder — text-only editing for now.
+media_folder: static/media
+public_folder: /media
+
+site_url: https://raiorchards.ca
+display_url: https://raiorchards.ca
+
+collections:
+
+  # ── Hero ────────────────────────────────────────────────────────────────
+  - name: hero
+    label: Hero
+    files:
+      - name: hero
+        label: Hero section
+        file: content/hero.json
+        fields:
+          - label: Location label
+            name: location
+            widget: string
+            hint: "Small uppercase text above the logo. Shown on every visit."
+
+          - label: "Headline — opening word(s)"
+            name: tagline_prefix
+            widget: string
+            hint: "First part of the main headline, shown in normal text."
+
+          - label: "Headline — italic word"
+            name: tagline_highlight
+            widget: string
+            hint: "Middle word shown in italic gold. Keep it a single word."
+
+          - label: "Headline — closing word(s)"
+            name: tagline_suffix
+            widget: string
+            hint: "Final part of the main headline, shown in normal text."
+
+          - label: Opening paragraph
+            name: lede
+            widget: text
+            hint: "Short paragraph beneath the headline. Keep it calm and rooted — no exclamation marks."
+
+  # ── Page meta (SEO) ─────────────────────────────────────────────────────
+  - name: meta
+    label: Page title & description
+    files:
+      - name: meta
+        label: Page title & description
+        file: content/meta.json
+        fields:
+          - label: Browser tab title
+            name: title
+            widget: string
+            hint: "Shows in the browser tab and in Google search results."
+
+          - label: Meta description
+            name: description
+            widget: text
+            hint: "One or two sentences shown in Google search results beneath the page title."
+
+          - label: Social share title
+            name: og_title
+            widget: string
+            hint: "Title shown when the page is shared on social media."
+
+          - label: Social share description
+            name: og_description
+            widget: text
+            hint: "Description shown when the page is shared on social media."
+
+  # ── Fruit & varieties ───────────────────────────────────────────────────
+  - name: grove
+    label: Fruit & varieties
+    files:
+      - name: grove
+        label: Fruit selector & variety lists
+        file: content/grove.json
+        fields:
+          - label: Apples
+            name: apples
+            widget: object
+            fields:
+              - label: Button label
+                name: label
+                widget: string
+                hint: "Text on the Apples selector button."
+              - label: Apple varieties
+                name: varieties
+                widget: list
+                hint: "List of apple variety names shown when the button is tapped. Add or remove as needed."
+
+          - label: Pears
+            name: pears
+            widget: object
+            fields:
+              - label: Button label
+                name: label
+                widget: string
+                hint: "Text on the Pears selector button."
+              - label: Pear varieties
+                name: varieties
+                widget: list
+                hint: "List of pear variety names shown when the button is tapped."
+
+          - label: Peaches
+            name: peaches
+            widget: object
+            fields:
+              - label: Button label
+                name: label
+                widget: string
+                hint: "Text on the Peaches selector button."
+              - label: Peach varieties
+                name: varieties
+                widget: list
+                hint: "List of peach variety names shown when the button is tapped."
+
+  # ── Email signup ─────────────────────────────────────────────────────────
+  - name: signup
+    label: Email signup form
+    files:
+      - name: signup
+        label: Email signup form
+        file: content/signup.json
+        fields:
+          - label: Email input placeholder
+            name: placeholder
+            widget: string
+            hint: "Ghost text inside the email field before anyone types."
+
+          - label: Submit button
+            name: button
+            widget: string
+            hint: "Label on the gold submit button."
+
+          - label: Button label after signup
+            name: button_done
+            widget: string
+            hint: "What the button says once someone has successfully signed up."
+
+          - label: Note beneath the form
+            name: note
+            widget: string
+            hint: "Quiet reassurance shown below the form. Appears on page load."
+
+          - label: Success message
+            name: success
+            widget: string
+            hint: "Message shown after a successful signup. Keep it warm and brief."
+
+          - label: Invalid email message
+            name: error_email
+            widget: string
+            hint: "Shown when someone types an email address that doesn't look right."
+
+          - label: Network error message
+            name: error_network
+            widget: string
+            hint: "Shown when the signup request fails (e.g. no internet). Keep it gentle."
+
+  # ── Vision section ────────────────────────────────────────────────────────
+  - name: vision
+    label: Vision section
+    files:
+      - name: vision
+        label: Vision section
+        file: content/vision.json
+        fields:
+          - label: Section eyebrow
+            name: eyebrow
+            widget: string
+            hint: "Small uppercase label above the vision heading."
+
+          - label: "Heading — plain text"
+            name: head_before
+            widget: string
+            hint: "First part of the section heading, in normal text."
+
+          - label: "Heading — italic phrase"
+            name: head_em
+            widget: string
+            hint: "Second part of the heading, shown in italic gold. Usually ends with a full stop."
+
+          - label: First paragraph
+            name: body_1
+            widget: text
+            hint: "First body paragraph. Keep the voice warm and unhurried — no exclamation marks."
+
+          - label: Second paragraph
+            name: body_2
+            widget: text
+            hint: "Second body paragraph."
+
+  # ── Hiring section ────────────────────────────────────────────────────────
+  - name: hiring
+    label: Hiring section
+    files:
+      - name: hiring
+        label: Hiring section
+        file: content/hiring.json
+        fields:
+          - label: Section eyebrow
+            name: eyebrow
+            widget: string
+            hint: "Small uppercase label above the hiring content."
+
+          - label: Intro paragraph
+            name: line
+            widget: text
+            hint: "One or two sentences introducing the hiring section."
+
+          - label: Roles
+            name: roles
+            widget: list
+            hint: "The roles shown in italic, separated by dots. Each item is one role title."
+
+          - label: Student note
+            name: students
+            widget: string
+            hint: "Short note about student placements, shown after the role list."
+
+          - label: Email CTA
+            name: cta
+            widget: string
+            hint: "Link text inviting people to write in. Clicking it opens an email draft."
+
+          - label: Reassurance note
+            name: reassure
+            widget: string
+            hint: "Quiet follow-up line after the email link."
+
+  # ── Robotics camp ─────────────────────────────────────────────────────────
+  - name: camp
+    label: Robotics camp
+    files:
+      - name: camp
+        label: Robotics camp section
+        file: content/camp.json
+        fields:
+          - label: Section eyebrow
+            name: eyebrow
+            widget: string
+            hint: "Small uppercase label above the camp content."
+
+          - label: Description
+            name: line
+            widget: text
+            hint: "One or two sentences describing the camp."
+
+          - label: Scarcity note
+            name: scarcity
+            widget: string
+            hint: "Short note about limited places. Keep it understated."
+
+          - label: Enquiry link
+            name: cta
+            widget: string
+            hint: "Link text for camp enquiries. Clicking it opens an email draft."
+
+  # ── Site-wide ─────────────────────────────────────────────────────────────
+  - name: site
+    label: Site-wide settings
+    files:
+      - name: site
+        label: Opening date
+        file: content/site.json
+        fields:
+          - label: Opening label
+            name: open_label
+            widget: string
+            hint: "Small label shown before the opening date at the bottom of the page."
+
+          - label: Opening date
+            name: open_date
+            widget: string
+            hint: "The opening date or period shown at the bottom of the page."
