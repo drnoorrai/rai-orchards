@@ -1,0 +1,13 @@
+{
+  "name": "rai-orchards-decap-oauth-proxy",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Serverless GitHub OAuth proxy for Decap CMS.",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

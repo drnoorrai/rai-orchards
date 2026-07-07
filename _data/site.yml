@@ -1,0 +1,87 @@
+language: "en"
+
+brand:
+  name: "Rai Orchards"
+
+contact:
+  email: "info@raiorchards.ca"
+
+seo:
+  title: "Rai Orchards — Family Fruit Farm · Puslinch, Ontario"
+  description: "Family fruit farm in Puslinch, Ontario growing apples, pears, and peaches. Rooted in the Kashmir Valley, planted in Southern Ontario. Soft opening August 2026."
+  og_title: "Rai Orchards — Family Fruit Farm"
+  og_description: "Apples, pears, and peaches grown in Puslinch, Ontario. Soft opening August 2026."
+
+hero:
+  eyebrow: "Puslinch, Ontario"
+  headline_prefix: "Family"
+  headline_emphasis: "Fruit"
+  headline_suffix: "Farm"
+  lede: "Rooted in the Kashmir Valley, planted in Southern Ontario. Since 2021 we've been growing apples, pears, and peaches the patient way — honouring where we came from while building something for those who come after us."
+
+fruit:
+  labels:
+    apples: "Apples"
+    pears: "Pears"
+    peaches: "Peaches"
+  varieties:
+    apples:
+      - "Honeycrisp"
+      - "Royal Gala"
+      - "Ambrosia"
+      - "Fuji"
+    pears:
+      - "Bartlett"
+      - "Bosc OP-5"
+      - "Dewdrop"
+    peaches:
+      - "Allstar"
+      - "Early Blush"
+      - "Rising Star"
+
+signup:
+  endpoint: "https://formspree.io/f/mdavplaq"
+  placeholder: "you@email.com"
+  button_label: "Notify me"
+  added_label: "Added"
+  default_note: "One email when we open. Nothing else."
+  validation_error: "That email doesn't look right. Mind checking it?"
+  success_message: "You're on the list. We'll send one note when the gates open."
+  submit_error: "That didn't go through. Try again in a moment."
+
+vision:
+  aria_label: "What we're growing toward"
+  eyebrow: "What we're growing toward"
+  heading_prefix: "More than a place to"
+  heading_emphasis: "pick fruit."
+  paragraphs:
+    - "We imagine Rai Orchards as a gathering place as much as a farm — seasons marked by harvest days and open evenings, a market where growers, makers, and cooks share a table, and a kitchen that turns what we pick into something worth lingering over."
+    - "We want it to be a place where children learn where food comes from with their hands in the soil, where the countryside feels close again, and where a community takes root around good food, patient work, and the land that makes it all possible."
+
+hiring:
+  aria_label: "Growing a team"
+  eyebrow: "Hands we're seeking"
+  line: "We're planting more than fruit, and looking for a few people who understand that good things take care, and time."
+  roles:
+    - "Chef & recipe developer"
+    - "Events coordinator"
+    - "Community & wellbeing lead"
+    - "Children's farm educator"
+    - "Analytics lead"
+    - "Apparel & brand designer"
+  students: "And a few places for students who'd rather learn with their hands in the soil."
+  cta_text: "If something here speaks to you, write to us."
+  email_subject: "Working with Rai Orchards"
+  reassure: "We read every note, and we answer slowly and well."
+
+camp:
+  aria_label: "The robotics camp"
+  eyebrow: "Field & circuit"
+  line: "An agritech and robotics camp held among the trees — small by design, for students who want to build as well as wonder."
+  scarcity: "Seats are few, and chosen with care."
+  cta_text: "Enquire about a seat."
+  email_subject: "Robotics camp enquiry"
+
+meta:
+  opening_label: "Soft open"
+  opening_date: "August 2026"
