@@ -1,0 +1,155 @@
+backend:
+  name: github
+  repo: drnoorrai/rai-orchards
+  branch: main
+  open_authoring: true
+  squash_merges: true
+  base_url: https://rai-orchards-decap-oauth-proxy.vercel.app
+  auth_endpoint: auth
+
+publish_mode: editorial_workflow
+site_url: https://raiorchards.ca
+display_url: https://raiorchards.ca
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+editor:
+  preview: false
+
+collections:
+  - name: "site"
+    label: "Website Text"
+    files:
+      - label: "Homepage"
+        name: "homepage"
+        file: "_data/site.yml"
+        format: "yaml"
+        fields:
+          - label: "Language"
+            name: "language"
+            widget: "hidden"
+            default: "en"
+
+          - label: "Brand"
+            name: "brand"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+
+          - label: "Search & Sharing"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Browser Title", name: "title", widget: "string" }
+              - { label: "Search Description", name: "description", widget: "text" }
+              - { label: "Social Title", name: "og_title", widget: "string" }
+              - { label: "Social Description", name: "og_description", widget: "text" }
+
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline Start", name: "headline_prefix", widget: "string" }
+              - { label: "Headline Highlight", name: "headline_emphasis", widget: "string" }
+              - { label: "Headline End", name: "headline_suffix", widget: "string" }
+              - { label: "Intro Paragraph", name: "lede", widget: "text" }
+
+          - label: "Fruit Selector"
+            name: "fruit"
+            widget: "object"
+            fields:
+              - label: "Button Labels"
+                name: "labels"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Apples", name: "apples", widget: "string" }
+                  - { label: "Pears", name: "pears", widget: "string" }
+                  - { label: "Peaches", name: "peaches", widget: "string" }
+              - label: "Varieties"
+                name: "varieties"
+                widget: "object"
+                fields:
+                  - label: "Apple Varieties"
+                    name: "apples"
+                    widget: "list"
+                    field: { label: "Name", name: "name", widget: "string" }
+                  - label: "Pear Varieties"
+                    name: "pears"
+                    widget: "list"
+                    field: { label: "Name", name: "name", widget: "string" }
+                  - label: "Peach Varieties"
+                    name: "peaches"
+                    widget: "list"
+                    field: { label: "Name", name: "name", widget: "string" }
+
+          - label: "Signup Form"
+            name: "signup"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Formspree Endpoint", name: "endpoint", widget: "string" }
+              - { label: "Input Placeholder", name: "placeholder", widget: "string" }
+              - { label: "Button Label", name: "button_label", widget: "string" }
+              - { label: "Added Label", name: "added_label", widget: "string" }
+              - { label: "Default Note", name: "default_note", widget: "string" }
+              - { label: "Invalid Email Message", name: "validation_error", widget: "string" }
+              - { label: "Success Message", name: "success_message", widget: "string" }
+              - { label: "Submit Error Message", name: "submit_error", widget: "string" }
+
+          - label: "Vision Section"
+            name: "vision"
+            widget: "object"
+            fields:
+              - { label: "Screen Reader Label", name: "aria_label", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading Start", name: "heading_prefix", widget: "string" }
+              - { label: "Heading Highlight", name: "heading_emphasis", widget: "string" }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Paragraph", name: "paragraph", widget: "text" }
+
+          - label: "Hiring Section"
+            name: "hiring"
+            widget: "object"
+            fields:
+              - { label: "Screen Reader Label", name: "aria_label", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Intro Line", name: "line", widget: "text" }
+              - label: "Roles"
+                name: "roles"
+                widget: "list"
+                field: { label: "Role", name: "role", widget: "string" }
+              - { label: "Student Line", name: "students", widget: "string" }
+              - { label: "CTA Text", name: "cta_text", widget: "string" }
+              - { label: "Email Subject", name: "email_subject", widget: "string" }
+              - { label: "Reassurance Line", name: "reassure", widget: "string" }
+
+          - label: "Robotics Camp Section"
+            name: "camp"
+            widget: "object"
+            fields:
+              - { label: "Screen Reader Label", name: "aria_label", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Intro Line", name: "line", widget: "text" }
+              - { label: "Scarcity Line", name: "scarcity", widget: "string" }
+              - { label: "CTA Text", name: "cta_text", widget: "string" }
+              - { label: "Email Subject", name: "email_subject", widget: "string" }
+
+          - label: "Opening Date"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { label: "Opening Label", name: "opening_label", widget: "string" }
+              - { label: "Opening Date", name: "opening_date", widget: "string" }
