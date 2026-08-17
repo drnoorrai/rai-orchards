@@ -80,12 +80,15 @@ hiring:
   reassure: We read every note, and we answer slowly and well.
 camp:
   aria_label: The robotics camp
-  eyebrow: Field & circuit
-  line: An agritech and robotics camp held among the trees — small by design, for
-    students who want to build as well as wonder.
-  scarcity: Seats are few, and chosen with care.
-  cta_text: Enquire about a seat.
-  email_subject: Robotics camp enquiry
+  eyebrow: "Private Events "
+  line: In 2026, we’ll welcome a small number of private events to the orchard,
+    from intimate weddings to corporate gatherings. This limited pilot season
+    will help us test and thoughtfully refine the infrastructure needed to host
+    guests well.
+  scarcity: Applications for 2026 are intentionally limited. Full private event
+    rentals are planned for 2027.
+  cta_text: Tell us about your event.
+  email_subject: Private event enquiry
 meta:
   opening_label: Soft open
   opening_date: August 2026
