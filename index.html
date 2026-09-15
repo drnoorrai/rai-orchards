@@ -1,16 +1,13 @@
----
----
-{% assign copy = site.data.site %}
 <!doctype html>
-<html lang="{{ copy.language | default: 'en' | escape }}">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{ copy.seo.title | escape }}</title>
-<meta name="description" content="{{ copy.seo.description | escape }}">
+<title>Rai Orchards — Family Fruit Farm · Puslinch, Ontario</title>
+<meta name="description" content="Rai Orchards soft launch — Saturday September 19, 2026, 11am–4pm, free entry, at 3977 Wellington Road 35, Puslinch, Ontario. Then open daily 11am–6pm through October 31. Entry: adults $10, children $5, under 2 free — pay at the door.">
 <meta name="theme-color" content="#16201b">
-<meta property="og:title" content="{{ copy.seo.og_title | escape }}">
-<meta property="og:description" content="{{ copy.seo.og_description | escape }}">
+<meta property="og:title" content="Rai Orchards — Family Fruit Farm">
+<meta property="og:description" content="Free soft launch Sat Sep 19, then open daily through October 31 in Puslinch, Ontario. Meet the animals, wagon rides, pick-your-own apples.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -259,16 +256,56 @@
     margin:.15rem 0 0;font-family:var(--serif);font-style:italic;
     font-size:clamp(1.05rem,3vw,1.2rem);color:var(--gold-soft);max-width:34ch;
   }
+
+  /* soft launch (free, highlight) */
+  .event{width:100%;max-width:34rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;
+    padding:clamp(1.4rem,4.5vw,2rem) clamp(1.2rem,4vw,1.9rem);border:1px solid var(--line);
+    border-radius:20px;background:rgba(241,235,221,.035);}
+  .event__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;}
+  .event__date{margin:.15rem 0 0;font-family:var(--serif);font-size:clamp(1.45rem,6vw,2rem);line-height:1.05;color:var(--cream);}
+  .event__meta{margin:0;color:var(--gold-soft);font-size:.95rem;letter-spacing:.02em;}
+  .event__addr{margin:0;color:var(--sage);font-size:.85rem;}
+  .event__invite{margin:.55rem 0 0;color:rgba(247,242,230,.82);font-size:clamp(.95rem,2.6vw,1.02rem);line-height:1.6;max-width:40ch;}
+  .event__animals{margin:.1rem 0 0;color:var(--sage);font-size:.84rem;line-height:1.55;max-width:42ch;}
+  /* the autumn season (paid, quiet) */
+  .season{width:100%;max-width:34rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;
+    padding-top:clamp(1.6rem,5vw,2.4rem);border-top:1px solid var(--line);}
+  .season__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;}
+  .season__line{margin:0;color:rgba(247,242,230,.8);font-size:clamp(.95rem,2.6vw,1.02rem);line-height:1.6;max-width:42ch;}
+  .season__hours{margin:.35rem 0 0;color:var(--gold-soft);font-size:.95rem;letter-spacing:.02em;}
+  .season__prices{margin:0;color:var(--cream);font-size:.9rem;}
+  .season__prices b{color:var(--gold-soft);font-weight:600;}
+  .season__pay{margin:.15rem 0 0;color:var(--sage);font-size:.8rem;line-height:1.5;max-width:40ch;}
+
+  /* mailing list heading */
+  .signup__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;text-align:center;}
+  .signup__line{margin:0 0 .2rem;color:rgba(247,242,230,.78);font-size:clamp(.92rem,2.5vw,1rem);line-height:1.55;max-width:38ch;text-align:center;align-self:center;}
+  /* instagram photo grid */
+  .ig{width:100%;max-width:34rem;display:flex;flex-direction:column;align-items:center;gap:1rem;
+    padding-top:clamp(1.7rem,5vw,2.5rem);border-top:1px solid var(--line);}
+  .ig__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;}
+  .ig__grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;}
+  .ig__tile{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;text-decoration:none;
+    background:linear-gradient(135deg,rgba(214,165,72,.14),rgba(241,235,221,.04));
+    border:1px solid var(--line);display:grid;place-items:center;
+    transition:transform .25s var(--ease),border-color .25s var(--ease);}
+  .ig__tile:hover{transform:translateY(-2px);border-color:rgba(214,165,72,.4);}
+  .ig__tile span{color:var(--sage);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7;}
+  .ig__tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ig__handle{color:var(--gold-soft);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.02em;
+    border-bottom:1px solid rgba(231,196,126,.35);padding-bottom:2px;transition:color .2s,border-color .2s;}
+  .ig__handle:hover{color:#fff;border-color:var(--gold-soft);}
+  @media (max-width:30rem){.ig__grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
   <div class="atmosphere" aria-hidden="true"></div>
 
   <main class="panel">
-    <p class="eyebrow rise d1">{{ copy.hero.eyebrow | escape }}</p>
+    <p class="eyebrow rise d1">Puslinch, Ontario</p>
 
     <div class="wordmark rise d2">
-      <svg class="wordmark__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9860 4691" role="img" aria-label="{{ copy.brand.name | escape }}" >
+      <svg class="wordmark__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9860 4691" role="img" aria-label="Rai Orchards" >
 <g transform="translate(-69.065133,4760.932318) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
 <path d="M57383 47595 c-149 -41 -246 -137 -323 -321 -17 -41 -64 -146 -104
@@ -596,25 +633,45 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
 </svg>
     </div>
 
-    <h1 class="tagline rise d3">{{ copy.hero.headline_prefix | escape }} <em>{{ copy.hero.headline_emphasis | escape }}</em> {{ copy.hero.headline_suffix | escape }}</h1>
+    <h1 class="tagline rise d3">Family <em>Fruit</em> Farm</h1>
 
     <p class="lede rise d4">
-      {{ copy.hero.lede | escape }}
+      Rooted in the Kashmir Valley, planted in Southern Ontario. Since 2021
+      we've been growing apples, pears, and peaches the patient way —
+      honouring where we came from while building something for those
+      who come after us.
     </p>
+
+    <section class="event rise" style="animation-delay:.6s" aria-label="Soft launch">
+      <span class="event__eyebrow">You're invited · Soft launch</span>
+      <p class="event__date">Saturday, September 19, 2026</p>
+      <p class="event__meta">11:00 AM – 4:00 PM · Free entry</p>
+      <p class="event__addr">3977 Wellington Road 35, Puslinch, Ontario</p>
+      <p class="event__invite">For the very first time, we're opening the gates — free for all — to wander the orchard, take a wagon ride, and pick your own apples straight from the trees.</p>
+      <p class="event__animals">Come meet the animals, too: alpacas, Nigerian Dwarf goats, sheep, horses, donkeys, turkeys, ducks, chickens and pigeons.</p>
+    </section>
+
+    <section class="season rise" style="animation-delay:.66s" aria-label="The autumn season">
+      <span class="season__eyebrow">The autumn season</span>
+      <p class="season__line">After launch day, our gates stay open through the autumn — come by for the orchard, the animals, and the last of the season's fruit.</p>
+      <p class="season__hours">Open daily · 11:00 AM – 6:00 PM · until October 31, 2026</p>
+      <p class="season__prices">Adults 18+ <b>$10</b> · Children 2–17 <b>$5</b> · Under 2 <b>free</b></p>
+      <p class="season__pay">Pay at the door by cash or card. A $1 card fee applies per transaction.</p>
+    </section>
 
     <div class="grove rise d5">
       <div class="grove__row" role="group" aria-label="What we grow">
         <button class="pip" data-fruit="apples" aria-pressed="false" type="button">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 6c-1-2.5-3.5-3-5.5-2C3.4 5.6 2.6 9.6 4 13.4 5.3 17 8 20 10.4 20c.6 0 1.1-.2 1.6-.5.5.3 1 .5 1.6.5 2.4 0 5.1-3 6.4-6.6 1.4-3.8.6-7.8-2.5-9.4-2-1-4.5-.5-5.5 2Z"/><path d="M12.4 5.5c.1-1.8 1.2-3 3.1-3.5-.1 1.9-1.2 3.1-3.1 3.5Z"/></svg>
-          {{ copy.fruit.labels.apples | escape }}
+          Apples
         </button>
         <button class="pip" data-fruit="pears" aria-pressed="false" type="button">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 7.2c.3-1.6 1.3-2.7 3-3.2-.1 1.7-1.1 2.8-3 3.2Z"/><path d="M12 7c.8 0 1.5.3 2 .8.3 2 1.5 3.3 2.4 4.5 1 1.3 1.6 2.5 1.6 4 0 3.2-2.7 5.7-6 5.7s-6-2.5-6-5.7c0-1.5.6-2.7 1.6-4C8.5 11.1 9.7 9.8 10 7.8c.5-.5 1.2-.8 2-.8Z"/></svg>
-          {{ copy.fruit.labels.pears | escape }}
+          Pears
         </button>
         <button class="pip" data-fruit="peaches" aria-pressed="false" type="button">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.6 5.6c.2-1.7 1.3-2.9 3.2-3.4-.1 1.8-1.2 3-3.2 3.4Z"/><path d="M12 7.5c.6-.9 1.6-1.5 2.9-1.5 2.9 0 5.1 2.6 5.1 6 0 4.4-3.6 8-8 8s-8-3.6-8-8c0-3.4 2.2-6 5.1-6 1.3 0 2.3.6 2.9 1.5Z"/><path d="M12 8v11" stroke="#16201b" stroke-width="1.1" fill="none" opacity=".4"/></svg>
-          {{ copy.fruit.labels.peaches | escape }}
+          Peaches
         </button>
       </div>
       <div class="grove__out">
@@ -623,6 +680,8 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
     </div>
 
     <div class="signup rise d6">
+      <span class="signup__eyebrow">Our mailing list</span>
+      <p class="signup__line">Sign up for the occasional note from the orchard — what's ripe, what's on, and news of next year's official opening.</p>
       <div class="field" id="field">
         <input
           id="email"
@@ -630,46 +689,63 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
           type="email"
           inputmode="email"
           autocomplete="email"
-          placeholder="{{ copy.signup.placeholder | escape }}"
+          placeholder="you@email.com"
           aria-label="Email address">
-        <button id="submit" class="field__btn" type="button">{{ copy.signup.button_label | escape }}</button>
+        <button id="submit" class="field__btn" type="button">Sign up</button>
       </div>
-      <p class="note" id="note" role="status" aria-live="polite">{{ copy.signup.default_note | escape }}</p>
+      <p class="note" id="note" role="status" aria-live="polite">No spam, ever. Unsubscribe anytime.</p>
     </div>
 
-    <section class="vision rise d6" style="animation-delay:.90s" aria-label="{{ copy.vision.aria_label | escape }}">
-      <span class="join__eyebrow">{{ copy.vision.eyebrow | escape }}</span>
-      <h2 class="vision__head">{{ copy.vision.heading_prefix | escape }} <em>{{ copy.vision.heading_emphasis | escape }}</em></h2>
-      {% for paragraph in copy.vision.paragraphs %}
-      <p class="vision__body">{{ paragraph | escape }}</p>
-      {% endfor %}
+    <section class="vision rise d6" style="animation-delay:.90s" aria-label="What we're growing toward">
+      <span class="join__eyebrow">What we're growing toward</span>
+      <h2 class="vision__head">More than a place to <em>pick fruit.</em></h2>
+      <p class="vision__body">We imagine Rai Orchards as a gathering place as much as a farm — seasons marked by harvest days and open evenings, a market where growers, makers, and cooks share a table, and a kitchen that turns what we pick into something worth lingering over.</p>
+      <p class="vision__body">We want it to be a place where children learn where food comes from with their hands in the soil, where the countryside feels close again, and where a community takes root around good food, patient work, and the land that makes it all possible.</p>
+      <p class="vision__close">It begins, as it always has for our family, with care for the land.</p>
     </section>
 
-    <section class="join rise d6" style="animation-delay:1.00s" aria-label="{{ copy.hiring.aria_label | escape }}">
-      <span class="join__eyebrow">{{ copy.hiring.eyebrow | escape }}</span>
-      <p class="join__line">{{ copy.hiring.line | escape }}</p>
-      <p class="join__roles">{% for role in copy.hiring.roles %}{{ role | escape }}{% unless forloop.last %} <span class="sep">·</span> {% endunless %}{% endfor %}</p>
-      <p class="join__students">{{ copy.hiring.students | escape }}</p>
-      <a class="join__cta" href="mailto:{{ copy.contact.email | escape }}?subject={{ copy.hiring.email_subject | url_encode }}">{{ copy.hiring.cta_text | escape }}</a>
-      <p class="join__reassure">{{ copy.hiring.reassure | escape }}</p>
+    <section class="join rise d6" style="animation-delay:1.00s" aria-label="Growing a team">
+      <span class="join__eyebrow">Hands we're seeking</span>
+      <p class="join__line">We're planting more than fruit, and looking for a few people who understand that good things take care, and time.</p>
+      <p class="join__roles">Chef &amp; recipe developer <span class="sep">·</span> Events coordinator <span class="sep">·</span> Community &amp; wellbeing lead <span class="sep">·</span> Children's farm educator <span class="sep">·</span> Analytics lead <span class="sep">·</span> Apparel &amp; brand designer</p>
+      <p class="join__students">And a few places for students who'd rather learn with their hands in the soil.</p>
+      <a class="join__cta" href="mailto:info@raiorchards.ca?subject=Working%20with%20Rai%20Orchards">If something here speaks to you, write to us.</a>
+      <p class="join__reassure">We read every note, and we answer slowly and well.</p>
     </section>
 
-    <section class="join rise d6" style="animation-delay:1.10s" aria-label="{{ copy.camp.aria_label | escape }}">
-      <span class="join__eyebrow">{{ copy.camp.eyebrow | escape }}</span>
-      <p class="join__line">{{ copy.camp.line | escape }}</p>
-      <p class="camp__scarcity">{{ copy.camp.scarcity | escape }}</p>
-      <a class="join__cta" href="mailto:{{ copy.contact.email | escape }}?subject={{ copy.camp.email_subject | url_encode }}">{{ copy.camp.cta_text | escape }}</a>
+    <section class="join rise d6" style="animation-delay:1.10s" aria-label="Private events">
+      <span class="join__eyebrow">Private events</span>
+      <p class="join__line">In 2026, we'll welcome a small number of private events to the orchard, from intimate weddings to corporate gatherings. This limited pilot season will help us test and thoughtfully refine the infrastructure needed to host guests well.</p>
+      <p class="camp__scarcity">Applications for 2026 are intentionally limited. Full private event rentals are planned for 2027.</p>
+      <a class="join__cta" href="mailto:info@raiorchards.ca?subject=Private%20event%20enquiry">Tell us about your event.</a>
+    </section>
+
+    <section class="ig rise" style="animation-delay:1.14s" aria-label="From our Instagram">
+      <span class="ig__eyebrow">From the orchard</span>
+      <div class="ig__grid">
+        <a class="ig__tile" href="https://www.instagram.com/p/Dc17-xaJFqg/" target="_blank" rel="noopener" aria-label="Rambo, Rusty and Bibi, our sheep"><img src="img/01-sheep.jpg" alt="Rambo, Rusty and Bibi, our sheep" loading="lazy" decoding="async" width="640" height="640"></a>
+        <a class="ig__tile" href="https://www.instagram.com/p/DdRgtlbkdRd/?img_index=1" target="_blank" rel="noopener" aria-label="Vanessa, Sharon and Fancy, our alpacas"><img src="img/02-alpacas.jpg" alt="Vanessa, Sharon and Fancy, our alpacas" loading="lazy" decoding="async" width="640" height="640"></a>
+        <a class="ig__tile" href="https://www.instagram.com/p/DcqqESkhiiw/" target="_blank" rel="noopener" aria-label="Casey and Montana grazing under autumn trees"><img src="img/03-horses.jpg" alt="Casey and Montana grazing under autumn trees" loading="lazy" decoding="async" width="640" height="640"></a>
+        <a class="ig__tile" href="https://www.instagram.com/p/DcjvgkBElK3/?img_index=1" target="_blank" rel="noopener" aria-label="Mabel, our donkey"><img src="img/04-donkey.jpg" alt="Mabel, our donkey" loading="lazy" decoding="async" width="640" height="640"></a>
+        <a class="ig__tile" href="https://www.instagram.com/p/DcCz_ecEfB5/?img_index=1" target="_blank" rel="noopener" aria-label="Vogue, one of our miniature horses"><img src="img/05-mini-horses.jpg" alt="Vogue, one of our miniature horses" loading="lazy" decoding="async" width="640" height="640"></a>
+        <a class="ig__tile" href="https://www.instagram.com/p/DbvyfjlxKyh/" target="_blank" rel="noopener" aria-label="Pepper, Mo and Raffi, our goats"><img src="img/06-goats.jpg" alt="Pepper, Mo and Raffi, our goats" loading="lazy" decoding="async" width="640" height="640"></a>
+      </div>
+      <a class="ig__handle" href="https://instagram.com/raiorchards">Follow @raiorchards →</a>
     </section>
 
     <p class="meta rise d6" style="animation-delay:1.18s">
-      <span>{{ copy.meta.opening_label | escape }}</span><span class="meta__dot" aria-hidden="true"></span><span>{{ copy.meta.opening_date | escape }}</span>
+      <span>Soft launch Sep 19</span><span class="meta__dot" aria-hidden="true"></span><span>then daily to Oct 31</span>
     </p>
   </main>
 
 <script>
 (function(){
   /* ── fruit selector ─────────────────────────────────────────── */
-  var DATA = {{ copy.fruit.varieties | jsonify }};
+  var DATA = {
+    apples:  ["Honeycrisp","Royal Gala","Ambrosia","Fuji"],
+    pears:   ["Bartlett","Bosc OP-5","Dewdrop"],
+    peaches: ["Allstar","Early Blush","Rising Star"]
+  };
   var pips = document.querySelectorAll(".pip");
   var out  = document.getElementById("varieties");
   var current = null;
@@ -711,9 +787,9 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
   // 1. Go to formspree.io → New Form → copy the form's endpoint URL.
   // 2. Replace the URL below with yours. That's it — the page POSTs {email} to it.
   // (Until you do, the form runs in PREVIEW mode and does NOT save emails.)
-  var SIGNUP_ENDPOINT = {{ copy.signup.endpoint | jsonify }};
+  var SIGNUP_ENDPOINT = "https://formspree.io/f/mdavplaq";
   // ─────────────────────────────────────────
-  var SIGNUP_READY = SIGNUP_ENDPOINT && SIGNUP_ENDPOINT.indexOf("YOUR_FORM_ID") === -1;
+  var SIGNUP_READY = SIGNUP_ENDPOINT.indexOf("YOUR_FORM_ID") === -1;
 
   var email = document.getElementById("email");
   var btn   = document.getElementById("submit");
@@ -725,14 +801,14 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
     note.className = "note" + (kind ? " note--" + kind : "");
   }
   function done(){
-    setNote({{ copy.signup.success_message | jsonify }}, "ok");
+    setNote("You're on the list. Thanks for joining us.", "ok");
     email.value = ""; email.disabled = true;
-    btn.disabled = true; btn.textContent = {{ copy.signup.added_label | jsonify }};
+    btn.disabled = true; btn.textContent = "Signed up";
   }
   function submit(){
     var v = email.value.trim();
     if(!valid.test(v)){
-      setNote({{ copy.signup.validation_error | jsonify }}, "err");
+      setNote("That email doesn't look right. Mind checking it?", "err");
       email.focus(); return;
     }
     btn.disabled = true; btn.textContent = "…";
@@ -747,14 +823,14 @@ m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
     })
     .then(function(r){ if(!r.ok) throw new Error(); done(); })
     .catch(function(){
-      btn.disabled = false; btn.textContent = {{ copy.signup.button_label | jsonify }};
-      setNote({{ copy.signup.submit_error | jsonify }}, "err");
+      btn.disabled = false; btn.textContent = "Sign up";
+      setNote("That didn't go through. Try again in a moment.", "err");
     });
   }
   btn.addEventListener("click", submit);
   email.addEventListener("keydown", function(e){ if(e.key === "Enter") submit(); });
   email.addEventListener("input", function(){
-    if(note.className.indexOf("err") > -1) setNote({{ copy.signup.default_note | jsonify }});
+    if(note.className.indexOf("err") > -1) setNote("No spam, ever. Unsubscribe anytime.");
   });
 })();
 </script>
