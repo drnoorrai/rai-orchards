@@ -10,8 +10,8 @@ backend:
 publish_mode: editorial_workflow
 site_url: https://raiorchards.ca
 display_url: https://raiorchards.ca
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+media_folder: "img"
+public_folder: "img"
 
 editor:
   preview: false
@@ -25,131 +25,275 @@ collections:
         file: "_data/site.yml"
         format: "yaml"
         fields:
-          - label: "Language"
-            name: "language"
-            widget: "hidden"
-            default: "en"
+          - { label: "Language", name: "language", widget: "hidden", default: "en" }
 
-          - label: "Brand"
+          - label: "Farm Name"
             name: "brand"
             widget: "object"
             collapsed: true
             fields:
               - { label: "Name", name: "name", widget: "string" }
 
-          - label: "Contact"
+          - label: "Opening Hours"
+            name: "hours"
+            widget: "object"
+            fields:
+              - { label: "Header Status Line", name: "status_line", widget: "string", hint: "Shown beside the green dot at the top of every page." }
+              - { label: "Hours", name: "daily", widget: "string" }
+              - { label: "Season End", name: "through", widget: "string" }
+              - { label: "Footer Hours", name: "footer_line", widget: "string", hint: "Use <br> for a line break." }
+              - { label: "Menu Hours & Address", name: "panel_line", widget: "string", hint: "Shown in the mobile slide-out menu. Use <br /> for a line break." }
+
+          - label: "Contact & Address"
             name: "contact"
             widget: "object"
-            collapsed: true
             fields:
               - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone (dialable)", name: "phone", widget: "string", hint: "No spaces, e.g. +15198270854" }
+              - { label: "Phone (displayed)", name: "phone_display", widget: "string" }
+              - { label: "Phone Note", name: "phone_note", widget: "string" }
+              - { label: "Address Line 1", name: "address_line_1", widget: "string" }
+              - { label: "Address Line 2", name: "address_line_2", widget: "string" }
+              - { label: "Google Maps Link", name: "maps_url", widget: "string" }
+              - { label: "Google Directions Link", name: "directions_url", widget: "string" }
+              - { label: "Apple Maps Link", name: "apple_maps_url", widget: "string" }
+              - { label: "Embedded Map URL", name: "map_embed_url", widget: "string" }
+              - { label: "Instagram Handle", name: "instagram_handle", widget: "string" }
+              - { label: "Instagram Link", name: "instagram_url", widget: "string" }
 
           - label: "Search & Sharing"
             name: "seo"
             widget: "object"
             collapsed: true
             fields:
-              - { label: "Browser Title", name: "title", widget: "string" }
-              - { label: "Search Description", name: "description", widget: "text" }
-              - { label: "Social Title", name: "og_title", widget: "string" }
-              - { label: "Social Description", name: "og_description", widget: "text" }
+              - { label: "Homepage Browser Title", name: "title", widget: "string" }
+              - { label: "Homepage Search Description", name: "description", widget: "text" }
+              - { label: "Homepage Social Title", name: "og_title", widget: "string" }
+              - { label: "Homepage Social Description", name: "og_description", widget: "text" }
+              - { label: "Our Story Browser Title", name: "story_title", widget: "string" }
+              - { label: "Our Story Search Description", name: "story_description", widget: "text" }
 
-          - label: "Hero"
+          - label: "Menu Labels"
+            name: "nav"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Visit", name: "visit", widget: "string" }
+              - { label: "In Season", name: "season", widget: "string" }
+              - { label: "The Animals", name: "animals", widget: "string" }
+              - { label: "Events", name: "events", widget: "string" }
+              - { label: "Find Us", name: "find_us", widget: "string" }
+              - { label: "Our Story", name: "story", widget: "string" }
+              - { label: "Menu Button", name: "menu_button", widget: "string" }
+              - { label: "Call Button", name: "call_button", widget: "string" }
+
+          - label: "Hero (top of homepage)"
             name: "hero"
             widget: "object"
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Headline Start", name: "headline_prefix", widget: "string" }
-              - { label: "Headline Highlight", name: "headline_emphasis", widget: "string" }
-              - { label: "Headline End", name: "headline_suffix", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string" }
               - { label: "Intro Paragraph", name: "lede", widget: "text" }
+              - { label: "Main Button", name: "cta_primary", widget: "string" }
+              - { label: "Second Button", name: "cta_secondary", widget: "string" }
+              - { label: "Photo Description", name: "image_alt", widget: "string" }
 
-          - label: "Fruit Selector"
-            name: "fruit"
+          - label: "Green Info Bar"
+            name: "ribbon"
             widget: "object"
             fields:
-              - label: "Button Labels"
-                name: "labels"
-                widget: "object"
-                collapsed: true
-                fields:
-                  - { label: "Apples", name: "apples", widget: "string" }
-                  - { label: "Pears", name: "pears", widget: "string" }
-                  - { label: "Peaches", name: "peaches", widget: "string" }
-              - label: "Varieties"
-                name: "varieties"
-                widget: "object"
-                fields:
-                  - label: "Apple Varieties"
-                    name: "apples"
-                    widget: "list"
-                    field: { label: "Name", name: "name", widget: "string" }
-                  - label: "Pear Varieties"
-                    name: "pears"
-                    widget: "list"
-                    field: { label: "Name", name: "name", widget: "string" }
-                  - label: "Peach Varieties"
-                    name: "peaches"
-                    widget: "list"
-                    field: { label: "Name", name: "name", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
 
-          - label: "Signup Form"
-            name: "signup"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Formspree Endpoint", name: "endpoint", widget: "string" }
-              - { label: "Input Placeholder", name: "placeholder", widget: "string" }
-              - { label: "Button Label", name: "button_label", widget: "string" }
-              - { label: "Added Label", name: "added_label", widget: "string" }
-              - { label: "Default Note", name: "default_note", widget: "string" }
-              - { label: "Invalid Email Message", name: "validation_error", widget: "string" }
-              - { label: "Success Message", name: "success_message", widget: "string" }
-              - { label: "Submit Error Message", name: "submit_error", widget: "string" }
-
-          - label: "Vision Section"
-            name: "vision"
+          - label: "Soft Launch Banner"
+            name: "launch"
             widget: "object"
             fields:
-              - { label: "Screen Reader Label", name: "aria_label", widget: "string" }
+              - { label: "Show this banner", name: "show", widget: "boolean", hint: "Turn off to hide the banner once the launch has passed." }
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Heading Start", name: "heading_prefix", widget: "string" }
-              - { label: "Heading Highlight", name: "heading_emphasis", widget: "string" }
+              - { label: "Date Line", name: "date_line", widget: "string" }
+              - { label: "Highlighted Words", name: "date_highlight", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+
+          - label: "Visiting Section"
+            name: "visit"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
               - label: "Paragraphs"
                 name: "paragraphs"
                 widget: "list"
                 field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - { label: "Hours Card Label", name: "hours_label", widget: "string" }
+              - { label: "Entry Card Label", name: "entry_label", widget: "string" }
+              - { label: "Entry Prices", name: "entry_line", widget: "string", hint: "Bold with <strong>…</strong>." }
+              - { label: "Entry Note", name: "entry_note", widget: "text" }
+              - { label: "Find Us Card Label", name: "find_label", widget: "string" }
+              - { label: "Maps Link Text", name: "maps_link", widget: "string" }
+              - { label: "Phone Card Label", name: "phone_label", widget: "string" }
 
-          - label: "Hiring Section"
-            name: "hiring"
+          - label: "What's In Season"
+            name: "season"
             widget: "object"
             fields:
-              - { label: "Screen Reader Label", name: "aria_label", widget: "string" }
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Intro Line", name: "line", widget: "text" }
-              - label: "Roles"
-                name: "roles"
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+              - label: "Fruit Cards"
+                name: "groups"
                 widget: "list"
-                field: { label: "Role", name: "role", widget: "string" }
-              - { label: "Student Line", name: "students", widget: "string" }
-              - { label: "CTA Text", name: "cta_text", widget: "string" }
-              - { label: "Email Subject", name: "email_subject", widget: "string" }
-              - { label: "Reassurance Line", name: "reassure", widget: "string" }
+                fields:
+                  - { label: "Fruit", name: "name", widget: "string" }
+                  - { label: "Status", name: "status", widget: "string", hint: "e.g. Picking now, Winding down" }
+                  - { label: "Status Colour", name: "tone", widget: "select", options: ["green", "amber"] }
+                  - label: "Varieties"
+                    name: "varieties"
+                    widget: "list"
+                    field: { label: "Variety", name: "variety", widget: "string" }
+                  - { label: "Price Note", name: "note", widget: "string", required: false, hint: "Leave blank for no note. Bold with <strong>…</strong>." }
 
-          - label: "Robotics Camp Section"
-            name: "camp"
+          - label: "How A Morning Goes"
+            name: "upick"
             widget: "object"
             fields:
-              - { label: "Screen Reader Label", name: "aria_label", widget: "string" }
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Intro Line", name: "line", widget: "text" }
-              - { label: "Scarcity Line", name: "scarcity", widget: "string" }
-              - { label: "CTA Text", name: "cta_text", widget: "string" }
-              - { label: "Email Subject", name: "email_subject", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Photo Description", name: "image_alt", widget: "string" }
+              - label: "Steps"
+                name: "steps"
+                widget: "list"
+                field: { label: "Step", name: "step", widget: "text" }
 
-          - label: "Opening Date"
-            name: "meta"
+          - label: "Meet The Animals"
+            name: "animals"
             widget: "object"
             fields:
-              - { label: "Opening Label", name: "opening_label", widget: "string" }
-              - { label: "Opening Date", name: "opening_date", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+              - label: "Animal Cards"
+                name: "cards"
+                widget: "list"
+                fields:
+                  - { label: "Photo", name: "image", widget: "image" }
+                  - { label: "Photo Description", name: "alt", widget: "string" }
+                  - { label: "Kind", name: "kind", widget: "string" }
+                  - { label: "Names", name: "names", widget: "string" }
+                  - { label: "Blurb", name: "blurb", widget: "text" }
+
+          - label: "Our Story Teaser"
+            name: "story_teaser"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Paragraph", name: "paragraph", widget: "text" }
+              - { label: "Button", name: "cta", widget: "string" }
+              - { label: "Photo Description", name: "image_alt", widget: "string" }
+
+          - label: "Private Events"
+            name: "events"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Paragraph", name: "paragraph", widget: "text" }
+              - { label: "Note", name: "note", widget: "text" }
+              - { label: "Button", name: "cta", widget: "string" }
+              - { label: "Email Subject", name: "email_subject", widget: "string" }
+              - { label: "Photo Description", name: "image_alt", widget: "string" }
+
+          - label: "Instagram Strip"
+            name: "instagram"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+
+          - label: "Questions At The Gate"
+            name: "faq"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string", hint: "Use <br> for a line break." }
+              - label: "Questions"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Question", name: "question", widget: "string" }
+                  - { label: "Answer", name: "answer", widget: "text" }
+
+          - label: "Email Signup"
+            name: "signup"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+              - { label: "Formspree Endpoint", name: "endpoint", widget: "string" }
+              - { label: "Input Placeholder", name: "placeholder", widget: "string" }
+              - { label: "Button Label", name: "button_label", widget: "string" }
+
+          - label: "Find Us Section"
+            name: "find_us"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Paragraph", name: "paragraph", widget: "text" }
+              - { label: "Address Label", name: "address_label", widget: "string" }
+              - { label: "Open Label", name: "open_label", widget: "string" }
+              - { label: "Open Line", name: "open_line", widget: "string" }
+              - { label: "Directions Button", name: "directions_button", widget: "string" }
+              - { label: "Apple Maps Button", name: "apple_button", widget: "string" }
+              - { label: "Map Screen Reader Title", name: "map_title", widget: "string" }
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Blurb", name: "blurb", widget: "text" }
+              - { label: "Visit Label", name: "visit_label", widget: "string" }
+              - { label: "Directions Link Text", name: "directions_link", widget: "string" }
+              - { label: "Say Hello Label", name: "hello_label", widget: "string" }
+              - { label: "Instagram Label", name: "instagram_label", widget: "string" }
+              - { label: "Open Label", name: "open_label", widget: "string" }
+              - { label: "Copyright", name: "copyright", widget: "string" }
+
+          - label: "Our Story Page"
+            name: "story"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Intro Paragraph", name: "lede", widget: "text" }
+              - { label: "Top Photo Description", name: "hero_alt", widget: "string" }
+              - { label: "Paragraph 1", name: "paragraph_1", widget: "text" }
+              - { label: "Portrait Photo", name: "portrait_image", widget: "image" }
+              - { label: "Portrait Photo Description", name: "portrait_alt", widget: "string" }
+              - { label: "Portrait Caption", name: "portrait_caption", widget: "string" }
+              - { label: "Portrait Note", name: "portrait_note", widget: "text" }
+              - { label: "Paragraph 2", name: "paragraph_2", widget: "text" }
+              - { label: "Paragraph 3", name: "paragraph_3", widget: "text" }
+              - label: "Photo Strip"
+                name: "gallery"
+                widget: "list"
+                fields:
+                  - { label: "Photo", name: "image", widget: "image" }
+                  - { label: "Photo Description", name: "alt", widget: "string" }
+              - { label: "Vision Eyebrow", name: "vision_eyebrow", widget: "string" }
+              - { label: "Vision Heading", name: "vision_heading", widget: "string" }
+              - { label: "Vision Paragraph", name: "vision_paragraph", widget: "text" }
+              - label: "Numbers"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Number", name: "value", widget: "string" }
+                  - { label: "Caption", name: "label", widget: "string" }
+              - { label: "Closing Heading", name: "cta_heading", widget: "string" }
+              - { label: "Closing Note", name: "cta_note", widget: "text" }
+              - { label: "Closing Button", name: "cta_button", widget: "string" }

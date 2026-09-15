@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER WORDMARK — replace this file with the real Rai Orchards SVG.
+  The pages reference it as img/wordmark-gold.svg at height:38px with width:auto,
+  so a drop-in replacement needs no HTML changes. Keep a viewBox so it scales.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-label="Rai Orchards">
+  <title>Rai Orchards</title>
+  <text x="180" y="62"
+        font-family="Newsreader, Georgia, 'Times New Roman', serif"
+        font-size="58" font-weight="400" letter-spacing="6"
+        fill="#C99A4B" text-anchor="middle">RAI</text>
+  <text x="180" y="98"
+        font-family="Newsreader, Georgia, 'Times New Roman', serif"
+        font-size="26" font-weight="400" letter-spacing="9"
+        fill="#C99A4B" text-anchor="middle">ORCHARDS</text>
+</svg>

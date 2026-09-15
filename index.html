@@ -1,837 +1,408 @@
+---
+---
+{% assign copy = site.data.site %}
 <!doctype html>
-<html lang="en">
+<html lang="{{ copy.language | default: 'en' | escape }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rai Orchards — Family Fruit Farm · Puslinch, Ontario</title>
-<meta name="description" content="Rai Orchards soft launch — Saturday September 19, 2026, 11am–4pm, free entry, at 3977 Wellington Road 35, Puslinch, Ontario. Then open daily 11am–6pm through October 31. Entry: adults $10, children $5, under 2 free — pay at the door.">
-<meta name="theme-color" content="#16201b">
-<meta property="og:title" content="Rai Orchards — Family Fruit Farm">
-<meta property="og:description" content="Free soft launch Sat Sep 19, then open daily through October 31 in Puslinch, Ontario. Meet the animals, wagon rides, pick-your-own apples.">
+<title>{{ copy.seo.title | escape }}</title>
+<meta name="description" content="{{ copy.seo.description | escape }}">
+<meta name="theme-color" content="#14493E">
+<link rel="canonical" href="https://raiorchards.ca/">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:,">
+<meta property="og:url" content="https://raiorchards.ca/">
+<meta property="og:title" content="{{ copy.seo.og_title | escape }}">
+<meta property="og:description" content="{{ copy.seo.og_description | escape }}">
+<meta property="og:image" content="https://raiorchards.ca/img/apples.jpeg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bark:#16201b;
-    --bark-deep:#0d1410;
-    --gold:#d6a548;
-    --gold-soft:#e7c47e;
-    --cream:#f7f2e6;
-    --sage:#b3c2b7;
-    --line:rgba(241,235,221,.14);
-    --field:rgba(241,235,221,.05);
-    --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --ease:cubic-bezier(.22,.61,.36,1);
-    /* glow tint — retargeted by the fruit selector */
-    --glow-a:rgba(231,196,126,.12);
-    --glow-b:rgba(214,165,72,.06);
-  }
-  /* fruit moods: only the ambient glow + selected pill change */
-  body[data-fruit="apples"]{ --glow-a:rgba(224,122,95,.14);  --glow-b:rgba(196,90,66,.07) }
-  body[data-fruit="pears"]{  --glow-a:rgba(186,205,118,.13); --glow-b:rgba(146,170,84,.06) }
-  body[data-fruit="peaches"]{--glow-a:rgba(240,166,138,.14); --glow-b:rgba(222,130,100,.07)}
+  body { margin: 0; background: #F7F2E7; color: #1C2A22; font-family: Karla, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section { scroll-margin-top: 78px; }
+  a { color: #14493E; text-decoration-color: rgba(201,154,75,.6); text-underline-offset: 3px; }
+  a:hover { color: #C9803B; }
+  img { display: block; }
 
-  *{box-sizing:border-box}
-  html{background:var(--bark-deep)}
-  html,body{margin:0;min-height:100%}
-  body{
-    background:linear-gradient(180deg,var(--bark) 0%,var(--bark) 60%,var(--bark-deep) 100%);
-    color:var(--cream);
-    font-family:var(--sans);
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    min-height:100svh;
-    display:grid;place-items:center;
-    padding:clamp(1.5rem,5vw,3rem);
-    position:relative;overflow-x:hidden;
+  /* --- hover states --- */
+  .navlink { color: #1C2A22; text-decoration: none; }
+  .navlink:hover { color: #C9803B; }
+  .btn-gold { background: #C99A4B; color: #14332A; }
+  .btn-gold:hover { background: #DCB369; color: #14332A; }
+  .btn-ghost { border: 1px solid rgba(251,247,238,.5); color: #FBF7EE; }
+  .btn-ghost:hover { border-color: #FBF7EE; color: #FBF7EE; }
+  .btn-dark { background: #14493E; color: #FBF7EE; }
+  .btn-dark:hover { background: #1B5E4E; color: #FBF7EE; }
+  .btn-outline { border: 1px solid #14493E; color: #14493E; }
+  .btn-outline:hover { background: #14493E; color: #FBF7EE; }
+  .panel-link { color: #FBF7EE; text-decoration: none; }
+  .panel-link:hover { color: #E6CE9B; }
+
+  /* --- responsive nav: desktop links collapse into the menu button --- */
+  .nav-desktop { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14px; letter-spacing: .02em; }
+  .status-pill { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .btn-burger { display: none; align-items: center; gap: 10px; min-height: 44px; padding: 10px 14px 10px 16px; background: #14493E; color: #F1EADA; border: none; border-radius: 999px; font-family: Karla, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: .04em; cursor: pointer; }
+  @media (max-width: 880px) {
+    .nav-desktop, .status-pill { display: none; }
+    .btn-burger { display: inline-flex; }
   }
 
-  .atmosphere{position:fixed;inset:0;z-index:0;pointer-events:none}
-  .atmosphere::before{
-    content:"";position:absolute;left:50%;top:24%;
-    width:min(85vw,640px);aspect-ratio:1;transform:translate(-50%,-50%);
-    background:radial-gradient(circle at center,
-      var(--glow-a) 0%, var(--glow-b) 30%, rgba(0,0,0,0) 62%);
-    filter:blur(8px);
-    animation:breathe 14s var(--ease) infinite;
-    transition:background 1.1s var(--ease);
+  /* --- slide-out menu, toggled by the .is-open class --- */
+  .scrim { position: fixed; inset: 0; z-index: 55; background: rgba(10,30,24,.5); transition: opacity .3s, visibility .3s; opacity: 0; visibility: hidden; }
+  .scrim.is-open { opacity: 1; visibility: visible; }
+  .panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw,380px); z-index: 60; background: #14493E; color: #F1EADA; display: flex; flex-direction: column; padding: 24px 26px 34px; gap: 8px; box-shadow: -24px 0 60px rgba(10,30,24,.35); transition: transform .34s cubic-bezier(.22,.61,.36,1), visibility .34s; transform: translateX(104%); visibility: hidden; overflow-y: auto; }
+  .panel.is-open { transform: translateX(0); visibility: visible; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .panel, .scrim { transition: none; }
   }
-  .atmosphere::after{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(120% 100% at 50% 30%,transparent 55%,rgba(13,20,16,.6) 100%);
-  }
-  @keyframes breathe{
-    0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}
-    50%{opacity:1;transform:translate(-50%,-51%) scale(1.06)}
-  }
-
-  .panel{
-    position:relative;z-index:1;
-    width:100%;max-width:38rem;text-align:center;
-    display:flex;flex-direction:column;align-items:center;
-    gap:clamp(1.3rem,3.6vw,1.9rem);
-  }
-
-  .rise{opacity:0;transform:translateY(14px);animation:rise .9s var(--ease) forwards}
-  .d1{animation-delay:.05s}.d2{animation-delay:.20s}.d3{animation-delay:.38s}
-  .d4{animation-delay:.54s}.d5{animation-delay:.68s}.d6{animation-delay:.82s}
-  @keyframes rise{to{opacity:1;transform:none}}
-
-  .eyebrow{
-    margin:0;color:var(--gold);
-    font-size:.72rem;font-weight:600;
-    letter-spacing:.3em;text-transform:uppercase;
-  }
-
-  .wordmark{width:100%;display:flex;justify-content:center}
-  .wordmark__svg{
-    width:clamp(15rem,76%,26rem);height:auto;
-    color:var(--gold);
-    filter:drop-shadow(0 2px 30px rgba(214,165,72,.12));
-  }
-
-  .tagline{
-    font-family:var(--serif);font-weight:400;
-    font-size:clamp(1.8rem,7.4vw,2.8rem);
-    line-height:1.06;letter-spacing:.005em;
-    color:var(--cream);margin:0;
-  }
-  .tagline em{font-style:italic;color:var(--gold-soft)}
-
-  .lede{
-    color:rgba(247,242,230,.82);
-    font-size:clamp(.95rem,2.6vw,1.05rem);
-    line-height:1.65;margin:0;max-width:46ch;
-  }
-
-  /* ── signature: the fruit selector ─────────────────────────── */
-  .grove{width:100%;display:flex;flex-direction:column;align-items:center;gap:.85rem}
-  .grove__row{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
-  .pip{
-    display:inline-flex;align-items:center;gap:.45rem;
-    background:transparent;color:var(--sage);
-    border:1px solid var(--line);border-radius:999px;
-    font-family:var(--sans);font-size:.85rem;font-weight:600;
-    letter-spacing:.06em;text-transform:uppercase;
-    padding:.55rem 1.1rem;cursor:pointer;
-    transition:color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
-  }
-  .pip svg{flex:0 0 auto;opacity:.85}
-  .pip:hover{color:var(--cream);border-color:rgba(241,235,221,.3)}
-  .pip[aria-pressed="true"]{
-    color:var(--bark-deep);background:var(--gold);border-color:var(--gold);
-  }
-  body[data-fruit="apples"]  .pip[data-fruit="apples"]{background:#e07a5f;border-color:#e07a5f}
-  body[data-fruit="pears"]   .pip[data-fruit="pears"]{background:#bacd76;border-color:#bacd76}
-  body[data-fruit="peaches"] .pip[data-fruit="peaches"]{background:#f0a68a;border-color:#f0a68a}
-
-  .grove__out{min-height:2.2em;display:grid;place-items:center}
-  .varieties{
-    margin:0;font-family:var(--serif);font-style:italic;
-    font-size:clamp(1.05rem,3.4vw,1.3rem);
-    color:var(--cream);letter-spacing:.01em;
-    opacity:0;transform:translateY(6px);
-    transition:opacity .5s var(--ease),transform .5s var(--ease);
-  }
-  .varieties.show{opacity:1;transform:none}
-  .varieties .sep{color:var(--gold);font-style:normal;padding:0 .35em}
-
-  /* ── form ──────────────────────────────────────────────────── */
-  .signup{width:100%;max-width:30rem;display:flex;flex-direction:column;gap:.7rem}
-  .field{
-    display:flex;gap:.5rem;
-    background:var(--field);border:1px solid var(--line);
-    border-radius:999px;padding:.4rem;
-    transition:border-color .25s var(--ease),background .25s var(--ease);
-  }
-  .field:focus-within{border-color:var(--gold);background:rgba(241,235,221,.08)}
-  .field__input{
-    flex:1 1 auto;min-width:0;background:transparent;border:0;outline:0;
-    color:var(--cream);font-family:var(--sans);font-size:1rem;
-    padding:.7rem .5rem .7rem 1rem;
-  }
-  .field__input::placeholder{color:var(--sage);opacity:.75}
-  .field__btn{
-    flex:0 0 auto;background:var(--gold);color:#15201a;
-    border:0;border-radius:999px;
-    font-family:var(--sans);font-size:.95rem;font-weight:650;letter-spacing:.01em;
-    padding:.7rem 1.4rem;cursor:pointer;
-    transition:background .2s var(--ease),transform .2s var(--ease);
-  }
-  .field__btn:hover{background:var(--gold-soft)}
-  .field__btn:active{transform:translateY(1px)}
-  .field__btn:disabled{opacity:.6;cursor:default}
-
-  .note{color:var(--sage);font-size:.82rem;letter-spacing:.01em;min-height:1.1em;transition:color .2s var(--ease)}
-  .note--ok{color:var(--gold-soft)}
-  .note--err{color:#e8a48c}
-
-  .meta{
-    display:flex;align-items:center;gap:.7rem;
-    color:var(--sage);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
-  }
-  .meta__dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.8}
-
-  a:focus-visible,button:focus-visible,input:focus-visible{
-    outline:2px solid var(--gold);outline-offset:3px;border-radius:6px;
-  }
-
-  @media (max-width:30rem){
-    .field{flex-direction:column;border-radius:18px;padding:.5rem}
-    .field__btn{width:100%;border-radius:12px;padding:.85rem}
-    .field__input{text-align:center}
-    .pip{padding:.5rem .9rem;font-size:.8rem}
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    .atmosphere::before{animation:none;transition:none}
-    .rise{animation:none;opacity:1;transform:none}
-    .varieties{transition:none}
-  }
-
-  /* ── join / hiring (quiet, secondary) ──────────────── */
-  .join{
-    width:100%;max-width:34rem;
-    display:flex;flex-direction:column;align-items:center;gap:.8rem;
-    padding-top:clamp(1.7rem,5vw,2.5rem);
-    border-top:1px solid var(--line);
-  }
-  .join__eyebrow{
-    color:var(--gold);font-size:.7rem;font-weight:600;
-    letter-spacing:.3em;text-transform:uppercase;
-  }
-  .join__line{
-    margin:0;color:rgba(247,242,230,.78);
-    font-size:clamp(.95rem,2.6vw,1.02rem);line-height:1.6;max-width:42ch;
-  }
-  .join__roles{
-    margin:.15rem 0 0;font-family:var(--serif);font-style:italic;
-    font-size:clamp(1.05rem,3.2vw,1.25rem);line-height:1.5;
-    color:var(--cream);max-width:34ch;
-  }
-  .join__roles .sep{color:var(--gold);font-style:normal;padding:0 .3em}
-  .join__cta{
-    margin-top:.35rem;color:var(--gold-soft);text-decoration:none;
-    font-size:.9rem;font-weight:600;letter-spacing:.02em;
-    border-bottom:1px solid rgba(231,196,126,.35);padding-bottom:2px;
-    transition:border-color .2s var(--ease),color .2s var(--ease);
-  }
-  .join__cta:hover{color:#fff;border-color:var(--gold-soft)}
-
-  .join__students{
-    margin:.1rem 0 0;color:var(--sage);
-    font-size:.85rem;line-height:1.55;max-width:40ch;
-  }
-  .join__reassure{
-    margin:.1rem 0 0;color:var(--sage);opacity:.85;
-    font-size:.78rem;letter-spacing:.01em;
-  }
-  .camp__scarcity{
-    margin:.1rem 0 0;color:var(--gold-soft);
-    font-size:.82rem;letter-spacing:.04em;
-  }
-
-  /* ── vision / community (narrative, the heart) ──────── */
-  .vision{
-    width:100%;max-width:36rem;
-    display:flex;flex-direction:column;align-items:center;gap:1rem;
-    padding-top:clamp(1.8rem,5vw,2.6rem);
-    border-top:1px solid var(--line);
-  }
-  .vision__head{
-    margin:0;font-family:var(--serif);font-weight:400;
-    font-size:clamp(1.5rem,5.4vw,2.1rem);line-height:1.12;
-    color:var(--cream);max-width:18ch;
-  }
-  .vision__head em{font-style:italic;color:var(--gold-soft)}
-  .vision__body{
-    margin:0;color:rgba(247,242,230,.8);
-    font-size:clamp(.97rem,2.6vw,1.05rem);line-height:1.72;max-width:48ch;
-  }
-  .vision__close{
-    margin:.15rem 0 0;font-family:var(--serif);font-style:italic;
-    font-size:clamp(1.05rem,3vw,1.2rem);color:var(--gold-soft);max-width:34ch;
-  }
-
-  /* soft launch (free, highlight) */
-  .event{width:100%;max-width:34rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;
-    padding:clamp(1.4rem,4.5vw,2rem) clamp(1.2rem,4vw,1.9rem);border:1px solid var(--line);
-    border-radius:20px;background:rgba(241,235,221,.035);}
-  .event__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;}
-  .event__date{margin:.15rem 0 0;font-family:var(--serif);font-size:clamp(1.45rem,6vw,2rem);line-height:1.05;color:var(--cream);}
-  .event__meta{margin:0;color:var(--gold-soft);font-size:.95rem;letter-spacing:.02em;}
-  .event__addr{margin:0;color:var(--sage);font-size:.85rem;}
-  .event__invite{margin:.55rem 0 0;color:rgba(247,242,230,.82);font-size:clamp(.95rem,2.6vw,1.02rem);line-height:1.6;max-width:40ch;}
-  .event__animals{margin:.1rem 0 0;color:var(--sage);font-size:.84rem;line-height:1.55;max-width:42ch;}
-  /* the autumn season (paid, quiet) */
-  .season{width:100%;max-width:34rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;
-    padding-top:clamp(1.6rem,5vw,2.4rem);border-top:1px solid var(--line);}
-  .season__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;}
-  .season__line{margin:0;color:rgba(247,242,230,.8);font-size:clamp(.95rem,2.6vw,1.02rem);line-height:1.6;max-width:42ch;}
-  .season__hours{margin:.35rem 0 0;color:var(--gold-soft);font-size:.95rem;letter-spacing:.02em;}
-  .season__prices{margin:0;color:var(--cream);font-size:.9rem;}
-  .season__prices b{color:var(--gold-soft);font-weight:600;}
-  .season__pay{margin:.15rem 0 0;color:var(--sage);font-size:.8rem;line-height:1.5;max-width:40ch;}
-
-  /* mailing list heading */
-  .signup__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;text-align:center;}
-  .signup__line{margin:0 0 .2rem;color:rgba(247,242,230,.78);font-size:clamp(.92rem,2.5vw,1rem);line-height:1.55;max-width:38ch;text-align:center;align-self:center;}
-  /* instagram photo grid */
-  .ig{width:100%;max-width:34rem;display:flex;flex-direction:column;align-items:center;gap:1rem;
-    padding-top:clamp(1.7rem,5vw,2.5rem);border-top:1px solid var(--line);}
-  .ig__eyebrow{color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;}
-  .ig__grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;}
-  .ig__tile{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;text-decoration:none;
-    background:linear-gradient(135deg,rgba(214,165,72,.14),rgba(241,235,221,.04));
-    border:1px solid var(--line);display:grid;place-items:center;
-    transition:transform .25s var(--ease),border-color .25s var(--ease);}
-  .ig__tile:hover{transform:translateY(-2px);border-color:rgba(214,165,72,.4);}
-  .ig__tile span{color:var(--sage);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7;}
-  .ig__tile img{width:100%;height:100%;object-fit:cover;display:block;}
-  .ig__handle{color:var(--gold-soft);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.02em;
-    border-bottom:1px solid rgba(231,196,126,.35);padding-bottom:2px;transition:color .2s,border-color .2s;}
-  .ig__handle:hover{color:#fff;border-color:var(--gold-soft);}
-  @media (max-width:30rem){.ig__grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
-  <div class="atmosphere" aria-hidden="true"></div>
+<div style="max-width:100%;overflow-x:hidden">
 
-  <main class="panel">
-    <p class="eyebrow rise d1">Puslinch, Ontario</p>
-
-    <div class="wordmark rise d2">
-      <svg class="wordmark__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9860 4691" role="img" aria-label="Rai Orchards" >
-<g transform="translate(-69.065133,4760.932318) scale(0.100000,-0.100000)"
-fill="currentColor" stroke="none">
-<path d="M57383 47595 c-149 -41 -246 -137 -323 -321 -17 -41 -64 -146 -104
--232 -68 -146 -180 -415 -313 -757 -30 -77 -82 -198 -115 -270 -33 -71 -176
--418 -318 -770 -141 -352 -287 -704 -324 -782 -36 -78 -89 -202 -117 -275 -28
--73 -81 -198 -119 -278 -62 -133 -167 -386 -305 -740 -66 -168 -112 -275 -157
--365 -20 -38 -147 -349 -283 -690 -151 -379 -284 -696 -342 -815 -88 -179
--176 -388 -353 -835 -119 -300 -189 -476 -264 -660 -40 -99 -86 -214 -101
--255 -15 -41 -81 -186 -146 -322 -136 -283 -138 -288 -229 -548 -90 -258 -95
--272 -212 -510 -92 -190 -186 -413 -345 -820 -35 -90 -89 -216 -120 -280 -52
--110 -205 -479 -318 -771 -29 -75 -86 -206 -125 -290 -40 -85 -100 -226 -135
--314 -142 -365 -251 -628 -315 -765 -38 -80 -91 -205 -119 -278 -28 -74 -82
--201 -121 -283 -38 -82 -180 -424 -314 -761 -135 -337 -274 -674 -309 -748
--35 -74 -89 -200 -120 -280 -31 -80 -70 -179 -87 -220 -18 -41 -60 -147 -95
--235 -138 -353 -246 -616 -300 -730 -31 -66 -79 -176 -106 -245 -28 -69 -76
--190 -109 -270 -80 -197 -191 -476 -257 -645 -30 -76 -86 -207 -124 -290 -39
--82 -217 -517 -396 -965 -179 -448 -357 -882 -395 -965 -39 -82 -99 -222 -133
--310 -135 -344 -246 -615 -300 -728 -53 -113 -163 -381 -301 -734 -35 -90 -95
--229 -133 -310 -83 -177 -93 -202 -172 -430 -71 -205 -89 -250 -172 -428 -57
--122 -169 -395 -312 -760 -35 -88 -91 -218 -125 -290 -34 -71 -90 -202 -125
--290 -150 -382 -251 -628 -310 -755 -59 -126 -172 -402 -302 -735 -30 -77 -85
--205 -123 -285 -37 -80 -138 -321 -223 -535 -86 -215 -184 -449 -217 -520 -34
--72 -95 -215 -136 -319 -211 -530 -560 -1112 -899 -1496 -56 -63 -138 -160
--182 -215 -222 -275 -691 -593 -1048 -709 -266 -86 -735 -190 -954 -211 -89
--8 -215 -27 -280 -40 -64 -13 -165 -31 -226 -40 -309 -43 -389 -134 -388 -445
-2 -246 65 -355 235 -404 93 -27 7632 -19 7703 8 153 60 224 240 196 502 -26
-250 -123 317 -481 334 -185 9 -273 20 -437 54 -40 9 -145 23 -233 31 -335 32
--603 106 -955 265 -262 118 -588 453 -643 660 -36 136 -24 996 17 1190 90 432
-237 871 566 1690 136 338 276 699 311 802 71 206 113 305 310 727 95 205 346
-471 714 758 473 368 766 577 1010 718 74 43 218 133 320 200 279 183 315 203
-725 409 647 325 934 375 1534 268 103 -18 251 -37 335 -42 87 -6 219 -22 310
--40 259 -49 374 -37 413 45 41 87 -50 127 -493 220 -553 115 -567 263 -42 469
-273 107 516 204 658 263 193 80 1799 614 2025 674 239 63 1415 454 1555 517
-904 408 449 531 -685 186 -99 -30 -261 -71 -360 -90 -99 -20 -252 -58 -340
--85 -88 -28 -236 -70 -328 -94 -93 -25 -225 -63 -295 -85 -70 -22 -206 -60
--302 -85 -205 -54 -529 -159 -685 -223 -775 -315 -1271 -452 -1359 -374 -73
-65 -59 177 45 352 247 415 18 415 -317 -1 -56 -68 -134 -163 -176 -210 -41
--47 -118 -142 -172 -212 -247 -322 -173 -275 -1471 -925 -664 -333 -990 -501
--1110 -575 -508 -311 -610 -367 -677 -370 -157 -6 -140 183 55 599 41 88 217
-517 392 954 174 437 336 842 360 900 24 58 68 168 98 245 30 77 86 208 125
-291 39 83 94 209 121 280 27 71 64 163 81 204 18 41 60 147 95 235 146 373
-250 627 302 735 49 103 141 326 313 760 104 263 180 453 240 600 32 80 84 208
-114 285 30 77 81 196 114 265 33 69 135 314 227 545 92 231 187 459 211 507
-61 122 102 224 178 446 37 107 86 237 110 290 24 54 68 151 99 217 30 66 87
-215 127 330 77 222 101 281 199 492 33 72 85 194 115 270 128 330 243 607 305
-742 38 81 87 196 110 256 24 61 67 169 97 240 61 149 168 417 259 650 34 88
-94 228 133 310 38 83 177 418 307 745 131 327 268 660 305 740 37 80 87 195
-110 255 24 61 69 173 100 250 32 77 83 205 115 285 32 80 76 181 98 225 37 75
-182 426 302 735 29 74 73 185 98 245 25 61 72 175 103 255 170 436 288 586
-419 535 84 -32 98 -58 276 -502 72 -180 162 -394 200 -474 71 -152 127 -293
-174 -439 43 -133 628 -1592 695 -1735 33 -70 85 -191 116 -269 30 -77 79 -200
-109 -271 30 -72 67 -167 83 -210 17 -44 57 -145 90 -225 33 -80 87 -224 120
--320 74 -215 265 -694 339 -850 81 -171 124 -283 238 -620 99 -292 146 -413
-216 -551 17 -35 177 -427 355 -871 341 -850 361 -897 430 -994 118 -167 261
--230 401 -176 49 19 79 36 308 181 519 329 1453 660 2120 752 83 11 218 33
-300 49 190 36 206 38 400 50 103 6 211 20 305 39 159 32 192 37 355 51 276 23
-376 166 290 415 -49 144 -717 1802 -777 1930 -39 83 -92 206 -118 275 -26 69
--70 179 -98 245 -28 66 -82 210 -120 320 -89 254 -99 279 -183 459 -39 81 -94
-210 -123 285 -54 139 -171 433 -276 691 -88 216 -176 438 -236 592 -29 76 -79
-193 -110 260 -109 237 -134 299 -200 490 -36 106 -96 267 -133 358 -38 91 -87
-215 -111 275 -23 61 -69 166 -102 235 -55 115 -132 303 -308 745 -104 264
--185 467 -250 625 -62 154 -159 395 -270 675 -106 268 -186 468 -250 625 -32
-80 -84 208 -114 285 -30 77 -82 197 -114 266 -33 69 -162 382 -287 695 -125
-313 -246 616 -270 674 -23 58 -149 371 -278 695 -130 325 -263 649 -297 720
--34 72 -90 202 -125 290 -397 1015 -377 995 -980 994 -226 0 -313 -4 -352 -14z"/>
-<path d="M9023 47425 c-200 -44 -276 -194 -251 -498 24 -306 203 -413 732
--437 169 -8 249 -16 368 -40 84 -16 221 -39 303 -50 483 -64 965 -267 1200
--504 246 -248 450 -741 510 -1231 13 -109 39 -263 70 -410 3 -16 10 -219 15
--450 7 -320 14 -458 30 -580 87 -684 87 -21152 -1 -21830 -16 -131 -22 -252
--29 -670 -7 -373 -13 -529 -23 -580 -8 -38 -31 -158 -51 -265 -169 -894 -490
--1401 -1049 -1660 -234 -108 -850 -252 -1152 -270 -101 -6 -218 -20 -315 -39
--85 -16 -204 -37 -264 -46 -242 -35 -319 -112 -346 -348 -36 -309 69 -479 312
--507 112 -13 10953 -13 11066 0 225 26 312 143 312 421 0 305 -78 393 -385
-440 -71 10 -186 31 -254 45 -92 19 -178 28 -330 35 -623 28 -1317 277 -1626
-583 -274 272 -490 870 -525 1451 -6 99 -19 234 -30 300 -46 279 -45 131 -45
-5641 0 5221 0 5221 35 5290 62 121 140 158 369 176 190 14 2179 5 2286 -11
-248 -36 586 -194 850 -398 225 -174 827 -780 1040 -1048 62 -77 153 -188 202
--248 50 -59 123 -153 162 -210 188 -267 263 -371 342 -477 125 -167 371 -540
-479 -725 51 -88 128 -212 170 -275 112 -168 193 -296 272 -433 39 -67 132
--216 208 -332 75 -115 172 -271 215 -345 43 -74 210 -335 373 -580 162 -245
-324 -494 360 -555 36 -60 115 -193 177 -295 150 -247 252 -417 348 -580 44
--74 124 -207 177 -295 53 -88 126 -209 162 -270 36 -60 158 -249 270 -420 113
--170 230 -353 261 -405 31 -52 105 -176 164 -275 60 -99 136 -225 168 -280 32
--55 120 -194 195 -310 76 -115 162 -253 192 -305 76 -132 119 -201 240 -385
-58 -88 129 -200 158 -250 145 -243 178 -297 238 -385 36 -52 116 -162 177
--245 62 -82 151 -208 200 -280 114 -168 391 -538 514 -685 53 -64 142 -174
-198 -245 55 -72 164 -199 243 -284 78 -85 187 -213 243 -285 126 -163 207
--244 372 -372 72 -56 184 -150 250 -209 838 -750 1887 -1277 2985 -1499 406
--82 489 -95 665 -106 99 -6 247 -22 328 -36 270 -45 316 -46 2497 -48 2299 -1
-2128 -6 2228 62 108 72 153 234 130 462 -22 225 -104 300 -369 340 -74 11
--188 31 -254 45 -66 14 -176 32 -245 40 -200 26 -457 87 -700 168 -168 55
--983 452 -1140 555 -299 195 -592 458 -1153 1031 -310 318 -718 838 -1077
-1375 -95 142 -228 333 -297 425 -69 91 -319 456 -556 811 -236 355 -448 670
--470 700 -23 30 -84 114 -137 185 -127 170 -355 512 -474 712 -52 88 -132 209
--177 269 -45 60 -136 188 -202 284 -66 96 -168 240 -227 320 -59 80 -144 207
--191 283 -46 76 -127 195 -179 265 -52 70 -183 258 -291 418 -108 161 -248
-361 -311 446 -64 84 -227 320 -363 523 -302 452 -245 371 -685 960 -202 270
--415 561 -475 647 -59 87 -148 206 -196 265 -79 97 -305 389 -507 655 -40 53
--132 163 -204 245 -71 81 -174 204 -228 273 -96 123 -157 192 -350 395 -52 55
--144 161 -204 235 -286 352 -757 825 -1082 1087 -370 298 -485 456 -420 581
-43 82 56 86 759 262 1132 282 2070 644 2729 1054 76 47 191 116 255 153 319
-183 920 601 1118 778 66 59 177 152 247 207 242 189 405 351 611 610 62 79
-178 214 257 299 176 190 253 293 507 674 613 921 947 1747 1149 2840 20 110
-44 234 52 275 13 63 16 225 19 995 5 956 2 1030 -38 1235 -11 58 -29 175 -40
-260 -43 330 -182 821 -342 1210 -31 74 -83 205 -117 290 -227 572 -913 1460
--1595 2064 -258 229 -1117 801 -1455 971 -365 183 -1766 683 -2085 745 -60 12
--195 39 -300 60 -340 70 -608 119 -729 135 -65 9 -170 27 -235 39 -146 30
--180 34 -371 46 -96 6 -216 21 -315 40 -124 25 -206 34 -365 41 -113 5 -288
-21 -390 35 -102 15 -277 31 -390 36 -358 17 -15081 20 -15157 3z m12242 -1375
-c379 -8 410 -10 585 -39 133 -22 244 -34 395 -41 116 -5 237 -14 270 -21 411
--76 1079 -231 1475 -341 412 -114 989 -402 1418 -708 434 -309 1038 -935 1270
--1313 323 -528 325 -533 538 -1085 125 -323 240 -754 279 -1042 13 -96 36
--229 49 -295 17 -77 30 -185 37 -300 6 -99 17 -216 25 -260 8 -44 24 -134 36
--200 30 -161 34 -916 6 -1070 -50 -272 -59 -342 -68 -538 -11 -234 -12 -242
--98 -607 -33 -140 -70 -307 -82 -370 -131 -701 -657 -1804 -1145 -2400 -96
--118 -231 -286 -319 -399 -98 -124 -418 -436 -571 -556 -77 -60 -196 -156
--265 -213 -129 -107 -145 -118 -490 -328 -249 -152 -633 -346 -870 -439 -96
--37 -222 -90 -280 -117 -172 -81 -267 -117 -420 -158 -80 -21 -210 -59 -290
--85 -240 -76 -846 -223 -1015 -246 -82 -11 -217 -33 -300 -49 -191 -36 -226
--39 -595 -50 -256 -7 -329 -13 -451 -34 -245 -43 -329 -46 -1549 -46 -1481 0
--1448 -4 -1542 188 -49 98 -53 12873 -5 12978 50 108 133 167 260 183 83 11
-3207 12 3712 1z"/>
-<path d="M80503 47429 c-188 -37 -272 -164 -273 -412 0 -300 79 -391 395 -457
-251 -52 285 -58 430 -70 77 -6 205 -24 285 -40 80 -16 183 -34 230 -40 757
--95 1326 -414 1546 -868 97 -199 211 -587 234 -792 6 -52 22 -151 35 -220 43
--219 46 -259 55 -600 7 -253 14 -368 30 -470 46 -299 45 -78 45 -11150 0
--11074 1 -10842 -45 -11155 -16 -109 -23 -224 -30 -515 -8 -371 -17 -473 -55
--638 -8 -34 -22 -120 -30 -190 -24 -196 -41 -269 -121 -512 -245 -739 -563
--1017 -1409 -1229 -367 -92 -397 -98 -588 -116 -89 -9 -230 -29 -313 -45 -83
--16 -207 -34 -275 -40 -319 -29 -418 -131 -419 -434 0 -243 71 -367 239 -413
-116 -32 11416 -27 11517 4 194 61 284 199 284 434 0 284 -88 374 -395 405 -77
-8 -210 28 -295 44 -85 16 -227 37 -315 45 -88 8 -214 27 -280 41 -66 14 -169
-34 -230 45 -296 53 -691 192 -859 303 -377 248 -640 676 -736 1196 -12 63 -34
-181 -51 262 -21 103 -32 199 -39 327 -6 99 -19 242 -30 318 -12 76 -25 201
--31 278 -37 529 -37 22127 1 22650 5 77 19 205 30 285 12 80 25 240 30 355 10
-214 14 248 49 415 11 52 29 168 41 256 145 1097 626 1553 1815 1718 99 14 203
-30 230 36 119 27 220 41 375 50 493 31 664 139 689 438 24 275 -44 432 -212
-489 -57 20 -11457 32 -11554 12z"/>
-<path d="M66265 33305 c-121 -30 -281 -66 -355 -80 -74 -14 -175 -34 -225 -45
--133 -29 -196 -38 -340 -51 -71 -6 -197 -23 -280 -39 -196 -37 -215 -39 -445
--50 -150 -7 -232 -16 -355 -40 -149 -30 -182 -32 -480 -40 -355 -10 -358 -10
--570 -50 -82 -15 -213 -33 -290 -40 -77 -6 -216 -26 -310 -45 -93 -18 -219
--43 -280 -55 -163 -32 -451 -105 -610 -155 -77 -24 -206 -62 -287 -84 -177
--49 -234 -70 -408 -151 -74 -34 -184 -82 -245 -105 -176 -69 -210 -86 -441
--223 -419 -249 -553 -342 -754 -522 -63 -56 -181 -154 -262 -217 -163 -127
--231 -195 -342 -341 -40 -54 -121 -154 -178 -223 -358 -430 -779 -1248 -854
--1659 -76 -420 26 -582 331 -526 757 141 1675 400 2300 651 227 91 291 113
-496 174 91 27 221 72 290 99 372 148 400 46 49 -179 -55 -35 -153 -101 -218
--146 -153 -107 -296 -185 -827 -452 -242 -121 -512 -261 -600 -311 -88 -49
--209 -111 -270 -136 -60 -26 -177 -78 -260 -117 -82 -38 -211 -93 -285 -122
--585 -229 -670 -287 -631 -431 35 -129 404 -386 791 -552 250 -107 756 -256
-1031 -304 252 -44 1326 -14 1628 45 681 133 1343 425 1893 832 622 463 787
-610 1015 908 42 56 123 157 179 223 199 238 481 623 590 807 118 198 621 1217
-709 1437 46 113 103 255 128 315 67 166 361 1060 401 1222 20 78 54 200 77
-270 162 509 30 642 -506 508z"/>
-<path d="M56487 33256 c-53 -20 -128 -71 -284 -195 -74 -58 -172 -136 -218
--172 -46 -37 -162 -114 -258 -172 -95 -58 -301 -190 -458 -294 -156 -104 -351
--229 -434 -278 -355 -210 -851 -635 -1120 -960 -331 -399 -661 -1077 -711
--1459 -9 -67 -32 -206 -52 -311 -60 -312 -49 -454 72 -970 97 -415 274 -512
-503 -278 71 73 377 449 523 643 35 47 105 135 155 195 110 131 213 264 280
-360 232 332 329 271 124 -77 -33 -55 -74 -132 -93 -171 -19 -40 -61 -129 -94
--198 -55 -117 -121 -234 -360 -637 -295 -496 -252 -617 213 -599 362 14 1059
-346 1442 687 605 537 920 1123 1143 2125 55 247 80 604 54 765 -11 70 -18 225
--24 595 -5 275 -11 514 -15 530 -24 111 -57 299 -70 405 -47 375 -152 527
--318 466z"/>
-<path d="M65770 28953 c-70 -27 -123 -86 -363 -401 -64 -84 -172 -216 -241
--294 -68 -79 -153 -177 -188 -218 -35 -41 -97 -103 -138 -138 -71 -61 -225
--199 -437 -395 -488 -448 -1057 -764 -1875 -1043 -622 -211 -637 -256 -333
--979 25 -60 75 -195 111 -300 36 -104 99 -271 139 -371 41 -99 101 -261 135
--360 34 -98 90 -249 125 -334 73 -178 187 -462 252 -629 24 -63 70 -177 102
--255 33 -78 88 -226 124 -331 36 -104 89 -246 117 -315 29 -69 83 -213 121
--320 38 -107 105 -285 148 -395 233 -585 238 -600 267 -760 9 -49 43 -202 75
--338 87 -366 90 -387 96 -687 9 -419 -14 -596 -108 -846 -212 -565 -654 -942
--1324 -1129 -104 -29 -242 -69 -306 -88 -157 -48 -253 -64 -454 -77 -109 -6
--223 -20 -320 -39 -82 -17 -216 -37 -297 -45 -307 -30 -393 -125 -392 -436 0
--287 86 -397 329 -421 206 -20 11602 -7 11660 14 154 54 213 151 222 363 15
-319 -75 446 -336 475 -48 5 -126 14 -176 20 -269 31 -874 216 -1160 354 -564
-273 -1036 767 -1502 1570 -156 269 -165 285 -226 430 -30 72 -138 299 -240
-506 -208 421 -201 405 -303 696 -73 211 -122 329 -187 459 -19 38 -68 155
--110 259 -41 105 -101 244 -132 310 -53 112 -141 326 -305 740 -94 239 -181
-456 -250 625 -32 80 -80 199 -105 265 -26 66 -100 230 -165 365 -65 135 -143
-310 -174 390 -30 80 -69 179 -87 220 -17 41 -55 136 -84 210 -186 477 -427
-1067 -487 1195 -39 83 -88 195 -108 250 -21 55 -69 177 -107 270 -39 94 -85
-208 -103 255 -18 47 -63 150 -100 230 -37 80 -171 405 -298 722 -306 764 -338
-813 -502 751z"/>
-<path d="M55555 26443 c-291 -35 -517 -104 -1018 -310 -445 -183 -405 -329
-148 -546 754 -296 1121 -466 1248 -577 158 -139 -57 -112 -1108 139 -320 76
--496 102 -701 102 -276 1 -284 -232 -25 -743 253 -499 510 -776 1059 -1141
-304 -202 829 -403 1342 -514 275 -59 1540 -56 1865 5 88 16 223 35 300 42 77
-6 219 27 316 45 111 22 233 38 335 44 439 28 468 108 220 607 -711 1434 -1792
-2468 -2852 2728 -439 108 -860 152 -1129 119z"/>
-<path d="M5000 9879 c-113 -4 -205 -15 -292 -33 -70 -14 -194 -35 -275 -45
--576 -77 -1061 -266 -1698 -660 -843 -522 -1574 -1469 -1843 -2386 -150 -509
--189 -772 -198 -1320 -15 -853 19 -1104 241 -1771 100 -299 137 -387 237 -561
-212 -370 289 -485 492 -733 227 -278 254 -308 378 -408 68 -54 173 -143 233
--197 544 -485 1532 -910 2275 -980 91 -8 239 -30 330 -48 159 -31 174 -32 410
--32 236 0 251 1 410 32 91 18 239 40 330 48 1111 104 2307 810 3050 1800 412
-549 759 1452 805 2096 10 143 24 251 46 359 45 219 45 371 0 590 -26 125 -35
-201 -46 395 -15 258 -22 304 -92 580 -52 207 -93 324 -231 665 -178 440 -296
-636 -579 961 -60 68 -147 171 -195 229 -101 123 -137 158 -278 270 -58 46
--132 107 -165 135 -239 206 -549 418 -780 533 -325 162 -943 363 -1235 402
--85 11 -214 32 -285 46 -201 40 -607 53 -1045 33z m530 -479 c63 -11 178 -28
-255 -39 335 -46 712 -202 1075 -444 315 -209 750 -722 955 -1127 170 -336 337
--846 415 -1270 12 -63 35 -184 51 -269 68 -355 71 -1558 4 -1894 -13 -67 -34
--176 -45 -242 -98 -555 -327 -1198 -548 -1540 -445 -691 -970 -1086 -1678
--1266 -530 -134 -679 -133 -1389 13 -265 54 -425 128 -767 357 -426 285 -497
-354 -760 741 -244 359 -294 452 -428 788 -171 432 -304 940 -330 1262 -6 74
--22 198 -35 275 -44 245 -46 274 -52 580 -6 338 4 514 42 714 13 71 33 202 44
-289 12 88 29 197 40 243 10 46 27 127 36 179 78 436 241 869 445 1185 366 566
-620 840 1008 1092 261 168 701 314 1037 344 72 6 173 19 225 29 127 24 259 24
-400 0z"/>
-<path d="M31015 9879 c-106 -4 -204 -16 -290 -33 -71 -14 -183 -31 -247 -36
--65 -6 -171 -14 -237 -20 -147 -12 -232 -34 -596 -156 -665 -221 -958 -377
--1460 -778 -305 -243 -787 -767 -1000 -1086 -144 -216 -138 -205 -399 -790
--105 -234 -224 -686 -241 -910 -10 -139 -24 -237 -53 -375 -43 -208 -41 -699
-5 -925 17 -85 36 -211 42 -280 17 -187 29 -250 81 -425 27 -88 67 -227 90
--309 85 -309 373 -892 592 -1199 276 -388 783 -859 1163 -1082 580 -339 822
--432 1630 -624 208 -49 288 -59 575 -70 184 -8 254 -15 383 -40 210 -41 304
--41 514 0 127 24 201 32 373 39 334 14 358 18 905 130 105 21 231 46 280 55
-147 26 482 111 611 154 400 133 481 259 613 951 17 85 41 209 55 275 109 531
-116 616 51 701 -85 111 -193 51 -325 -181 -646 -1139 -1706 -1677 -3067 -1556
--281 25 -650 141 -1003 317 -680 339 -1047 723 -1521 1595 -70 129 -284 748
--328 949 -103 475 -110 557 -111 1245 0 761 -2 735 140 1306 299 1197 1029
-2120 1944 2459 430 159 1291 243 1711 167 616 -112 1066 -317 1430 -653 338
--313 474 -486 642 -819 114 -226 156 -275 236 -275 118 0 144 185 134 950 -6
-457 -28 591 -116 729 -90 140 -104 145 -886 340 -594 148 -665 163 -815 181
--52 6 -167 25 -255 41 -240 45 -756 61 -1250 38z"/>
-<path d="M96245 9879 c-118 -5 -208 -15 -295 -32 -69 -14 -179 -33 -245 -42
--1022 -134 -1942 -1041 -2026 -1995 -92 -1051 321 -1821 1276 -2377 66 -39
-192 -114 279 -167 96 -58 445 -240 885 -460 979 -491 1149 -605 1516 -1015
-337 -377 445 -784 350 -1324 -140 -794 -1178 -1402 -2105 -1233 -876 160
--1459 637 -1922 1574 -170 345 -211 396 -299 377 -105 -23 -126 -105 -95 -362
-8 -71 20 -195 25 -278 6 -84 23 -216 40 -300 16 -82 32 -186 36 -230 32 -396
-111 -703 204 -795 109 -108 544 -253 1036 -345 77 -14 192 -37 255 -50 63 -13
-171 -32 240 -40 69 -9 195 -30 280 -48 230 -46 520 -46 751 1 86 17 230 38
-320 47 1181 113 2178 917 2430 1959 153 638 145 891 -46 1447 -129 373 -474
-811 -915 1162 -230 184 -528 351 -1390 783 -1141 571 -1234 623 -1465 815
--409 341 -634 918 -515 1319 197 662 548 984 1222 1121 379 77 486 78 791 3
-700 -171 1049 -467 1437 -1219 171 -331 223 -395 322 -395 139 0 180 184 113
-500 -27 132 -28 146 -36 560 -8 448 -10 474 -58 568 -69 135 -162 185 -412
-222 -79 12 -236 44 -349 71 -281 68 -323 77 -493 100 -81 10 -205 31 -275 45
--189 38 -488 50 -867 33z"/>
-<path d="M14550 9794 c-322 -56 -287 -292 50 -339 407 -56 561 -232 635 -725
-47 -309 47 -6490 0 -6790 -74 -477 -187 -620 -572 -719 -311 -80 -395 -243
--162 -316 150 -47 2767 -47 2918 0 239 74 138 255 -171 305 -238 40 -372 131
--459 313 -28 61 -35 94 -69 327 -11 74 -27 173 -35 220 -38 207 -55 2544 -19
-2699 72 320 705 379 1095 101 184 -131 197 -147 606 -760 323 -485 384 -582
-460 -733 25 -51 84 -155 131 -232 47 -77 123 -203 168 -281 45 -78 138 -226
-206 -330 68 -104 177 -278 242 -386 446 -750 970 -1133 1716 -1255 254 -41
-1162 -27 1265 21 178 81 107 194 -205 326 -425 180 -677 401 -1025 900 -60 85
--159 223 -220 305 -62 83 -338 488 -613 901 -526 788 -587 876 -749 1070 -54
-65 -126 155 -160 199 -69 91 -109 138 -246 290 -116 128 -148 185 -148 261 0
-125 54 163 401 284 984 345 1654 1211 1654 2140 0 315 -90 668 -246 970 -234
-454 -566 740 -1100 948 -222 87 -699 186 -973 202 -93 6 -237 22 -320 35 -82
-14 -188 30 -235 36 -82 11 -3759 23 -3820 13z m3715 -524 c119 -14 204 -38
-382 -111 441 -180 623 -335 846 -722 112 -193 213 -767 189 -1070 -92 -1152
--926 -1870 -2212 -1903 -577 -14 -736 30 -796 222 -28 89 -30 3286 -2 3373 36
-109 105 175 220 205 65 18 1226 22 1373 6z"/>
-<path d="M39505 9791 c-328 -52 -241 -296 119 -336 450 -50 583 -210 606 -725
-12 -278 12 -6410 0 -6705 -19 -454 -96 -637 -312 -741 -69 -32 -116 -45 -303
--79 -293 -53 -292 -291 2 -326 168 -21 2762 -6 2817 15 109 42 155 133 107
-212 -36 59 -86 79 -296 118 -242 46 -432 254 -501 546 -30 126 -34 3114 -4
-3211 38 127 131 199 282 219 98 13 3956 13 4066 0 145 -16 226 -69 279 -184
-35 -77 46 -3026 11 -3231 -58 -347 -166 -465 -498 -545 -194 -47 -223 -57
--268 -95 -96 -83 -66 -193 67 -247 106 -43 2815 -37 2957 6 238 73 141 263
--156 306 -363 52 -560 298 -590 734 -34 484 -19 6653 15 6871 58 360 221 553
-525 619 41 9 113 23 159 32 302 56 292 292 -12 326 -175 19 -2851 -5 -2912
--26 -222 -79 -152 -236 152 -336 351 -116 488 -239 547 -490 52 -216 53 -2918
-2 -3028 -38 -82 -98 -135 -185 -165 -73 -24 -3922 -41 -4134 -18 -172 20 -259
-86 -306 236 -19 63 -30 2288 -12 2481 66 685 174 866 590 988 341 101 398 290
-104 347 -69 13 -2837 22 -2918 10z"/>
-<path d="M58071 9789 c-174 -13 -306 -108 -398 -285 -32 -61 -1057 -2604
--1317 -3269 -208 -529 -427 -1058 -495 -1194 -99 -197 -150 -319 -230 -553
--33 -97 -90 -248 -125 -335 -76 -186 -163 -402 -256 -638 -92 -232 -178 -448
--260 -650 -38 -93 -90 -224 -116 -290 -25 -66 -68 -163 -94 -215 -26 -52 -80
--176 -119 -275 -223 -556 -429 -755 -906 -869 -267 -64 -292 -264 -39 -322
-176 -41 2112 -28 2226 16 220 82 120 249 -179 301 -532 90 -633 470 -302 1131
-57 113 102 227 171 426 33 97 93 258 134 357 87 215 179 445 244 611 123 315
-206 398 424 425 150 18 2781 6 2842 -13 227 -70 299 -179 489 -738 57 -168
-125 -355 150 -415 60 -142 95 -234 160 -425 29 -85 76 -212 104 -281 227 -564
-106 -902 -381 -1063 -313 -103 -398 -230 -207 -310 119 -50 2860 -60 3009 -12
-214 70 174 202 -105 342 -441 221 -557 385 -900 1269 -24 61 -72 182 -108 270
--36 88 -93 241 -127 340 -34 99 -91 250 -125 335 -157 383 -222 549 -291 745
--41 116 -149 395 -239 620 -90 226 -189 482 -219 570 -61 180 -110 304 -156
-395 -61 121 -111 245 -176 434 -37 105 -99 272 -139 371 -41 99 -101 261 -135
-360 -34 99 -86 239 -115 310 -30 72 -79 195 -111 275 -31 80 -74 179 -94 221
--64 127 -125 276 -193 475 -36 104 -89 245 -117 314 -29 69 -69 170 -90 226
--21 55 -65 165 -98 245 -32 79 -87 216 -122 304 -144 368 -221 450 -430 461
--168 8 -350 10 -439 3z m-163 -1674 c102 -43 182 -210 377 -785 59 -173 135
--385 170 -470 155 -378 222 -549 294 -755 43 -121 99 -272 125 -335 336 -813
-348 -1010 61 -1065 -101 -20 -1602 -32 -1960 -17 -475 21 -541 122 -361 559
-35 87 127 316 204 508 77 193 163 407 191 477 28 70 96 259 150 420 99 293
-453 1195 517 1319 68 130 147 179 232 144z"/>
-<path d="M67609 9791 c-267 -37 -266 -253 1 -326 52 -14 131 -35 175 -47 344
--92 474 -245 531 -623 33 -222 37 -6662 4 -6895 -59 -410 -211 -589 -579 -679
--343 -83 -399 -281 -95 -332 81 -13 2525 -13 2739 0 389 25 358 260 -41 320
--386 59 -524 233 -524 666 -1 317 -16 562 -45 720 -58 320 -68 1858 -14 2083
-63 259 206 352 543 352 357 0 566 -103 778 -385 138 -181 715 -1064 788 -1203
-41 -79 111 -202 154 -275 94 -156 163 -277 276 -482 160 -292 581 -905 747
--1087 344 -380 687 -583 1167 -690 139 -32 1249 -36 1347 -6 104 33 144 100
-105 176 -32 62 -82 90 -271 152 -404 133 -592 286 -900 730 -70 102 -163 230
--205 285 -109 144 -113 148 -717 1055 -603 903 -671 1002 -807 1165 -51 61
--137 169 -193 240 -55 72 -129 162 -163 200 -238 266 -200 382 160 495 882
-275 1594 1084 1661 1887 78 931 -119 1460 -708 1900 -242 181 -575 342 -853
-411 -260 65 -502 103 -715 113 -134 6 -264 18 -360 34 -82 14 -188 30 -235 36
--99 13 -3658 22 -3751 10z m3660 -521 c421 -45 685 -179 1036 -526 232 -230
-287 -330 376 -679 119 -470 114 -766 -20 -1200 -268 -862 -1019 -1370 -2073
--1400 -653 -20 -741 32 -773 455 -8 104 -25 240 -40 310 -52 253 -52 379 1
-655 31 165 42 519 44 1485 2 946 -34 908 845 909 281 0 552 -4 604 -9z"/>
-<path d="M80720 9790 c-355 -8 -391 -14 -450 -75 -101 -105 -10 -209 255 -290
-376 -115 500 -271 547 -683 19 -169 19 -6574 0 -6732 -62 -519 -184 -688 -568
--785 -321 -81 -354 -302 -52 -345 250 -37 4282 -5 4513 34 83 15 206 33 274
-42 167 20 237 36 426 94 88 27 230 67 315 89 686 178 1605 739 1955 1196 38
-50 119 151 180 225 435 527 755 1215 881 1890 20 107 43 229 51 270 47 241 26
-1179 -32 1489 -98 513 -124 604 -240 826 -57 110 -99 208 -135 315 -79 239
--140 335 -509 804 -348 442 -1056 957 -1621 1179 -194 76 -718 244 -845 271
--422 89 -479 97 -730 106 -267 10 -280 11 -485 46 -236 41 -2447 60 -3730 34z
-m3555 -520 c352 -41 898 -211 1280 -399 523 -258 847 -543 1202 -1056 49 -71
-127 -181 172 -244 110 -152 145 -231 261 -577 147 -438 212 -701 236 -962 8
--92 26 -221 39 -287 59 -296 61 -601 6 -880 -25 -125 -34 -204 -41 -360 -16
--320 -33 -401 -166 -779 -223 -630 -453 -998 -914 -1457 -535 -532 -1099 -783
--1959 -871 -149 -15 -985 -14 -1136 1 -405 42 -612 163 -671 393 -32 125 -29
-7161 3 7263 36 112 106 180 216 210 65 17 1325 21 1472 5z"/>
-</g>
-</svg>
-    </div>
-
-    <h1 class="tagline rise d3">Family <em>Fruit</em> Farm</h1>
-
-    <p class="lede rise d4">
-      Rooted in the Kashmir Valley, planted in Southern Ontario. Since 2021
-      we've been growing apples, pears, and peaches the patient way —
-      honouring where we came from while building something for those
-      who come after us.
-    </p>
-
-    <section class="event rise" style="animation-delay:.6s" aria-label="Soft launch">
-      <span class="event__eyebrow">You're invited · Soft launch</span>
-      <p class="event__date">Saturday, September 19, 2026</p>
-      <p class="event__meta">11:00 AM – 4:00 PM · Free entry</p>
-      <p class="event__addr">3977 Wellington Road 35, Puslinch, Ontario</p>
-      <p class="event__invite">For the very first time, we're opening the gates — free for all — to wander the orchard, take a wagon ride, and pick your own apples straight from the trees.</p>
-      <p class="event__animals">Come meet the animals, too: alpacas, Nigerian Dwarf goats, sheep, horses, donkeys, turkeys, ducks, chickens and pigeons.</p>
-    </section>
-
-    <section class="season rise" style="animation-delay:.66s" aria-label="The autumn season">
-      <span class="season__eyebrow">The autumn season</span>
-      <p class="season__line">After launch day, our gates stay open through the autumn — come by for the orchard, the animals, and the last of the season's fruit.</p>
-      <p class="season__hours">Open daily · 11:00 AM – 6:00 PM · until October 31, 2026</p>
-      <p class="season__prices">Adults 18+ <b>$10</b> · Children 2–17 <b>$5</b> · Under 2 <b>free</b></p>
-      <p class="season__pay">Pay at the door by cash or card. A $1 card fee applies per transaction.</p>
-    </section>
-
-    <div class="grove rise d5">
-      <div class="grove__row" role="group" aria-label="What we grow">
-        <button class="pip" data-fruit="apples" aria-pressed="false" type="button">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 6c-1-2.5-3.5-3-5.5-2C3.4 5.6 2.6 9.6 4 13.4 5.3 17 8 20 10.4 20c.6 0 1.1-.2 1.6-.5.5.3 1 .5 1.6.5 2.4 0 5.1-3 6.4-6.6 1.4-3.8.6-7.8-2.5-9.4-2-1-4.5-.5-5.5 2Z"/><path d="M12.4 5.5c.1-1.8 1.2-3 3.1-3.5-.1 1.9-1.2 3.1-3.1 3.5Z"/></svg>
-          Apples
-        </button>
-        <button class="pip" data-fruit="pears" aria-pressed="false" type="button">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 7.2c.3-1.6 1.3-2.7 3-3.2-.1 1.7-1.1 2.8-3 3.2Z"/><path d="M12 7c.8 0 1.5.3 2 .8.3 2 1.5 3.3 2.4 4.5 1 1.3 1.6 2.5 1.6 4 0 3.2-2.7 5.7-6 5.7s-6-2.5-6-5.7c0-1.5.6-2.7 1.6-4C8.5 11.1 9.7 9.8 10 7.8c.5-.5 1.2-.8 2-.8Z"/></svg>
-          Pears
-        </button>
-        <button class="pip" data-fruit="peaches" aria-pressed="false" type="button">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.6 5.6c.2-1.7 1.3-2.9 3.2-3.4-.1 1.8-1.2 3-3.2 3.4Z"/><path d="M12 7.5c.6-.9 1.6-1.5 2.9-1.5 2.9 0 5.1 2.6 5.1 6 0 4.4-3.6 8-8 8s-8-3.6-8-8c0-3.4 2.2-6 5.1-6 1.3 0 2.3.6 2.9 1.5Z"/><path d="M12 8v11" stroke="#16201b" stroke-width="1.1" fill="none" opacity=".4"/></svg>
-          Peaches
-        </button>
+  <header style="position:sticky;top:0;z-index:40;background:rgba(247,242,231,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(28,42,34,.12)">
+    <div style="max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <a href="#top" style="display:flex;align-items:center;flex:none"><img src="img/wordmark-gold.svg" alt="{{ copy.brand.name | escape }}" style="height:38px;width:auto"></a>
+      <nav class="nav-desktop">
+        <a href="#visit" class="navlink">{{ copy.nav.visit | escape }}</a>
+        <a href="#season" class="navlink">{{ copy.nav.season | escape }}</a>
+        <a href="#animals" class="navlink">{{ copy.nav.animals | escape }}</a>
+        <a href="#events" class="navlink">{{ copy.nav.events | escape }}</a>
+        <a href="./our-story.html" class="navlink">{{ copy.nav.story | escape }}</a>
+      </nav>
+      <div class="status-pill">
+        <span style="width:8px;height:8px;border-radius:50%;background:#4E8C5B;flex:none"></span>
+        <span style="color:#4A5A50">{{ copy.hours.status_line | escape }}</span>
       </div>
-      <div class="grove__out">
-        <p class="varieties" id="varieties" aria-live="polite"></p>
+      <button type="button" class="btn-burger" id="menuOpen" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+        {{ copy.nav.menu_button | escape }}
+        <span style="display:flex;flex-direction:column;gap:4px;width:18px">
+          <span style="height:2px;background:#E6CE9B;border-radius:2px"></span>
+          <span style="height:2px;background:#E6CE9B;border-radius:2px"></span>
+          <span style="height:2px;background:#E6CE9B;border-radius:2px"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <div class="scrim" id="menuScrim" hidden></div>
+  <aside class="panel" id="menuPanel" aria-label="Menu" hidden>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px">
+      <img src="img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}" style="height:42px;width:auto">
+      <button type="button" id="menuClose" aria-label="Close menu" style="width:44px;height:44px;flex:none;background:rgba(251,247,238,.1);color:#F1EADA;border:1px solid rgba(230,206,155,.3);border-radius:50%;font-size:20px;line-height:1;cursor:pointer">×</button>
+    </div>
+    <nav style="display:flex;flex-direction:column;border-top:1px solid rgba(230,206,155,.22)">
+      <a href="#visit" class="panel-link" style="padding:17px 0;border-bottom:1px solid rgba(230,206,155,.22);font-family:Newsreader,serif;font-size:26px">{{ copy.nav.visit | escape }}</a>
+      <a href="#season" class="panel-link" style="padding:17px 0;border-bottom:1px solid rgba(230,206,155,.22);font-family:Newsreader,serif;font-size:26px">{{ copy.nav.season | escape }}</a>
+      <a href="#animals" class="panel-link" style="padding:17px 0;border-bottom:1px solid rgba(230,206,155,.22);font-family:Newsreader,serif;font-size:26px">{{ copy.nav.animals | escape }}</a>
+      <a href="#events" class="panel-link" style="padding:17px 0;border-bottom:1px solid rgba(230,206,155,.22);font-family:Newsreader,serif;font-size:26px">{{ copy.nav.events | escape }}</a>
+      <a href="#find-us" class="panel-link" style="padding:17px 0;border-bottom:1px solid rgba(230,206,155,.22);font-family:Newsreader,serif;font-size:26px">{{ copy.nav.find_us | escape }}</a>
+      <a href="./our-story.html" class="panel-link" style="padding:17px 0;border-bottom:1px solid rgba(230,206,155,.22);font-family:Newsreader,serif;font-size:26px">{{ copy.nav.story | escape }}</a>
+    </nav>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:14px;padding-top:26px">
+      <p style="margin:0;font-size:15px;line-height:1.55;color:rgba(241,234,218,.82)">{{ copy.hours.panel_line }}</p>
+      <a href="tel:{{ copy.contact.phone }}" class="btn-gold" style="display:flex;align-items:center;justify-content:center;min-height:48px;font-weight:600;font-size:16px;text-decoration:none;border-radius:2px">{{ copy.nav.call_button | escape }}</a>
+    </div>
+  </aside>
+
+  <section id="top" style="position:relative;min-height:min(78vh,680px);display:flex;align-items:flex-end;background:#14493E">
+    <img src="img/apples.jpeg" alt="{{ copy.hero.image_alt | escape }}" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,30,24,.55) 0%,rgba(10,30,24,.15) 35%,rgba(10,30,24,.85) 100%)"></div>
+    <div style="position:relative;max-width:1180px;margin:0 auto;padding:64px 24px 56px;width:100%">
+      <p style="margin:0 0 14px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#E6CE9B">{{ copy.hero.eyebrow | escape }}</p>
+      <h1 style="margin:0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(40px,7vw,86px);line-height:1.02;color:#FBF7EE;max-width:15ch;text-wrap:balance">{{ copy.hero.headline | escape }}</h1>
+      <p style="margin:22px 0 0;max-width:52ch;font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(251,247,238,.88)">{{ copy.hero.lede | escape }}</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px">
+        <a href="#visit" class="btn-gold" style="display:inline-block;padding:15px 28px;font-weight:600;font-size:15px;letter-spacing:.02em;border-radius:2px;text-decoration:none">{{ copy.hero.cta_primary | escape }}</a>
+        <a href="#list" class="btn-ghost" style="display:inline-block;padding:15px 28px;font-weight:500;font-size:15px;border-radius:2px;text-decoration:none">{{ copy.hero.cta_secondary | escape }}</a>
       </div>
     </div>
+  </section>
 
-    <div class="signup rise d6">
-      <span class="signup__eyebrow">Our mailing list</span>
-      <p class="signup__line">Sign up for the occasional note from the orchard — what's ripe, what's on, and news of next year's official opening.</p>
-      <div class="field" id="field">
-        <input
-          id="email"
-          class="field__input"
-          type="email"
-          inputmode="email"
-          autocomplete="email"
-          placeholder="you@email.com"
-          aria-label="Email address">
-        <button id="submit" class="field__btn" type="button">Sign up</button>
-      </div>
-      <p class="note" id="note" role="status" aria-live="polite">No spam, ever. Unsubscribe anytime.</p>
+  <section style="background:#14493E;color:#EFE7D5">
+    <div style="max-width:1180px;margin:0 auto;padding:22px 24px;display:flex;gap:16px 44px;flex-wrap:wrap;align-items:center;font-size:15px">
+      <span style="font-family:Newsreader,serif;font-size:19px;color:#E6CE9B">{{ copy.ribbon.headline | escape }}</span>
+      {% for item in copy.ribbon.items %}<span style="opacity:.82">{{ item | escape }}</span>
+      {% endfor %}
     </div>
+  </section>
 
-    <section class="vision rise d6" style="animation-delay:.90s" aria-label="What we're growing toward">
-      <span class="join__eyebrow">What we're growing toward</span>
-      <h2 class="vision__head">More than a place to <em>pick fruit.</em></h2>
-      <p class="vision__body">We imagine Rai Orchards as a gathering place as much as a farm — seasons marked by harvest days and open evenings, a market where growers, makers, and cooks share a table, and a kitchen that turns what we pick into something worth lingering over.</p>
-      <p class="vision__body">We want it to be a place where children learn where food comes from with their hands in the soil, where the countryside feels close again, and where a community takes root around good food, patient work, and the land that makes it all possible.</p>
-      <p class="vision__close">It begins, as it always has for our family, with care for the land.</p>
-    </section>
+  {% if copy.launch.show %}
+  <section style="background:#FDFBF5;border-bottom:1px solid rgba(28,42,34,.12)">
+    <div style="max-width:720px;margin:0 auto;padding:clamp(26px,4vw,36px) 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px">
+      <p style="margin:0;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#C9803B">{{ copy.launch.eyebrow | escape }}</p>
+      <p style="margin:0;font-family:Newsreader,serif;font-size:clamp(21px,3vw,29px);line-height:1.2;color:#14493E">{{ copy.launch.date_line | escape }} <span style="color:#4E8C5B">{{ copy.launch.date_highlight | escape }}</span></p>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#5B6A60;max-width:52ch">{{ copy.launch.note | escape }}</p>
+    </div>
+  </section>
+  {% endif %}
 
-    <section class="join rise d6" style="animation-delay:1.00s" aria-label="Growing a team">
-      <span class="join__eyebrow">Hands we're seeking</span>
-      <p class="join__line">We're planting more than fruit, and looking for a few people who understand that good things take care, and time.</p>
-      <p class="join__roles">Chef &amp; recipe developer <span class="sep">·</span> Events coordinator <span class="sep">·</span> Community &amp; wellbeing lead <span class="sep">·</span> Children's farm educator <span class="sep">·</span> Analytics lead <span class="sep">·</span> Apparel &amp; brand designer</p>
-      <p class="join__students">And a few places for students who'd rather learn with their hands in the soil.</p>
-      <a class="join__cta" href="mailto:info@raiorchards.ca?subject=Working%20with%20Rai%20Orchards">If something here speaks to you, write to us.</a>
-      <p class="join__reassure">We read every note, and we answer slowly and well.</p>
-    </section>
-
-    <section class="join rise d6" style="animation-delay:1.10s" aria-label="Private events">
-      <span class="join__eyebrow">Private events</span>
-      <p class="join__line">In 2026, we'll welcome a small number of private events to the orchard, from intimate weddings to corporate gatherings. This limited pilot season will help us test and thoughtfully refine the infrastructure needed to host guests well.</p>
-      <p class="camp__scarcity">Applications for 2026 are intentionally limited. Full private event rentals are planned for 2027.</p>
-      <a class="join__cta" href="mailto:info@raiorchards.ca?subject=Private%20event%20enquiry">Tell us about your event.</a>
-    </section>
-
-    <section class="ig rise" style="animation-delay:1.14s" aria-label="From our Instagram">
-      <span class="ig__eyebrow">From the orchard</span>
-      <div class="ig__grid">
-        <a class="ig__tile" href="https://www.instagram.com/p/Dc17-xaJFqg/" target="_blank" rel="noopener" aria-label="Rambo, Rusty and Bibi, our sheep"><img src="img/01-sheep.jpg" alt="Rambo, Rusty and Bibi, our sheep" loading="lazy" decoding="async" width="640" height="640"></a>
-        <a class="ig__tile" href="https://www.instagram.com/p/DdRgtlbkdRd/?img_index=1" target="_blank" rel="noopener" aria-label="Vanessa, Sharon and Fancy, our alpacas"><img src="img/02-alpacas.jpg" alt="Vanessa, Sharon and Fancy, our alpacas" loading="lazy" decoding="async" width="640" height="640"></a>
-        <a class="ig__tile" href="https://www.instagram.com/p/DcqqESkhiiw/" target="_blank" rel="noopener" aria-label="Casey and Montana grazing under autumn trees"><img src="img/03-horses.jpg" alt="Casey and Montana grazing under autumn trees" loading="lazy" decoding="async" width="640" height="640"></a>
-        <a class="ig__tile" href="https://www.instagram.com/p/DcjvgkBElK3/?img_index=1" target="_blank" rel="noopener" aria-label="Mabel, our donkey"><img src="img/04-donkey.jpg" alt="Mabel, our donkey" loading="lazy" decoding="async" width="640" height="640"></a>
-        <a class="ig__tile" href="https://www.instagram.com/p/DcCz_ecEfB5/?img_index=1" target="_blank" rel="noopener" aria-label="Vogue, one of our miniature horses"><img src="img/05-mini-horses.jpg" alt="Vogue, one of our miniature horses" loading="lazy" decoding="async" width="640" height="640"></a>
-        <a class="ig__tile" href="https://www.instagram.com/p/DbvyfjlxKyh/" target="_blank" rel="noopener" aria-label="Pepper, Mo and Raffi, our goats"><img src="img/06-goats.jpg" alt="Pepper, Mo and Raffi, our goats" loading="lazy" decoding="async" width="640" height="640"></a>
+  <section id="visit" style="max-width:1180px;margin:0 auto;padding:clamp(48px,8vw,88px) 20px clamp(40px,7vw,72px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:56px;align-items:start">
+      <div>
+        <p style="margin:0 0 16px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.eyebrow | escape }}</p>
+        <h2 style="margin:0 0 20px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4vw,46px);line-height:1.1;max-width:18ch">{{ copy.visit.heading | escape }}</h2>
+        {% for para in copy.visit.paragraphs %}<p style="margin:0 0 18px;font-size:17px;line-height:1.65;color:#3B4A41;max-width:48ch">{{ para | escape }}</p>
+        {% endfor %}
       </div>
-      <a class="ig__handle" href="https://instagram.com/raiorchards">Follow @raiorchards →</a>
-    </section>
+      <div style="display:grid;gap:2px;background:rgba(28,42,34,.14);border:1px solid rgba(28,42,34,.14)">
+        <div style="background:#FDFBF5;padding:22px 24px">
+          <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.hours_label | escape }}</p>
+          <p style="margin:0;font-family:Newsreader,serif;font-size:24px;color:#14493E">{{ copy.hours.daily | escape }}</p>
+          <p style="margin:4px 0 0;font-size:14px;color:#5B6A60">{{ copy.hours.through | escape }}</p>
+        </div>
+        <div style="background:#FDFBF5;padding:22px 24px">
+          <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.entry_label | escape }}</p>
+          <p style="margin:0 0 4px;font-size:17px;line-height:1.5">{{ copy.visit.entry_line }}</p>
+          <p style="margin:0;font-size:14px;line-height:1.55;color:#5B6A60">{{ copy.visit.entry_note | escape }}</p>
+        </div>
+        <div style="background:#FDFBF5;padding:22px 24px">
+          <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.find_label | escape }}</p>
+          <p style="margin:0;font-size:17px;line-height:1.5">{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p>
+          <a href="{{ copy.contact.maps_url }}" style="display:inline-block;margin-top:8px;font-size:14px">{{ copy.visit.maps_link | escape }}</a>
+        </div>
+        <div style="background:#FDFBF5;padding:22px 24px">
+          <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.phone_label | escape }}</p>
+          <a href="tel:{{ copy.contact.phone }}" style="font-size:17px">{{ copy.contact.phone_display | escape }}</a>
+          <p style="margin:6px 0 0;font-size:14px;color:#5B6A60">{{ copy.contact.phone_note | escape }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p class="meta rise d6" style="animation-delay:1.18s">
-      <span>Soft launch Sep 19</span><span class="meta__dot" aria-hidden="true"></span><span>then daily to Oct 31</span>
-    </p>
-  </main>
+  <section id="season" style="background:#EFE8D8;border-top:1px solid rgba(28,42,34,.1);border-bottom:1px solid rgba(28,42,34,.1)">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(44px,8vw,80px) 20px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+        <div>
+          <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.season.eyebrow | escape }}</p>
+          <h2 style="margin:0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4vw,46px);line-height:1.1">{{ copy.season.heading | escape }}</h2>
+        </div>
+        <p style="margin:0;max-width:40ch;font-size:16px;line-height:1.6;color:#4A5A50">{{ copy.season.note | escape }}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px">
+        {% for group in copy.season.groups %}
+        {% if group.tone == 'amber' %}{% assign tone_color = '#A6763A' %}{% else %}{% assign tone_color = '#4E8C5B' %}{% endif %}
+        <div style="background:#FDFBF5;border:1px solid rgba(28,42,34,.12);padding:30px 28px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px">
+            <h3 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:28px;color:#14493E">{{ group.name | escape }}</h3>
+            <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:{{ tone_color }}">{{ group.status | escape }}</span>
+          </div>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:16px;color:#3B4A41">
+            {% for variety in group.varieties %}<li{% unless forloop.last %} style="border-bottom:1px dotted rgba(28,42,34,.22);padding-bottom:10px"{% endunless %}>{{ variety | escape }}</li>
+            {% endfor %}
+          </ul>
+          {% if group.note != blank %}<p style="margin:18px 0 0;padding-top:14px;border-top:1px solid rgba(28,42,34,.14);font-size:15px;line-height:1.55;color:#3B4A41">{{ group.note }}</p>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:clamp(44px,8vw,80px) 20px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center">
+      <img src="img/apples-on-tree.jpg" alt="{{ copy.upick.image_alt | escape }}" loading="lazy" decoding="async" style="width:100%;height:100%;max-height:520px;object-fit:cover">
+      <div>
+        <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.upick.eyebrow | escape }}</p>
+        <h2 style="margin:0 0 20px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4vw,44px);line-height:1.1;max-width:16ch">{{ copy.upick.heading | escape }}</h2>
+        <ol style="margin:0;padding:0;list-style:none;display:grid;gap:22px">
+          {% for step in copy.upick.steps %}<li style="display:flex;gap:16px"><span style="flex:none;width:30px;height:30px;border-radius:50%;background:#14493E;color:#E6CE9B;display:flex;align-items:center;justify-content:center;font-size:14px">{{ forloop.index }}</span><span style="font-size:16px;line-height:1.6;color:#3B4A41">{{ step | escape }}</span></li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="animals" style="background:#14493E;color:#F1EADA">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(46px,8vw,84px) 20px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+        <div>
+          <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#C99A4B">{{ copy.animals.eyebrow | escape }}</p>
+          <h2 style="margin:0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4vw,46px);line-height:1.1;color:#FBF7EE">{{ copy.animals.heading | escape }}</h2>
+        </div>
+        <p style="margin:0;max-width:42ch;font-size:16px;line-height:1.6;color:rgba(241,234,218,.8)">{{ copy.animals.note | escape }}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
+        {% for card in copy.animals.cards %}
+        <div style="background:rgba(251,247,238,.06);border:1px solid rgba(230,206,155,.22)">
+          <img src="{{ card.image }}" alt="{{ card.alt | escape }}" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/3;object-fit:cover">
+          <div style="padding:20px">
+            <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C99A4B">{{ card.kind | escape }}</p>
+            <h3 style="margin:0 0 8px;font-family:Newsreader,serif;font-weight:400;font-size:24px;color:#FBF7EE">{{ card.names | escape }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.55;color:rgba(241,234,218,.78)">{{ card.blurb | escape }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:clamp(46px,8vw,84px) 20px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center">
+      <div>
+        <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.story_teaser.eyebrow | escape }}</p>
+        <h2 style="margin:0 0 20px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4vw,44px);line-height:1.12;max-width:18ch">{{ copy.story_teaser.heading | escape }}</h2>
+        <p style="margin:0 0 18px;font-size:17px;line-height:1.65;color:#3B4A41;max-width:48ch">{{ copy.story_teaser.paragraph | escape }}</p>
+        <a href="./our-story.html" class="btn-outline" style="display:inline-block;margin-top:6px;padding:14px 26px;font-weight:600;font-size:15px;text-decoration:none;border-radius:2px">{{ copy.story_teaser.cta | escape }}</a>
+      </div>
+      <img src="img/animals-paddock.jpeg" alt="{{ copy.story_teaser.image_alt | escape }}" loading="lazy" decoding="async" style="width:100%;max-height:480px;object-fit:cover">
+    </div>
+  </section>
+
+  <section id="events" style="position:relative;background:#1C2A22">
+    <img src="img/sign.jpeg" alt="{{ copy.events.image_alt | escape }}" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;object-position:right center">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,35,28,.95) 0%,rgba(14,35,28,.85) 42%,rgba(14,35,28,.3) 100%)"></div>
+    <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(53px,8vw,96px) 20px">
+      <div style="max-width:54ch">
+        <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#E6CE9B">{{ copy.events.eyebrow | escape }}</p>
+        <h2 style="margin:0 0 20px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4.4vw,48px);line-height:1.1;color:#FBF7EE">{{ copy.events.heading | escape }}</h2>
+        <p style="margin:0 0 16px;font-size:17px;line-height:1.65;color:rgba(251,247,238,.88)">{{ copy.events.paragraph | escape }}</p>
+        <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:rgba(230,206,155,.9)">{{ copy.events.note | escape }}</p>
+        <a href="mailto:{{ copy.contact.email }}?subject={{ copy.events.email_subject | url_encode }}" class="btn-gold" style="display:inline-block;padding:15px 28px;font-weight:600;font-size:15px;text-decoration:none;border-radius:2px">{{ copy.events.cta | escape }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:clamp(46px,8vw,84px) 20px 0">
+    <p style="margin:0 0 22px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.instagram.label | escape }} · <a href="{{ copy.contact.instagram_url }}" style="letter-spacing:.24em">{{ copy.contact.instagram_handle | escape }}</a></p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px">
+      <img src="img/apples.jpeg" alt="Apples on the branch" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <img src="img/apple-rows.jpg" alt="The young rows on a grey morning" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <img src="img/animals-paddock.jpeg" alt="In the paddock" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <img src="img/ducks.jpg" alt="Ducklings in the barn" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <img src="img/02-alpacas.jpg" alt="Alpacas" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <img src="img/sign.jpeg" alt="The farm sign" loading="lazy" decoding="async" style="width:100%;aspect-ratio:1;object-fit:cover">
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:clamp(46px,8vw,84px) 20px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:56px;align-items:start">
+      <div>
+        <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.faq.eyebrow | escape }}</p>
+        <h2 style="margin:0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(30px,4vw,44px);line-height:1.1">{{ copy.faq.heading }}</h2>
+      </div>
+      <div style="display:grid;gap:0">
+        {% for item in copy.faq.items %}
+        <div style="border-top:1px solid rgba(28,42,34,.16);{% if forloop.last %}border-bottom:1px solid rgba(28,42,34,.16);{% endif %}padding:22px 0">
+          <h3 style="margin:0 0 8px;font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#14493E">{{ item.question | escape }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#3B4A41">{{ item.answer | escape }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="list" style="background:#EFE8D8;border-top:1px solid rgba(28,42,34,.1)">
+    <div style="max-width:760px;margin:0 auto;padding:80px 24px;text-align:center">
+      <h2 style="margin:0 0 14px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(28px,3.6vw,40px);line-height:1.15">{{ copy.signup.heading | escape }}</h2>
+      <p style="margin:0 0 28px;font-size:17px;line-height:1.6;color:#4A5A50">{{ copy.signup.note | escape }}</p>
+      <form action="{{ copy.signup.endpoint }}" method="POST" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+        <label for="signup-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Email address</label>
+        <input id="signup-email" type="email" name="email" required placeholder="{{ copy.signup.placeholder | escape }}" style="flex:1 1 260px;max-width:340px;padding:15px 18px;border:1px solid rgba(28,42,34,.3);background:#FDFBF5;font-family:Karla,sans-serif;font-size:16px;color:#1C2A22;border-radius:2px">
+        <button type="submit" class="btn-dark" style="padding:15px 30px;border:none;font-family:Karla,sans-serif;font-weight:600;font-size:15px;border-radius:2px;cursor:pointer">{{ copy.signup.button_label | escape }}</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="find-us" style="background:#EFE8D8;border-top:1px solid rgba(28,42,34,.1)">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(44px,8vw,80px) 20px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:40px;align-items:stretch">
+        <div style="display:flex;flex-direction:column">
+          <p style="margin:0 0 14px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.find_us.eyebrow | escape }}</p>
+          <h2 style="margin:0 0 20px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(28px,4vw,44px);line-height:1.1;max-width:16ch">{{ copy.find_us.heading | escape }}</h2>
+          <p style="margin:0 0 24px;font-size:17px;line-height:1.65;color:#3B4A41;max-width:44ch">{{ copy.find_us.paragraph | escape }}</p>
+          <div style="display:grid;gap:2px;background:rgba(28,42,34,.14);border:1px solid rgba(28,42,34,.14);margin-bottom:24px">
+            <div style="background:#FDFBF5;padding:18px 22px">
+              <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.find_us.address_label | escape }}</p>
+              <p style="margin:0;font-size:17px;line-height:1.5">{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p>
+            </div>
+            <div style="background:#FDFBF5;padding:18px 22px">
+              <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.find_us.open_label | escape }}</p>
+              <p style="margin:0;font-size:17px;line-height:1.5">{{ copy.find_us.open_line | escape }}</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="{{ copy.contact.directions_url }}" target="_blank" rel="noopener" class="btn-dark" style="display:inline-flex;align-items:center;min-height:48px;padding:0 26px;font-weight:600;font-size:15px;text-decoration:none;border-radius:2px">{{ copy.find_us.directions_button | escape }}</a>
+            <a href="{{ copy.contact.apple_maps_url }}" target="_blank" rel="noopener" class="btn-outline" style="display:inline-flex;align-items:center;min-height:48px;padding:0 26px;font-weight:600;font-size:15px;text-decoration:none;border-radius:2px">{{ copy.find_us.apple_button | escape }}</a>
+          </div>
+        </div>
+        <div style="min-height:340px;border:1px solid rgba(28,42,34,.14);background:#DCD5C2">
+          <iframe title="{{ copy.find_us.map_title | escape }}" src="{{ copy.contact.map_embed_url }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%;height:100%;min-height:340px;border:0;display:block"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#14493E;color:#E4DCC9">
+    <div style="max-width:1180px;margin:0 auto;padding:64px 24px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
+      <div>
+        <img src="img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}" loading="lazy" style="height:64px;width:auto;margin:0 0 18px">
+        <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(228,220,201,.8);max-width:32ch">{{ copy.footer.blurb | escape }}</p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C99A4B">{{ copy.footer.visit_label | escape }}</p>
+        <p style="margin:0 0 6px;font-size:15px;line-height:1.6">{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p>
+        <a href="{{ copy.contact.maps_url }}" style="font-size:15px;color:#E6CE9B">{{ copy.footer.directions_link | escape }}</a>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C99A4B">{{ copy.footer.hello_label | escape }}</p>
+        <p style="margin:0 0 6px"><a href="tel:{{ copy.contact.phone }}" style="font-size:15px;color:#E6CE9B">{{ copy.contact.phone_display | escape }}</a></p>
+        <p style="margin:0 0 6px"><a href="mailto:{{ copy.contact.email }}" style="font-size:15px;color:#E6CE9B">{{ copy.contact.email | escape }}</a></p>
+        <p style="margin:0"><a href="{{ copy.contact.instagram_url }}" style="font-size:15px;color:#E6CE9B">{{ copy.footer.instagram_label | escape }}</a></p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C99A4B">{{ copy.footer.open_label | escape }}</p>
+        <p style="margin:0;font-size:15px;line-height:1.6">{{ copy.hours.footer_line }}</p>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:0 24px 40px">
+      <p style="margin:0;padding-top:20px;border-top:1px solid rgba(230,206,155,.22);font-size:13px;color:rgba(228,220,201,.6)">{{ copy.footer.copyright | escape }}</p>
+    </div>
+  </footer>
+</div>
 
 <script>
-(function(){
-  /* ── fruit selector ─────────────────────────────────────────── */
-  var DATA = {
-    apples:  ["Honeycrisp","Royal Gala","Ambrosia","Fuji"],
-    pears:   ["Bartlett","Bosc OP-5","Dewdrop"],
-    peaches: ["Allstar","Early Blush","Rising Star"]
-  };
-  var pips = document.querySelectorAll(".pip");
-  var out  = document.getElementById("varieties");
-  var current = null;
+(function () {
+  var panel = document.getElementById("menuPanel");
+  var scrim = document.getElementById("menuScrim");
+  var openBtn = document.getElementById("menuOpen");
+  var closeBtn = document.getElementById("menuClose");
+  if (!panel || !scrim || !openBtn) return;
 
-  function render(list){
-    out.innerHTML = "";
-    list.forEach(function(name, i){
-      if(i > 0){
-        var s = document.createElement("span");
-        s.className = "sep"; s.textContent = "·";
-        out.appendChild(s);
-      }
-      out.appendChild(document.createTextNode(name));
-    });
+  // Revealed only once JS is running, so the panel can never strand a
+  // no-JS visitor behind an invisible overlay.
+  panel.hidden = false;
+  scrim.hidden = false;
+
+  function setOpen(open) {
+    panel.classList.toggle("is-open", open);
+    scrim.classList.toggle("is-open", open);
+    openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) { if (closeBtn) closeBtn.focus(); } else { openBtn.focus(); }
   }
 
-  pips.forEach(function(pip){
-    pip.addEventListener("click", function(){
-      var fruit = pip.dataset.fruit;
-      if(current === fruit){            // tap again to deselect
-        current = null;
-        document.body.removeAttribute("data-fruit");
-        out.classList.remove("show");
-        pips.forEach(function(p){ p.setAttribute("aria-pressed","false"); });
-        return;
-      }
-      current = fruit;
-      document.body.setAttribute("data-fruit", fruit);
-      pips.forEach(function(p){
-        p.setAttribute("aria-pressed", p === pip ? "true" : "false");
-      });
-      out.classList.remove("show");
-      setTimeout(function(){ render(DATA[fruit]); out.classList.add("show"); }, 160);
-    });
+  openBtn.addEventListener("click", function () { setOpen(true); });
+  if (closeBtn) closeBtn.addEventListener("click", function () { setOpen(false); });
+  scrim.addEventListener("click", function () { setOpen(false); });
+
+  panel.addEventListener("click", function (e) {
+    if (e.target.closest("a")) setOpen(false);
   });
 
-  /* ── signup ─────────────────────────────────────────────────── */
-  // ── PASTE YOUR FORM URL HERE ────────────────────────
-  // 1. Go to formspree.io → New Form → copy the form's endpoint URL.
-  // 2. Replace the URL below with yours. That's it — the page POSTs {email} to it.
-  // (Until you do, the form runs in PREVIEW mode and does NOT save emails.)
-  var SIGNUP_ENDPOINT = "https://formspree.io/f/mdavplaq";
-  // ─────────────────────────────────────────
-  var SIGNUP_READY = SIGNUP_ENDPOINT.indexOf("YOUR_FORM_ID") === -1;
-
-  var email = document.getElementById("email");
-  var btn   = document.getElementById("submit");
-  var note  = document.getElementById("note");
-  var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function setNote(msg, kind){
-    note.textContent = msg;
-    note.className = "note" + (kind ? " note--" + kind : "");
-  }
-  function done(){
-    setNote("You're on the list. Thanks for joining us.", "ok");
-    email.value = ""; email.disabled = true;
-    btn.disabled = true; btn.textContent = "Signed up";
-  }
-  function submit(){
-    var v = email.value.trim();
-    if(!valid.test(v)){
-      setNote("That email doesn't look right. Mind checking it?", "err");
-      email.focus(); return;
-    }
-    btn.disabled = true; btn.textContent = "…";
-    if(!SIGNUP_READY){
-      console.warn("Rai Orchards: SIGNUP_ENDPOINT not configured — preview mode, email NOT saved. Paste your Formspree URL to go live.");
-      setTimeout(done, 350); return;
-    }
-    fetch(SIGNUP_ENDPOINT, {
-      method:"POST",
-      headers:{"Content-Type":"application/json","Accept":"application/json"},
-      body:JSON.stringify({email:v})
-    })
-    .then(function(r){ if(!r.ok) throw new Error(); done(); })
-    .catch(function(){
-      btn.disabled = false; btn.textContent = "Sign up";
-      setNote("That didn't go through. Try again in a moment.", "err");
-    });
-  }
-  btn.addEventListener("click", submit);
-  email.addEventListener("keydown", function(e){ if(e.key === "Enter") submit(); });
-  email.addEventListener("input", function(){
-    if(note.className.indexOf("err") > -1) setNote("No spam, ever. Unsubscribe anytime.");
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && panel.classList.contains("is-open")) setOpen(false);
   });
+
+  // Close if the viewport grows past the breakpoint while the panel is open.
+  var mq = window.matchMedia("(max-width: 880px)");
+  var onChange = function () { if (!mq.matches) setOpen(false); };
+  if (mq.addEventListener) mq.addEventListener("change", onChange);
+  else if (mq.addListener) mq.addListener(onChange);
 })();
 </script>
 </body>
