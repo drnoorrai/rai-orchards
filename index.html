@@ -153,8 +153,17 @@
       <div style="display:grid;gap:2px;background:rgba(28,42,34,.14);border:1px solid rgba(28,42,34,.14)">
         <div style="background:#FDFBF5;padding:22px 24px">
           <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.hours_label | escape }}</p>
+          {% if copy.hours.schedule %}
+          {% for slot in copy.hours.schedule %}<div style="{% unless forloop.first %}margin-top:16px;padding-top:16px;border-top:1px solid rgba(28,42,34,.12){% endunless %}">
+            <p style="margin:0;font-family:Newsreader,serif;font-size:22px;line-height:1.25;color:#14493E">{{ slot.days | escape }} <span style="color:#B9A77F">·</span> {{ slot.time | escape }}</p>
+            <p style="margin:6px 0 0;font-size:15px;line-height:1.55;color:#3B4A41">{{ slot.detail | escape }}</p>
+          </div>
+          {% endfor %}
+          {% if copy.hours.season_note %}<p style="margin:16px 0 0;font-size:13px;color:#8A7A5C">{{ copy.hours.season_note | escape }}</p>{% endif %}
+          {% else %}
           <p style="margin:0;font-family:Newsreader,serif;font-size:24px;color:#14493E">{{ copy.hours.daily | escape }}</p>
           <p style="margin:4px 0 0;font-size:14px;color:#5B6A60">{{ copy.hours.through | escape }}</p>
+          {% endif %}
         </div>
         <div style="background:#FDFBF5;padding:22px 24px">
           <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.entry_label | escape }}</p>
