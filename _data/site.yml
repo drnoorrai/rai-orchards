@@ -7,10 +7,12 @@ seo:
   title: Rai Orchards — U-Pick Apple Orchard & Farm Animals · Puslinch, Ontario
   description: Family fruit farm on Wellington 35 in Puslinch, Ontario. U-pick
     apples, pears and peaches, wagon rides, and a paddock full of friendly
-    animals. Open daily 11am–6pm through October 31.
+    animals, Friday to Sunday, 10am–6pm. Farm shop open Monday to Thursday,
+    9am–6pm. Through October 31.
   og_title: Rai Orchards — Pick your own, say hello to the alpacas
   og_description: A family orchard in Puslinch, Ontario. U-pick apples, pears and
-    peaches, wagon rides daily, and a very social herd. Open daily 11am–6pm.
+    peaches, wagon rides, and a very social herd — Friday to Sunday, 10am–6pm.
+    Farm shop open Monday to Thursday.
   story_title: Our Story — Rai Orchards
   story_description: A Kashmiri family farming in Puslinch, Ontario since 2021.
     Sixty trees, a lot of nerve, and a paddock full of animals.
@@ -30,11 +32,11 @@ contact:
   instagram_url: https://www.instagram.com/raiorchards
 
 hours:
-  status_line: Open today, 11–6
-  daily: Daily, 11am – 6pm
-  through: Through October 31
-  footer_line: Daily 11am – 6pm<br>Through October 31
-  panel_line: Open daily 11am–6pm<br />3977 Wellington 35, Puslinch
+  status_line: Farm Fri–Sun 10–6 · Shop Mon–Thu 9–6
+  daily: Fri–Sun, 10am – 6pm
+  through: Farm shop only Mon–Thu, 9am – 6pm · Through October 31
+  footer_line: Fri–Sun 10am – 6pm<br>Farm shop Mon–Thu 9am – 6pm<br>Through October 31
+  panel_line: Fri–Sun 10am–6pm<br />Farm shop Mon–Thu 9am–6pm<br />3977 Wellington 35, Puslinch
 
 nav:
   visit: Visit
@@ -47,7 +49,7 @@ nav:
   call_button: Call the farm
 
 hero:
-  eyebrow: Puslinch, Ontario · Open daily
+  eyebrow: Puslinch · Farm open Fri–Sun
   headline: Pick your own, say hello to the alpacas.
   lede: A family orchard on Wellington 35 — apples, pears and peaches grown the
     patient way, with a paddock full of animals who are very used to visitors.
@@ -56,14 +58,15 @@ hero:
   image_alt: Red apples on the branch at dusk
 
 ribbon:
-  headline: Open daily 11am–6pm, until Oct 31
+  headline: Farm open Fri–Sun, 10–6
   items:
-    - U-pick 7 days a week
-    - Wagon rides & animals every day
+    - Farm shop Mon–Thu, 9–6
+    - U-pick, wagon rides & animals
+    - Kids' play area & snack shack
     - Cash & tap · Dogs on leash welcome
 
 launch:
-  show: true
+  show: false
   eyebrow: You're invited · Soft launch
   date_line: Saturday, September 19 · 11am–4pm ·
   date_highlight: free entry
@@ -83,8 +86,8 @@ visit:
   entry_label: Entry
   entry_line: Adults 18+ <strong>$10</strong> · Children 2–17 <strong>$5</strong>
     · Under 2 <strong>free</strong>
-  entry_note: From September 20. Pay at the door, cash or card ($1 card fee per
-    transaction). Free on soft launch day.
+  entry_note: Fri–Sun only — no entry fee to visit the farm shop Mon–Thu. Pay at
+    the door, cash or card ($1 card fee per transaction).
   find_label: Find us
   maps_link: Open in Maps →
   phone_label: Ring us
@@ -137,8 +140,8 @@ upick:
 animals:
   eyebrow: The welcoming committee
   heading: Meet the animals
-  note: They're out to say hello every day we're open, and the wagon runs daily
-    too. Feed is sold at the stand — please don't bring your own.
+  note: They're out to say hello Friday to Sunday, 10 to 6, and the wagon runs
+    those days too. Feed is sold at the stand — please don't bring your own.
   cards:
     - image: img/02-alpacas.jpg
       alt: Alpacas
@@ -209,12 +212,18 @@ faq:
   heading: Questions we get<br>at the gate
   items:
     - question: Do I need to book?
-      answer: No. Walk in any day between 11 and 6. Weekends are busiest around 1pm.
+      answer: No. Walk in any time Friday to Sunday, 10 to 6. Saturdays and
+        Sundays are busiest around 1pm.
+    - question: What's open Monday to Thursday?
+      answer: The farm shop, 9 to 6 — apples, garlic, eggs and produce, depending
+        on what's available. There's no entry fee on those days. U-pick, wagon
+        rides, the animals, the kids' play area and the snack shack are Friday to
+        Sunday.
     - question: Can we bring the dog?
       answer: Yes, on a leash. Just keep a little distance from the paddock fence.
-    - question: Are the animals out every day?
-      answer: Yes — the animals are out and the wagon runs every day we're open, 11
-        to 6. U-pick runs all seven days too.
+    - question: When are the animals out?
+      answer: Friday to Sunday, 10 to 6, along with the wagon rides, kids' play
+        area and snack shack.
     - question: How do we pay?
       answer: Cash or tap at the stand.
     - question: Is it stroller-friendly?
@@ -237,7 +246,7 @@ find_us:
     than it looks.
   address_label: Address
   open_label: Open
-  open_line: Daily 11am – 6pm, through October 31
+  open_line: Fri–Sun 10am – 6pm. Farm shop Mon–Thu 9am – 6pm. Through October 31.
   directions_button: Get directions
   apple_button: Apple Maps
   map_title: Map showing Rai Orchards at 3977 Wellington 35, Puslinch, Ontario
@@ -298,6 +307,6 @@ story:
     - value: "14"
       label: Animals on the welcoming committee.
   cta_heading: Come see it for yourself
-  cta_note: Open daily, 11am to 6pm, through October 31. 3977 Wellington 35,
-    Puslinch.
+  cta_note: Friday to Sunday, 10am to 6pm, with the farm shop open Monday to
+    Thursday, 9am to 6pm. Through October 31. 3977 Wellington 35, Puslinch.
   cta_button: Plan your visit
