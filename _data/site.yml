@@ -37,6 +37,16 @@ hours:
   through: Farm shop only Mon–Thu, 9am – 6pm · Through October 31
   footer_line: Fri–Sun 10am – 6pm<br>Farm shop Mon–Thu 9am – 6pm<br>Through October 31
   panel_line: Fri–Sun 10am–6pm<br />Farm shop Mon–Thu 9am–6pm<br />3977 Wellington 35, Puslinch
+  schedule:
+    - days: Mon – Thu
+      time: 9am – 6pm
+      detail: The farm shop is open for apples, garlic, eggs and produce for
+        purchase, based on availability.
+    - days: Fri – Sun
+      time: 10am – 6pm
+      detail: Rai Orchards is open for pick-your-own apples, wagon rides, animal
+        viewing, the kids' play area and the snack shack.
+  season_note: Open through October 31
 
 nav:
   visit: Visit
