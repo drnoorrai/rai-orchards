@@ -237,6 +237,9 @@ collections:
             collapsed: true
             fields:
               - { label: "Label", name: "label", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+              - { label: "Button", name: "cta", widget: "string" }
 
           - label: "Questions At The Gate"
             name: "faq"

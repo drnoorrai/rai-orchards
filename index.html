@@ -175,9 +175,9 @@
     </section>
 
     <section class="instagram-section">
-      <div class="shell">
-        <div class="instagram-head"><p class="eyebrow">{{ copy.instagram.label | escape }}</p><a href="{{ copy.contact.instagram_url }}" target="_blank" rel="noopener">{{ copy.contact.instagram_handle | escape }} →</a></div>
-        <div class="instagram-grid"><img src="/img/apples.jpeg" alt="Apples on the branch" width="1500" height="2000" loading="lazy" decoding="async"><img src="/img/apple-rows.jpg" alt="The young rows on a grey morning" width="1500" height="1125" loading="lazy" decoding="async"><img src="/img/animals-paddock.jpeg" alt="In the paddock" width="1125" height="1500" loading="lazy" decoding="async"><img src="/img/ducks.jpg" alt="Ducklings in the barn" width="1500" height="2000" loading="lazy" decoding="async"><img src="/img/02-alpacas.jpg" alt="Alpacas" width="640" height="640" loading="lazy" decoding="async"><img src="/img/sign.jpeg" alt="The farm sign" width="2000" height="1500" loading="lazy" decoding="async"></div>
+      <div class="shell instagram-cta">
+        <div><p class="eyebrow">{{ copy.instagram.label | escape }}</p><h2 class="section-title">{{ copy.instagram.heading | escape }}</h2><p class="section-intro">{{ copy.instagram.note | escape }}</p></div>
+        <a class="button button--outline" href="{{ copy.contact.instagram_url | escape }}" target="_blank" rel="noopener">{{ copy.instagram.cta | escape }}</a>
       </div>
     </section>
 

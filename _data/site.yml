@@ -229,7 +229,10 @@ events:
   image_alt: The Rai Orchards sign at sunset
 
 instagram:
-  label: Lately at the orchard
+  label: Follow the orchard
+  heading: See what's happening between visits.
+  note: Picking updates, animal moments and orchard news are shared on Instagram.
+  cta: Follow @raiorchards
 
 faq:
   eyebrow: Before you come

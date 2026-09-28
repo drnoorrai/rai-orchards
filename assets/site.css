@@ -361,11 +361,9 @@ section[id] { scroll-margin-top: 7.5rem; }
 .events-copy p:not(.eyebrow) { color: rgba(248,243,232,.84); font-size: 1.05rem; line-height: 1.65; }
 .events-copy .button { margin-top: 1rem; }
 
-.instagram-section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
-.instagram-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.3rem; }
-.instagram-head a { color: var(--forest); font-weight: 650; }
-.instagram-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .5rem; }
-.instagram-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.instagram-section { padding: clamp(4.5rem, 9vw, 7rem) 0; }
+.instagram-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 3rem; }
+.instagram-cta .section-title { max-width: 15ch; }
 
 .faq-section { padding: clamp(4.5rem, 9vw, 8rem) 0; border-top: 1px solid var(--line); background: var(--paper); }
 .faq-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(3rem, 8vw, 7rem); }
@@ -476,7 +474,8 @@ section[id] { scroll-margin-top: 7.5rem; }
   .story-teaser { grid-template-columns: 1fr; }
   .story-teaser__copy { padding: 4.5rem 1rem; }
   .story-teaser__image { min-height: 28rem; }
-  .instagram-grid { grid-template-columns: repeat(3,1fr); }
+  .instagram-cta { grid-template-columns: 1fr; gap: 1.5rem; }
+  .instagram-cta .button { justify-self: start; }
   .signup-form { flex-direction: column; }
   .signup-form input { flex-basis: auto; }
   .footer-grid { grid-template-columns: 1fr; }
