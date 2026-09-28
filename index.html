@@ -154,22 +154,36 @@
         <div style="background:#FDFBF5;padding:22px 24px">
           <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.hours_label | escape }}</p>
           {% if copy.hours.schedule %}
-          {% for slot in copy.hours.schedule %}<div style="{% unless forloop.first %}margin-top:16px;padding-top:16px;border-top:1px solid rgba(28,42,34,.12){% endunless %}">
+          {% for slot in copy.hours.schedule %}<div style="{% unless forloop.first %}margin-top:20px;padding-top:20px;border-top:1px solid rgba(28,42,34,.12){% endunless %}">
             <p style="margin:0;font-family:Newsreader,serif;font-size:22px;line-height:1.25;color:#14493E">{{ slot.days | escape }} <span style="color:#B9A77F">·</span> {{ slot.time | escape }}</p>
             <p style="margin:6px 0 0;font-size:15px;line-height:1.55;color:#3B4A41">{{ slot.detail | escape }}</p>
+            {% if slot.note %}<p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#5B6A60">{{ slot.note | escape }}</p>{% endif %}
+            {% for line in slot.notes %}<p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#5B6A60">{{ line | escape }}</p>
+            {% endfor %}
+            {% if slot.prices %}
+            <div style="margin:14px 0 0;padding:14px 16px;background:#F3EDDF">
+              {% if slot.entry_label %}<p style="margin:0 0 8px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ slot.entry_label | escape }}</p>{% endif %}
+              {% for price in slot.prices %}<p style="margin:0 0 4px;display:flex;justify-content:space-between;gap:16px;font-size:16px;line-height:1.5;color:#1C2A22"><span>{{ price.label | escape }}</span><strong style="font-weight:600">{{ price.value | escape }}</strong></p>
+              {% endfor %}
+              {% if slot.entry_note %}<p style="margin:10px 0 0;font-size:14px;line-height:1.55;color:#5B6A60">{{ slot.entry_note | escape }}</p>{% endif %}
+            </div>
+            {% endif %}
           </div>
           {% endfor %}
-          {% if copy.hours.season_note %}<p style="margin:16px 0 0;font-size:13px;color:#8A7A5C">{{ copy.hours.season_note | escape }}</p>{% endif %}
+          {% if copy.hours.season_note %}<p style="margin:18px 0 0;padding-top:16px;border-top:1px solid rgba(28,42,34,.12);font-size:15px;color:#14493E">{{ copy.hours.season_note | escape }}</p>{% endif %}
+          {% if copy.hours.inaugural_note %}<p style="margin:10px 0 0;font-size:14px;line-height:1.6;color:#5B6A60">{{ copy.hours.inaugural_note }}</p>{% endif %}
           {% else %}
           <p style="margin:0;font-family:Newsreader,serif;font-size:24px;color:#14493E">{{ copy.hours.daily | escape }}</p>
           <p style="margin:4px 0 0;font-size:14px;color:#5B6A60">{{ copy.hours.through | escape }}</p>
           {% endif %}
         </div>
+        {% unless copy.hours.schedule %}
         <div style="background:#FDFBF5;padding:22px 24px">
           <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.entry_label | escape }}</p>
           <p style="margin:0 0 4px;font-size:17px;line-height:1.5">{{ copy.visit.entry_line }}</p>
           <p style="margin:0;font-size:14px;line-height:1.55;color:#5B6A60">{{ copy.visit.entry_note | escape }}</p>
         </div>
+        {% endunless %}
         <div style="background:#FDFBF5;padding:22px 24px">
           <p style="margin:0 0 6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5C">{{ copy.visit.find_label | escape }}</p>
           <p style="margin:0;font-size:17px;line-height:1.5">{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p>
