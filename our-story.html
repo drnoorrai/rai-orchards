@@ -4,149 +4,130 @@
 <!doctype html>
 <html lang="{{ copy.language | default: 'en' | escape }}">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{ copy.seo.story_title | escape }}</title>
-<meta name="description" content="{{ copy.seo.story_description | escape }}">
-<meta name="theme-color" content="#14493E">
-<link rel="canonical" href="https://raiorchards.ca/our-story.html">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://raiorchards.ca/our-story.html">
-<meta property="og:title" content="{{ copy.seo.story_title | escape }}">
-<meta property="og:description" content="{{ copy.seo.story_description | escape }}">
-<meta property="og:image" content="https://raiorchards.ca/img/sign.jpeg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  body { margin: 0; background: #F7F2E7; color: #1C2A22; font-family: Karla, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  * { box-sizing: border-box; }
-  a { color: #14493E; text-underline-offset: 3px; }
-  a:hover { color: #C9803B; }
-  img { display: block; }
-
-  .navlink { color: #1C2A22; text-decoration: none; }
-  .navlink:hover { color: #C9803B; }
-  .btn-dark { background: #14493E; color: #FBF7EE; }
-  .btn-dark:hover { background: #1B5E4E; color: #FBF7EE; }
-
-  .nav-desktop { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14px; }
-  .status-pill { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-  @media (max-width: 880px) {
-    .status-pill { display: none; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ copy.seo.story_title | escape }}</title>
+  <meta name="description" content="{{ copy.seo.story_description | escape }}">
+  <meta name="theme-color" content="#123f35">
+  <link rel="canonical" href="https://raiorchards.ca/our-story.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://raiorchards.ca/our-story.html">
+  <meta property="og:title" content="{{ copy.seo.story_title | escape }}">
+  <meta property="og:description" content="{{ copy.seo.story_description | escape }}">
+  <meta property="og:image" content="https://raiorchards.ca/img/sign.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/img/wordmark-gold.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&amp;family=Karla:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<div style="max-width:100%;overflow-x:hidden">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header style="position:sticky;top:0;z-index:40;background:rgba(247,242,231,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(28,42,34,.12)">
-    <div style="max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-      <a href="./index.html" style="display:flex;align-items:center;flex:none"><img src="img/wordmark-gold.svg" alt="{{ copy.brand.name | escape }}" style="height:38px;width:auto"></a>
-      <nav class="nav-desktop">
-        <a href="./index.html#visit" class="navlink">{{ copy.nav.visit | escape }}</a>
-        <a href="./index.html#season" class="navlink">{{ copy.nav.season | escape }}</a>
-        <a href="./index.html#animals" class="navlink">{{ copy.nav.animals | escape }}</a>
-        <span style="color:#8A7A5C" aria-current="page">{{ copy.nav.story | escape }}</span>
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="/" aria-label="{{ copy.brand.name | escape }} home"><img src="/img/wordmark-gold.svg" alt="{{ copy.brand.name | escape }}"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/#visit">{{ copy.nav.visit | escape }}</a>
+        <a href="/#season">{{ copy.nav.season | escape }}</a>
+        <a href="/#animals">{{ copy.nav.animals | escape }}</a>
+        <a href="/#events">{{ copy.nav.events | escape }}</a>
+        <a href="/our-story.html" aria-current="page">{{ copy.nav.story | escape }}</a>
       </nav>
-      <div class="status-pill">
-        <span style="width:8px;height:8px;border-radius:50%;background:#4E8C5B;flex:none"></span>
-        <span style="color:#4A5A50">{{ copy.hours.status_line | escape }}</span>
-      </div>
+      <div class="header-status" aria-live="polite"><span class="status-dot" data-status-dot></span><span data-live-status>{{ copy.hours.status_line | escape }}</span></div>
+      <button class="menu-button" id="menuOpen" type="button" aria-expanded="false" aria-controls="menuPanel">{{ copy.nav.menu_button | escape }}<span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </header>
 
-  <section style="max-width:900px;margin:0 auto;padding:88px 24px 56px">
-    <p style="margin:0 0 18px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">{{ copy.story.eyebrow | escape }}</p>
-    <h1 style="margin:0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(38px,6vw,68px);line-height:1.05;max-width:16ch;text-wrap:balance">{{ copy.story.headline | escape }}</h1>
-    <p style="margin:26px 0 0;max-width:56ch;font-size:19px;line-height:1.65;color:#3B4A41">{{ copy.story.lede | escape }}</p>
-  </section>
+  <div class="menu-scrim" id="menuScrim" hidden></div>
+  <aside class="menu-panel" id="menuPanel" aria-label="Menu" aria-hidden="true" hidden>
+    <div class="menu-panel__head"><img src="/img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}"><button class="menu-close" id="menuClose" type="button" aria-label="Close menu">×</button></div>
+    <nav class="mobile-nav" aria-label="Mobile navigation"><a href="/#visit">{{ copy.nav.visit | escape }}</a><a href="/#season">{{ copy.nav.season | escape }}</a><a href="/#animals">{{ copy.nav.animals | escape }}</a><a href="/#events">{{ copy.nav.events | escape }}</a><a href="/#find-us">{{ copy.nav.find_us | escape }}</a><a href="/our-story.html" aria-current="page">{{ copy.nav.story | escape }}</a></nav>
+    <div class="menu-panel__foot"><p>{{ copy.hours.panel_line }}</p><a class="button button--gold" href="tel:{{ copy.contact.phone }}">{{ copy.nav.call_button | escape }}</a></div>
+  </aside>
 
-  <img src="img/sign.jpeg" alt="{{ copy.story.hero_alt | escape }}" style="width:100%;max-height:520px;object-fit:cover">
-
-  <section style="max-width:900px;margin:0 auto;padding:72px 24px 0">
-    <div style="display:grid;gap:30px;max-width:64ch">
-      <p style="margin:0;font-size:18px;line-height:1.75;color:#2C3B33">{{ copy.story.paragraph_1 | escape }}</p>
+  <section class="utility-bar" aria-label="Today's farm information">
+    <div class="shell utility-row">
+      <div class="utility-status" aria-live="polite"><span class="status-dot" data-status-dot></span><div class="utility-copy"><strong data-live-status>{{ copy.hours.status_line | escape }}</strong><span>{{ copy.season.updated | default: 'Season information updated regularly' | escape }}</span></div></div>
+      <div class="utility-schedule"><div><strong>Mon–Thu · Farm shop only</strong>Fri–Sun · Full farm experience</div></div>
+      <div class="utility-actions"><a class="utility-action" href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener">Directions</a><a class="utility-action" href="tel:{{ copy.contact.phone }}">Call</a><a class="utility-action" href="/#season">What’s picking</a></div>
     </div>
   </section>
 
-  <section style="max-width:1180px;margin:0 auto;padding:64px 24px 0">
-    <figure style="margin:0">
-      <img src="{{ copy.story.portrait_image }}" alt="{{ copy.story.portrait_alt | escape }}" loading="lazy" decoding="async" style="width:100%;max-height:640px;object-fit:cover;object-position:center 40%">
-      <figcaption style="margin:18px 0 0;display:flex;gap:16px 32px;flex-wrap:wrap;align-items:baseline;border-top:1px solid rgba(28,42,34,.18);padding-top:16px">
-        <span style="font-family:Newsreader,serif;font-size:22px;color:#14493E">{{ copy.story.portrait_caption | escape }}</span>
-        <span style="font-size:15px;line-height:1.6;color:#5B6A60;max-width:46ch">{{ copy.story.portrait_note | escape }}</span>
-      </figcaption>
-    </figure>
-  </section>
-
-  <section style="max-width:900px;margin:0 auto;padding:56px 24px 0">
-    <div style="display:grid;gap:30px;max-width:64ch">
-      <p style="margin:0;font-size:18px;line-height:1.75;color:#2C3B33">{{ copy.story.paragraph_2 | escape }}</p>
-      <p style="margin:0;font-size:18px;line-height:1.75;color:#2C3B33">{{ copy.story.paragraph_3 | escape }}</p>
-    </div>
-  </section>
-
-  <section style="max-width:1180px;margin:0 auto;padding:64px 24px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
-      {% for shot in copy.story.gallery %}<img src="{{ shot.image }}" alt="{{ shot.alt | escape }}" loading="lazy" decoding="async" style="width:100%;aspect-ratio:3/4;object-fit:cover">
-      {% endfor %}
-    </div>
-  </section>
-
-  <section style="background:#14493E;color:#F1EADA">
-    <div style="max-width:900px;margin:0 auto;padding:84px 24px">
-      <p style="margin:0 0 16px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#C99A4B">{{ copy.story.vision_eyebrow | escape }}</p>
-      <h2 style="margin:0 0 24px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(28px,4vw,42px);line-height:1.15;color:#FBF7EE;max-width:20ch">{{ copy.story.vision_heading | escape }}</h2>
-      <p style="margin:0;max-width:58ch;font-size:18px;line-height:1.75;color:rgba(241,234,218,.9)">{{ copy.story.vision_paragraph | escape }}</p>
-    </div>
-  </section>
-
-  <section style="max-width:900px;margin:0 auto;padding:80px 24px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px">
-      {% for stat in copy.story.stats %}
-      <div>
-        <p style="margin:0 0 8px;font-family:Newsreader,serif;font-size:40px;color:#14493E;line-height:1">{{ stat.value | escape }}</p>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5A50">{{ stat.label | escape }}</p>
+  <main id="main">
+    <section class="story-hero">
+      <div class="shell story-hero__copy">
+        <p class="eyebrow">{{ copy.story.eyebrow | escape }}</p>
+        <h1 class="display">{{ copy.story.headline | escape }}</h1>
+        <p class="lede">{{ copy.story.lede | escape }}</p>
       </div>
-      {% endfor %}
-    </div>
-  </section>
+      <img class="story-hero__image" src="/img/sign.jpeg" alt="{{ copy.story.hero_alt | escape }}" width="2000" height="1500" fetchpriority="high">
+    </section>
 
-  <section style="background:#EFE8D8;border-top:1px solid rgba(28,42,34,.1)">
-    <div style="max-width:760px;margin:0 auto;padding:76px 24px;text-align:center">
-      <h2 style="margin:0 0 14px;font-family:Newsreader,serif;font-weight:300;font-size:clamp(26px,3.4vw,38px);line-height:1.15">{{ copy.story.cta_heading | escape }}</h2>
-      <p style="margin:0 0 26px;font-size:17px;line-height:1.6;color:#4A5A50">{{ copy.story.cta_note | escape }}</p>
-      <a href="./index.html#visit" class="btn-dark" style="display:inline-block;padding:15px 30px;font-weight:600;font-size:15px;text-decoration:none;border-radius:2px">{{ copy.story.cta_button | escape }}</a>
-    </div>
-  </section>
+    <section class="prose-section">
+      <div class="shell prose"><p>{{ copy.story.paragraph_1 | escape }}</p></div>
+    </section>
 
-  <section aria-labelledby="land-acknowledgement" style="border-top:1px solid rgba(28,42,34,.1)">
-    <div style="max-width:900px;margin:0 auto;padding:72px 24px 80px">
-      <div style="max-width:64ch">
-        <h2 id="land-acknowledgement" style="margin:0 0 22px;font-family:Karla,system-ui,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A5C">Land acknowledgement</h2>
-        <div style="display:grid;gap:18px">
-          <p style="margin:0;font-size:15px;line-height:1.75;color:#5B6A60">Rai Orchards is located in Puslinch, on the traditional territory of the Hatiwendaronk and within the Treaty Lands and Territory of the Mississaugas of the Credit First Nation. We recognize the Mississaugas of the Credit as the Anishinaabe treaty holders of the Between the Lakes Treaty No. 3, first negotiated in 1784 and confirmed in 1792. We also recognize the enduring relationships of the Haudenosaunee, including Six Nations of the Grand River, with this territory.</p>
-          <p style="margin:0;font-size:15px;line-height:1.75;color:#5B6A60">As settlers who live, care for, and grow food on these lands, we are committed to respecting Indigenous sovereignty and self-determination. We have a responsibility to continually learn the histories and living treaty relationships of this territory, uphold Indigenous treaty rights, and care for the land and water with humility.</p>
-          <p style="margin:0;font-size:15px;line-height:1.75;color:#5B6A60">We believe that acknowledgement should be accompanied by material action. As our orchard grows, we will look for concrete ways to practice reciprocity and redistribution, and we will share those commitments openly when we undertake them. We understand these actions not as charity or as a way of discharging our responsibilities, but as part of an ongoing effort to reckon with the fact that our ability to occupy, cultivate, harvest from, and earn income from this land exists within an ongoing system of settler colonialism.</p>
-          <p style="margin:0;font-size:15px;line-height:1.75;color:#5B6A60">Treaty relationships are living relationships, and we understand ourselves as settlers with ongoing responsibilities within them. We are committed to listening to Indigenous-led calls for justice and Land Back and to allowing what we learn to shape how we relate to this land over time.</p>
-          <p style="margin:0;font-size:15px;line-height:1.75;color:#5B6A60">We offer our gratitude to the generations of Indigenous peoples who have cared for these lands since time immemorial, and to those who continue to exercise stewardship, sovereignty, and responsibility toward them today.</p>
-        </div>
-        <figure style="margin:36px 0 0;padding-top:24px;border-top:1px solid rgba(28,42,34,.14)">
-          <blockquote style="margin:0;font-family:Newsreader,serif;font-style:italic;font-weight:300;font-size:21px;line-height:1.45;color:#14493E">“Gratitude comes first, but gratitude alone is not enough.”</blockquote>
-          <figcaption style="margin:10px 0 0;font-size:13px;color:#8A7A5C">— Robin Wall Kimmerer, <cite>Braiding Sweetgrass</cite></figcaption>
-        </figure>
+    <section class="shell">
+      <figure class="portrait">
+        <img src="/{{ copy.story.portrait_image }}" alt="{{ copy.story.portrait_alt | escape }}" width="1674" height="1090" loading="lazy" decoding="async">
+        <figcaption><strong>{{ copy.story.portrait_caption | escape }}</strong><span>{{ copy.story.portrait_note | escape }}</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="prose-section">
+      <div class="shell prose"><p>{{ copy.story.paragraph_2 | escape }}</p><p style="margin-top:2rem">{{ copy.story.paragraph_3 | escape }}</p></div>
+    </section>
+
+    <section class="shell story-gallery" aria-label="Life at Rai Orchards">
+      {% for shot in copy.story.gallery %}<img src="/{{ shot.image }}" alt="{{ shot.alt | escape }}" loading="lazy" decoding="async">{% endfor %}
+    </section>
+
+    <section class="vision-section">
+      <div class="shell vision-grid">
+        <div><p class="eyebrow eyebrow--light">{{ copy.story.vision_eyebrow | escape }}</p><h2 class="section-title">{{ copy.story.vision_heading | escape }}</h2></div>
+        <p>{{ copy.story.vision_paragraph | escape }}</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer style="background:#14493E;color:#E4DCC9">
-    <div style="max-width:1180px;margin:0 auto;padding:56px 24px 36px;display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:baseline">
-      <img src="img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}" loading="lazy" style="height:56px;width:auto">
-      <p style="margin:0;font-size:15px">{{ copy.contact.address_line_1 | escape }}, {{ copy.contact.address_line_2 | escape }} · <a href="tel:{{ copy.contact.phone }}" style="color:#E6CE9B">{{ copy.contact.phone_display | escape }}</a> · <a href="mailto:{{ copy.contact.email }}" style="color:#E6CE9B">{{ copy.contact.email | escape }}</a></p>
+    <section class="stats-section">
+      <div class="shell stats-grid">{% for stat in copy.story.stats %}<div class="stat"><strong>{{ stat.value | escape }}</strong><span>{{ stat.label | escape }}</span></div>{% endfor %}</div>
+    </section>
+
+    <section class="story-cta">
+      <div class="shell signup-inner"><p class="eyebrow">Visit the orchard</p><h2 class="section-title">{{ copy.story.cta_heading | escape }}</h2><p class="section-intro">{{ copy.story.cta_note | escape }}</p><a class="button button--forest" href="/#visit">{{ copy.story.cta_button | escape }}</a></div>
+    </section>
+
+    <section class="land-section" aria-labelledby="land-acknowledgement">
+      <div class="shell land-inner">
+        <p class="eyebrow" id="land-acknowledgement">Land acknowledgement</p>
+        <p>Rai Orchards is located in Puslinch, on the traditional territory of the Hatiwendaronk and within the Treaty Lands and Territory of the Mississaugas of the Credit First Nation. We recognize the Mississaugas of the Credit as the Anishinaabe treaty holders of the Between the Lakes Treaty No. 3, first negotiated in 1784 and confirmed in 1792. We also recognize the enduring relationships of the Haudenosaunee, including Six Nations of the Grand River, with this territory.</p>
+        <p>As settlers who live, care for, and grow food on these lands, we are committed to respecting Indigenous sovereignty and self-determination. We have a responsibility to continually learn the histories and living treaty relationships of this territory, uphold Indigenous treaty rights, and care for the land and water with humility.</p>
+        <p>We believe that acknowledgement should be accompanied by material action. As our orchard grows, we will look for concrete ways to practice reciprocity and redistribution, and we will share those commitments openly when we undertake them. We understand these actions not as charity or as a way of discharging our responsibilities, but as part of an ongoing effort to reckon with the fact that our ability to occupy, cultivate, harvest from, and earn income from this land exists within an ongoing system of settler colonialism.</p>
+        <p>Treaty relationships are living relationships, and we understand ourselves as settlers with ongoing responsibilities within them. We are committed to listening to Indigenous-led calls for justice and Land Back and to allowing what we learn to shape how we relate to this land over time.</p>
+        <p>We offer our gratitude to the generations of Indigenous peoples who have cared for these lands since time immemorial, and to those who continue to exercise stewardship, sovereignty, and responsibility toward them today.</p>
+        <figure class="land-quote"><blockquote>“Gratitude comes first, but gratitude alone is not enough.”</blockquote><figcaption>— Robin Wall Kimmerer, <cite>Braiding Sweetgrass</cite></figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand"><img src="/img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}" loading="lazy"><p>{{ copy.footer.blurb | escape }}</p></div>
+      <div><p class="footer-label">{{ copy.footer.visit_label | escape }}</p><p>{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p><a href="{{ copy.contact.maps_url }}">{{ copy.footer.directions_link | escape }}</a></div>
+      <div><p class="footer-label">{{ copy.footer.hello_label | escape }}</p><p><a href="tel:{{ copy.contact.phone }}">{{ copy.contact.phone_display | escape }}</a><br><a href="mailto:{{ copy.contact.email }}">{{ copy.contact.email | escape }}</a><br><a href="{{ copy.contact.instagram_url }}">{{ copy.footer.instagram_label | escape }}</a></p></div>
+      <div><p class="footer-label">{{ copy.footer.open_label | escape }}</p><p>{{ copy.hours.footer_line }}</p></div>
     </div>
+    <div class="shell footer-bottom">{{ copy.footer.copyright | escape }}</div>
   </footer>
-</div>
+
+  <nav class="mobile-actions" aria-label="Quick actions">
+    <a href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Directions</a>
+    <a href="tel:{{ copy.contact.phone }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
+    <a href="/#visit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10M9 20v-6h6v6"/></svg>Plan a visit</a>
+  </nav>
+
+  <script src="/assets/site.js" defer></script>
 </body>
 </html>

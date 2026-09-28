@@ -43,13 +43,10 @@ hours:
       detail: The farm shop is open for apples, garlic, eggs and produce for
         purchase, based on availability.
       notes:
-        - There is no public entry for pick-your-own apples, wagon rides and
-          animal viewing during these hours, and thus no entry fee.
-        - If you would like to enquire about private bookings during Mon – Thu,
-          please speak with Honey Rai in person during our weekend hours.
-        - Thank you for your patience during our inaugural year, we hope to expand
-          our entry hours in the future after we have improved infrastructure for
-          our guests.
+        - There is no admission fee to visit the farm shop.
+        - U-pick, wagon rides, the animals and play areas are not open to the
+          public Monday to Thursday.
+        - Ask Honey Rai during weekend hours about private weekday bookings.
     - days: Fri – Sun
       time: 10am – 6pm
       detail: Rai Orchards is open for pick-your-own apples, wagon rides, animal
@@ -76,7 +73,7 @@ nav:
   call_button: Call the farm
 
 hero:
-  eyebrow: Puslinch · Farm open Fri–Sun
+  eyebrow: Puslinch · Walk-ins welcome
   headline: Pick your own, say hello to the alpacas.
   lede: A family orchard on Wellington 35 — apples, pears and peaches grown the
     patient way, with a paddock full of animals who are very used to visitors.
@@ -102,13 +99,12 @@ launch:
 
 visit:
   eyebrow: Visiting
-  heading: Come as you are, leave with a full bag.
+  heading: Choose the day that fits your visit.
   paragraphs:
-    - No tickets, no timed entry. Park in the field, grab a bag at the stand, and
-      we'll point you at whatever is ripest that morning. Bring the kids, bring
-      the dog, bring an appetite.
-    - "If it's your first time: give yourself an hour or two. Most people mean to
-      pick a bag and end up sitting with the goats."
+    - Walk in whenever we're open. Friday to Sunday is the full farm experience;
+      Monday to Thursday is for a quick stop at the farm shop.
+    - "For a weekend visit, give yourself an hour or two. Most people mean to pick
+      a bag and end up sitting with the goats."
   hours_label: Hours
   entry_label: Entry
   entry_line: Adults 18+ <strong>$10</strong> · Children 2–17 <strong>$5</strong>
@@ -122,6 +118,7 @@ visit:
 season:
   eyebrow: On the trees now
   heading: What's in season
+  updated: Updated September 28, 2026
   note: Varieties come on a few weeks apart. Call ahead if you're driving for
     something specific — we'll tell you honestly whether it's worth the trip yet.
   groups:
@@ -161,8 +158,8 @@ upick:
     - Pick at your own pace. Twist, don't tug — the tree keeps next year's bud
       that way.
     - Weigh up at the stand — apples are a flat $1.99 a pound, whatever the
-      variety. Cash or tap. Then take a wagon ride and meet the animals before
-      you drive home.
+      variety. Cash or card ($1 card fee per transaction). Then take a wagon ride
+      and meet the animals before you drive home.
 
 animals:
   eyebrow: The welcoming committee
@@ -252,7 +249,7 @@ faq:
       answer: Friday to Sunday, 10 to 6, along with the wagon rides, kids' play
         area and snack shack.
     - question: How do we pay?
-      answer: Cash or tap at the stand.
+      answer: Cash or card at the stand. Card payments have a $1 transaction fee.
     - question: Is it stroller-friendly?
       answer: Mostly. The rows are grass and mown short — a sturdy stroller is fine,
         a light one will bump.

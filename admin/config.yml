@@ -43,6 +43,29 @@ collections:
               - { label: "Season End", name: "through", widget: "string" }
               - { label: "Footer Hours", name: "footer_line", widget: "string", hint: "Use <br> for a line break." }
               - { label: "Menu Hours & Address", name: "panel_line", widget: "string", hint: "Shown in the mobile slide-out menu. Use <br /> for a line break." }
+              - label: "Customer Schedule"
+                name: "schedule"
+                widget: "list"
+                hint: "The first item is shown as the weekday farm-shop visit; the second as the full weekend experience."
+                fields:
+                  - { label: "Days", name: "days", widget: "string" }
+                  - { label: "Hours", name: "time", widget: "string" }
+                  - { label: "What is open", name: "detail", widget: "text" }
+                  - label: "Helpful notes"
+                    name: "notes"
+                    widget: "list"
+                    required: false
+                    field: { label: "Note", name: "note", widget: "string" }
+                  - { label: "Admission label", name: "entry_label", widget: "string", required: false }
+                  - label: "Admission prices"
+                    name: "prices"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Visitor", name: "label", widget: "string" }
+                      - { label: "Price", name: "value", widget: "string" }
+                  - { label: "Admission note", name: "entry_note", widget: "text", required: false }
+              - { label: "Season closing line", name: "season_note", widget: "string" }
 
           - label: "Contact & Address"
             name: "contact"
@@ -142,6 +165,7 @@ collections:
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Last Updated", name: "updated", widget: "string", hint: "Shown prominently so visitors know the crop information is current." }
               - { label: "Note", name: "note", widget: "text" }
               - label: "Fruit Cards"
                 name: "groups"
