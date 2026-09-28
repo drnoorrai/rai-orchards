@@ -159,7 +159,7 @@
       <div class="shell">
         <div class="animals-head"><div><p class="eyebrow eyebrow--light">{{ copy.animals.eyebrow | escape }}</p><h2 class="section-title">{{ copy.animals.heading | escape }}</h2></div><p>{{ copy.animals.note | escape }}</p></div>
         <div class="animal-grid">
-          {% for card in copy.animals.cards %}<article class="animal-card"><img src="/{{ card.image }}" alt="{{ card.alt | escape }}" width="640" height="640" loading="lazy" decoding="async"><div class="animal-card__body"><p class="animal-kind">{{ card.kind | escape }}</p><h3>{{ card.names | escape }}</h3><p>{{ card.blurb | escape }}</p></div></article>{% endfor %}
+          {% for card in copy.animals.cards %}<article class="animal-card"><img src="/{{ card.image }}" alt="{{ card.alt | escape }}" loading="lazy" decoding="async"><div class="animal-card__body"><p class="animal-kind">{{ card.kind | escape }}</p><h3>{{ card.names | escape }}</h3><p>{{ card.blurb | escape }}</p></div></article>{% endfor %}
         </div>
       </div>
     </section>
