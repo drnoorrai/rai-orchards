@@ -133,7 +133,7 @@ season:
         - Royal Gala
         - Ambrosia
         - Fuji
-      note: <strong>$1.99 / lb + HST</strong> u-pick, every apple variety, all season.
+      note: <strong>$1.99 / lb</strong> u-pick, every apple variety, all season.
     - name: Pears
       status: Sold out
       tone: amber
@@ -160,7 +160,7 @@ upick:
       are ready.
     - Pick at your own pace. Twist, don't tug — the tree keeps next year's bud
       that way.
-    - Weigh up at the stand — apples are a flat $1.99 a pound + HST, whatever the
+    - Weigh up at the stand — apples are a flat $1.99 a pound, whatever the
       variety. Cash or tap. Then take a wagon ride and meet the animals before
       you drive home.
 
