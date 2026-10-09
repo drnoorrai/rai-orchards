@@ -1,0 +1,248 @@
+---
+---
+{% assign copy = site.data.site %}
+<!doctype html>
+<html lang="{{ copy.language | default: 'en' | escape }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ copy.seo.title | escape }}</title>
+  <meta name="description" content="{{ copy.seo.description | escape }}">
+  <meta name="theme-color" content="#123f35">
+  <link rel="canonical" href="https://raiorchards.ca/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://raiorchards.ca/">
+  <meta property="og:title" content="{{ copy.seo.og_title | escape }}">
+  <meta property="og:description" content="{{ copy.seo.og_description | escape }}">
+  <meta property="og:image" content="https://raiorchards.ca/img/apples.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/img/wordmark-gold.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&amp;family=Karla:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": {{ copy.brand.name | jsonify }},
+    "url": "https://raiorchards.ca/",
+    "image": "https://raiorchards.ca/img/apples.jpeg",
+    "telephone": {{ copy.contact.phone | jsonify }},
+    "email": {{ copy.contact.email | jsonify }},
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ copy.contact.address_line_1 | jsonify }},
+      "addressLocality": "Puslinch",
+      "addressRegion": "ON",
+      "postalCode": "N0B 2J0",
+      "addressCountry": "CA"
+    },
+    "sameAs": [{{ copy.contact.instagram_url | jsonify }}],
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "18:00", "description": "Farm shop only"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "18:00", "description": "U-pick, wagon rides, animals, kids' play area and snack shack"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="#top" aria-label="{{ copy.brand.name | escape }} home"><img src="/img/wordmark-gold.svg" alt="{{ copy.brand.name | escape }}"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#visit">{{ copy.nav.visit | escape }}</a>
+        <a href="#season">{{ copy.nav.season | escape }}</a>
+        <a href="#animals">{{ copy.nav.animals | escape }}</a>
+        <a href="#events">{{ copy.nav.events | escape }}</a>
+        <a href="/our-story.html">{{ copy.nav.story | escape }}</a>
+      </nav>
+      <div class="header-status" aria-live="polite"><span class="status-dot" data-status-dot></span><span data-live-status>{{ copy.hours.status_line | escape }}</span></div>
+      <button class="menu-button" id="menuOpen" type="button" aria-expanded="false" aria-controls="menuPanel">{{ copy.nav.menu_button | escape }}<span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
+    </div>
+  </header>
+
+  <div class="menu-scrim" id="menuScrim" hidden></div>
+  <aside class="menu-panel" id="menuPanel" aria-label="Menu" aria-hidden="true" hidden>
+    <div class="menu-panel__head"><img src="/img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}"><button class="menu-close" id="menuClose" type="button" aria-label="Close menu">×</button></div>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#visit">{{ copy.nav.visit | escape }}</a><a href="#season">{{ copy.nav.season | escape }}</a><a href="#animals">{{ copy.nav.animals | escape }}</a><a href="#events">{{ copy.nav.events | escape }}</a><a href="#find-us">{{ copy.nav.find_us | escape }}</a><a href="/our-story.html">{{ copy.nav.story | escape }}</a>
+    </nav>
+    <div class="menu-panel__foot"><p>{{ copy.hours.panel_line }}</p><a class="button button--gold" href="tel:{{ copy.contact.phone }}">{{ copy.nav.call_button | escape }}</a></div>
+  </aside>
+
+  <section class="utility-bar" aria-label="Today's farm information">
+    <div class="shell utility-row">
+      <div class="utility-status" aria-live="polite"><span class="status-dot" data-status-dot></span><div class="utility-copy"><strong data-live-status>{{ copy.hours.status_line | escape }}</strong><span>{{ copy.season.updated | default: 'Season information updated regularly' | escape }}</span></div></div>
+      <div class="utility-schedule"><div><strong>Mon–Thu · Farm shop only</strong>Fri–Sun · Full farm experience</div></div>
+      <div class="utility-actions">
+        <a class="utility-action" href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener"><svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Directions</a>
+        <a class="utility-action" href="tel:{{ copy.contact.phone }}"><svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
+        <a class="utility-action" href="#season">What’s picking</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    {% if copy.holiday.show %}
+    {% assign hol = copy.holiday %}
+    <section class="holiday-banner" data-holiday{% if hol.until %} data-holiday-until="{{ hol.until }}"{% endif %} aria-label="Holiday hours" style="background:var(--forest);color:var(--cream)">
+      <div class="shell" style="padding:1.75rem 0 2rem">
+        <p class="eyebrow eyebrow--light" style="margin-bottom:.4rem">{{ hol.eyebrow | escape }}</p>
+        <h2 style="margin:0 0 1.25rem;font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.15">{{ hol.heading | escape }}</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem 1.5rem">
+          {% for day in hol.days %}
+          <div style="border-top:1px solid var(--line-dark);padding-top:.85rem">
+            <p style="margin:0;font-weight:600;font-size:.95rem">{{ day.label | escape }}</p>
+            <p style="margin:.15rem 0 .4rem;font-family:var(--serif);font-size:1.35rem;color:var(--gold-light)">{{ day.time | escape }}</p>
+            <p style="margin:0;font-size:.92rem;line-height:1.55;color:rgba(248,243,232,.82)">{{ day.detail | escape }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% if hol.feature_heading %}
+        <div style="margin-top:1.5rem;padding:1.1rem 1.25rem;background:rgba(231,199,130,.12);border:1px solid rgba(231,199,130,.35);display:grid;gap:.35rem">
+          <p style="margin:0;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light)">{{ hol.feature_label | escape }}</p>
+          <p style="margin:0;font-family:var(--serif);font-size:1.3rem">{{ hol.feature_heading | escape }}</p>
+          <p style="margin:0;max-width:70ch;font-size:.95rem;line-height:1.6;color:rgba(248,243,232,.88)">{{ hol.feature_detail | escape }}</p>
+        </div>
+        {% endif %}
+        {% if hol.note %}<p style="margin:1rem 0 0;font-size:.88rem;color:rgba(248,243,232,.7)">{{ hol.note | escape }}</p>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="home-hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">{{ copy.hero.eyebrow | escape }}</p>
+          <h1 class="display">{{ copy.hero.headline | escape }}</h1>
+          <p class="lede">{{ copy.hero.lede | escape }}</p>
+          <div class="hero-actions"><a class="button button--gold" href="#visit">{{ copy.hero.cta_primary | escape }}</a><a class="button button--outline" href="#season">What’s picking today</a></div>
+        </div>
+        <div class="hero-image">
+          <img src="/img/apples.jpeg" alt="{{ copy.hero.image_alt | escape }}" width="1500" height="2000" fetchpriority="high">
+          <div class="hero-badge"><strong>Walk-ins welcome</strong><span>No booking needed. Pay at the gate Friday to Sunday.</span></div>
+        </div>
+      </div>
+    </section>
+
+    {% if copy.launch.show %}
+    <section class="signup-section" aria-label="Farm announcement"><div class="shell signup-inner"><p class="eyebrow">{{ copy.launch.eyebrow | escape }}</p><h2 class="section-title">{{ copy.launch.date_line | escape }} <em>{{ copy.launch.date_highlight | escape }}</em></h2><p class="section-intro">{{ copy.launch.note | escape }}</p></div></section>
+    {% endif %}
+
+    <section class="visit-section" id="visit">
+      <div class="shell visit-layout">
+        <div class="visit-aside">
+          <p class="eyebrow">{{ copy.visit.eyebrow | escape }}</p><h2 class="section-title">{{ copy.visit.heading | escape }}</h2>
+          {% for para in copy.visit.paragraphs %}<p class="section-intro">{{ para | escape }}</p>{% endfor %}
+          <a class="button button--forest" href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener">Get directions</a>
+        </div>
+        <div>
+          <div class="visit-cards">
+            {% for slot in copy.hours.schedule %}
+            <article class="visit-card">
+              <div class="visit-card__title"><strong>{{ slot.days | escape }}</strong><span>{{ slot.time | escape }}</span>{% if forloop.first %}<span>Farm shop only</span>{% else %}<span>Full farm experience</span>{% endif %}</div>
+              <div class="visit-card__body">
+                <p>{{ slot.detail | escape }}</p>
+                {% if slot.notes %}<ul class="visit-notes">{% for line in slot.notes %}<li>{{ line | escape }}</li>{% endfor %}</ul>{% endif %}
+                {% if slot.prices %}<div class="price-list" aria-label="Admission prices">{% for price in slot.prices %}<div class="price-row"><span>{{ price.label | escape }}</span><strong>{{ price.value | escape }}</strong></div>{% endfor %}<p class="season-note">{{ slot.entry_note | escape }}</p></div>{% endif %}
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+          <div class="visit-meta">
+            <div><small>{{ copy.visit.find_label | escape }}</small><p>{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p><a href="{{ copy.contact.maps_url }}">{{ copy.visit.maps_link | escape }}</a></div>
+            <div><small>{{ copy.visit.phone_label | escape }}</small><p><a href="tel:{{ copy.contact.phone }}">{{ copy.contact.phone_display | escape }}</a></p><p>{{ copy.contact.phone_note | escape }}</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="season-section" id="season">
+      <div class="shell">
+        <div class="season-head">
+          <div><p class="eyebrow">{{ copy.season.eyebrow | escape }}</p><h2 class="section-title">{{ copy.season.heading | escape }}</h2></div>
+          <div><p class="section-intro">{{ copy.season.note | escape }}</p><div class="freshness"><strong>{{ copy.season.updated | default: 'Updated regularly' | escape }}</strong><span>Call before a long drive</span></div></div>
+        </div>
+        <div class="season-grid">
+          {% for group in copy.season.groups %}
+          <article class="season-card"><div class="season-card__head"><h3>{{ group.name | escape }}</h3><span class="season-state{% if group.tone == 'amber' %} season-state--amber{% endif %}">{{ group.status | escape }}</span></div><ul>{% for variety in group.varieties %}<li>{{ variety | escape }}</li>{% endfor %}</ul>{% if group.note != blank %}<p class="season-note">{{ group.note }}</p>{% endif %}</article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="morning-section">
+      <div class="shell split-media">
+        <div class="split-media__image"><img src="/img/apples-on-tree.jpg" alt="{{ copy.upick.image_alt | escape }}" width="1500" height="1125" loading="lazy" decoding="async"></div>
+        <div><p class="eyebrow">{{ copy.upick.eyebrow | escape }}</p><h2 class="section-title">{{ copy.upick.heading | escape }}</h2><ol class="steps">{% for step in copy.upick.steps %}<li class="step"><span class="step__number">{{ forloop.index }}</span><p>{{ step | escape }}</p></li>{% endfor %}</ol></div>
+      </div>
+    </section>
+
+    <section class="animals-section" id="animals">
+      <div class="shell">
+        <div class="animals-head"><div><p class="eyebrow eyebrow--light">{{ copy.animals.eyebrow | escape }}</p><h2 class="section-title">{{ copy.animals.heading | escape }}</h2></div><p>{{ copy.animals.note | escape }}</p></div>
+        <div class="animal-grid">
+          {% for card in copy.animals.cards %}<article class="animal-card"><img src="/{{ card.image }}" alt="{{ card.alt | escape }}" loading="lazy" decoding="async"><div class="animal-card__body"><p class="animal-kind">{{ card.kind | escape }}</p><h3>{{ card.names | escape }}</h3><p>{{ card.blurb | escape }}</p></div></article>{% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="story-teaser">
+      <div class="story-teaser__copy"><p class="eyebrow">{{ copy.story_teaser.eyebrow | escape }}</p><h2 class="section-title">{{ copy.story_teaser.heading | escape }}</h2><p class="section-intro">{{ copy.story_teaser.paragraph | escape }}</p><a class="button button--outline" href="/our-story.html">{{ copy.story_teaser.cta | escape }}</a></div>
+      <div class="story-teaser__image"><img src="/img/animals-paddock.jpeg" alt="{{ copy.story_teaser.image_alt | escape }}" width="1125" height="1500" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="events-section" id="events">
+      <img src="/img/sign.jpeg" alt="{{ copy.events.image_alt | escape }}" width="2000" height="1500" loading="lazy" decoding="async">
+      <div class="shell"><div class="events-copy"><p class="eyebrow eyebrow--light">{{ copy.events.eyebrow | escape }}</p><h2 class="section-title">{{ copy.events.heading | escape }}</h2><p>{{ copy.events.paragraph | escape }} {{ copy.events.note | escape }}</p><a class="button button--gold" href="mailto:{{ copy.contact.email }}?subject={{ copy.events.email_subject | url_encode }}">{{ copy.events.cta | escape }}</a></div></div>
+    </section>
+
+    <section class="instagram-section">
+      <div class="shell instagram-cta">
+        <div><p class="eyebrow">{{ copy.instagram.label | escape }}</p><h2 class="section-title">{{ copy.instagram.heading | escape }}</h2><p class="section-intro">{{ copy.instagram.note | escape }}</p></div>
+        <a class="button button--outline" href="{{ copy.contact.instagram_url | escape }}" target="_blank" rel="noopener">{{ copy.instagram.cta | escape }}</a>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="shell faq-layout">
+        <div><p class="eyebrow">{{ copy.faq.eyebrow | escape }}</p><h2 class="section-title">{{ copy.faq.heading }}</h2></div>
+        <div class="faq-list">{% for item in copy.faq.items %}<details class="faq-item"{% if forloop.first %} open{% endif %}><summary>{{ item.question | escape }}</summary><p>{{ item.answer | escape }}</p></details>{% endfor %}</div>
+      </div>
+    </section>
+
+    <section class="signup-section" id="list">
+      <div class="shell signup-inner"><p class="eyebrow">Harvest notes</p><h2 class="section-title">{{ copy.signup.heading | escape }}</h2><p class="section-intro">{{ copy.signup.note | escape }}</p><form class="signup-form" action="{{ copy.signup.endpoint }}" method="POST" data-signup-form><label class="skip-link" for="signup-email">Email address</label><input id="signup-email" type="email" name="email" autocomplete="email" required placeholder="{{ copy.signup.placeholder | escape }}"><button class="button button--forest" type="submit">{{ copy.signup.button_label | escape }}</button></form><p class="form-message" id="signup-message" aria-live="polite"></p></div>
+    </section>
+
+    <section class="find-section" id="find-us">
+      <div class="shell find-grid">
+        <div><p class="eyebrow">{{ copy.find_us.eyebrow | escape }}</p><h2 class="section-title">{{ copy.find_us.heading | escape }}</h2><p class="section-intro">{{ copy.find_us.paragraph | escape }}</p><div class="find-details"><div><small>{{ copy.find_us.address_label | escape }}</small><p>{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p></div><div><small>{{ copy.find_us.open_label | escape }}</small><p>{{ copy.find_us.open_line | escape }}</p></div></div><div class="find-actions"><a class="button button--forest" href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener">{{ copy.find_us.directions_button | escape }}</a><a class="button button--outline" href="{{ copy.contact.apple_maps_url | escape }}" target="_blank" rel="noopener">{{ copy.find_us.apple_button | escape }}</a></div></div>
+        <div class="map-frame"><iframe title="{{ copy.find_us.map_title | escape }}" src="{{ copy.contact.map_embed_url | escape }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand"><img src="/img/wordmark-cream.svg" alt="{{ copy.brand.name | escape }}" loading="lazy"><p>{{ copy.footer.blurb | escape }}</p></div>
+      <div><p class="footer-label">{{ copy.footer.visit_label | escape }}</p><p>{{ copy.contact.address_line_1 | escape }}<br>{{ copy.contact.address_line_2 | escape }}</p><a href="{{ copy.contact.maps_url }}">{{ copy.footer.directions_link | escape }}</a></div>
+      <div><p class="footer-label">{{ copy.footer.hello_label | escape }}</p><p><a href="tel:{{ copy.contact.phone }}">{{ copy.contact.phone_display | escape }}</a><br><a href="mailto:{{ copy.contact.email }}">{{ copy.contact.email | escape }}</a><br><a href="{{ copy.contact.instagram_url }}">{{ copy.footer.instagram_label | escape }}</a></p></div>
+      <div><p class="footer-label">{{ copy.footer.open_label | escape }}</p><p>{{ copy.hours.footer_line }}</p></div>
+    </div>
+    <div class="shell footer-bottom">{{ copy.footer.copyright | escape }}</div>
+  </footer>
+
+  <nav class="mobile-actions" aria-label="Quick actions">
+    <a href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Directions</a>
+    <a href="tel:{{ copy.contact.phone }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
+    <a href="#season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21c-4.4 0-8-3.3-8-8.2C4 8.5 7 5 12 5s8 3.5 8 7.8C20 17.7 16.4 21 12 21Z"/><path d="M12 5c0-2 1.2-3.2 3.4-3.6M12 6 9.6 3.6"/></svg>What’s picking</a>
+  </nav>
+
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>
