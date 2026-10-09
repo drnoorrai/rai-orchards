@@ -56,6 +56,9 @@
       var parts = new Intl.DateTimeFormat("en-CA", {
         timeZone: "America/Toronto",
         weekday: "short",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
         hour: "numeric",
         minute: "numeric",
         hour12: false
@@ -68,12 +71,30 @@
       var weekday = ["Mon", "Tue", "Wed", "Thu"].indexOf(values.weekday) !== -1;
       var weekend = ["Fri", "Sat", "Sun"].indexOf(values.weekday) !== -1;
       var opensAt = weekend ? 10 * 60 : 9 * 60;
-      var open = current >= opensAt && current < 18 * 60;
+      var closesAt = 18 * 60;
+      var open = current >= opensAt && current < closesAt;
       var message = "Closed now";
       if (open && weekday) message = "Open today · Farm shop 9–6";
       if (open && weekend) message = "Open today · Full farm experience 10–6";
       if (!open && weekday) message = "Closed now · Farm shop opens at 9";
       if (!open && weekend) message = "Closed now · Farm opens at 10";
+
+      // Dates where the schedule differs from the usual week.
+      var today = values.year + "-" + values.month + "-" + values.day;
+      var special = {
+        "2026-10-09": { opens: 9 * 60, closes: 18 * 60, open: "Open today · Farm shop only 9–6", closed: "Closed now · Farm shop opens at 9" },
+        "2026-10-10": { opens: 10 * 60, closes: 18 * 60, open: "Open today · Thanksgiving weekend, full farm 10–6", closed: "Closed now · Farm opens at 10" },
+        "2026-10-11": { opens: 10 * 60, closes: 18 * 60, open: "Open today · Thanksgiving weekend, full farm 10–6", closed: "Closed now · Farm opens at 10" },
+        "2026-10-12": { opens: 10 * 60, closes: 16 * 60, open: "Open today · Thanksgiving Monday, full farm 10–4", closed: "Closed now · Farm opens at 10" }
+      }[today];
+      if (special) {
+        open = current >= special.opens && current < special.closes;
+        message = open ? special.open : special.closed;
+      }
+
+      // Hide the holiday banner once its last day has passed.
+      var banner = document.querySelector("[data-holiday-until]");
+      if (banner && today > banner.getAttribute("data-holiday-until")) banner.hidden = true;
       liveStatus.forEach(function (node) { node.textContent = message; });
       statusDots.forEach(function (node) { node.setAttribute("data-state", open ? "open" : "closed"); });
     } catch (error) {
