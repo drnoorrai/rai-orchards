@@ -87,6 +87,33 @@
   </section>
 
   <main id="main">
+    {% if copy.holiday.show %}
+    {% assign hol = copy.holiday %}
+    <section class="holiday-banner" data-holiday{% if hol.until %} data-holiday-until="{{ hol.until }}"{% endif %} aria-label="Holiday hours" style="background:var(--forest);color:var(--cream)">
+      <div class="shell" style="padding:1.75rem 0 2rem">
+        <p class="eyebrow eyebrow--light" style="margin-bottom:.4rem">{{ hol.eyebrow | escape }}</p>
+        <h2 style="margin:0 0 1.25rem;font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.15">{{ hol.heading | escape }}</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem 1.5rem">
+          {% for day in hol.days %}
+          <div style="border-top:1px solid var(--line-dark);padding-top:.85rem">
+            <p style="margin:0;font-weight:600;font-size:.95rem">{{ day.label | escape }}</p>
+            <p style="margin:.15rem 0 .4rem;font-family:var(--serif);font-size:1.35rem;color:var(--gold-light)">{{ day.time | escape }}</p>
+            <p style="margin:0;font-size:.92rem;line-height:1.55;color:rgba(248,243,232,.82)">{{ day.detail | escape }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% if hol.feature_heading %}
+        <div style="margin-top:1.5rem;padding:1.1rem 1.25rem;background:rgba(231,199,130,.12);border:1px solid rgba(231,199,130,.35);display:grid;gap:.35rem">
+          <p style="margin:0;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light)">{{ hol.feature_label | escape }}</p>
+          <p style="margin:0;font-family:var(--serif);font-size:1.3rem">{{ hol.feature_heading | escape }}</p>
+          <p style="margin:0;max-width:70ch;font-size:.95rem;line-height:1.6;color:rgba(248,243,232,.88)">{{ hol.feature_detail | escape }}</p>
+        </div>
+        {% endif %}
+        {% if hol.note %}<p style="margin:1rem 0 0;font-size:.88rem;color:rgba(248,243,232,.7)">{{ hol.note | escape }}</p>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
     <section class="home-hero" id="top">
       <div class="hero-grid">
         <div class="hero-copy">
