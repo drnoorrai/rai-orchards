@@ -90,7 +90,7 @@ ribbon:
     - Cash & tap · Dogs on leash welcome
 
 holiday:
-  show: true
+  show: false
   until: "2026-10-12"
   eyebrow: Thanksgiving weekend
   heading: Open Friday to Monday
