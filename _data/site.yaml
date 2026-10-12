@@ -186,6 +186,11 @@ shop:
     apple rows at sunset
   price: ""
   size: 1L and 2L bottles
+  prices:
+    - size: 1L
+      price: $5.99 CAD
+    - size: 2L
+      price: $11.99 CAD
   details:
     - Unpasteurized, the way cider tastes before it's cooked
     - Keep refrigerated at 0–4°C
