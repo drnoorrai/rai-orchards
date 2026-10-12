@@ -26,7 +26,7 @@ contact:
   address_line_2: Puslinch, ON N0B 2J0
   maps_url: https://maps.google.com/?q=3977+Wellington+35,+Puslinch,+ON+N0B+2J0
   directions_url: https://www.google.com/maps/dir/?api=1&destination=3977+Wellington+35,+Puslinch,+ON+N0B+2J0
-  apple_maps_url: https://maps.apple/p/csnfW525nocXU.z
+  apple_maps_url: https://maps.apple.com/?address=3977%20Wellington%2035,%20Puslinch,%20ON%20N0B%202J0
   map_embed_url: https://www.google.com/maps?q=3977+Wellington+Rd+35,+Puslinch,+ON+N0B+2J0,+Canada&z=13&output=embed
   instagram_handle: "@raiorchards"
   instagram_url: https://www.instagram.com/raiorchards
@@ -89,6 +89,33 @@ ribbon:
     - Kids' play area & snack shack
     - Cash & tap · Dogs on leash welcome
 
+holiday:
+  show: true
+  until: "2026-10-12"
+  eyebrow: Thanksgiving weekend
+  heading: Open Friday to Monday
+  days:
+    - label: Friday, October 9
+      time: 9am – 6pm
+      detail: Farm shop only — apples, garlic, eggs and produce. No pick-your-own
+        or farm fun on Friday this week.
+    - label: Saturday & Sunday, October 10–11
+      time: 10am – 6pm
+      detail: Pick your own apples, wagon rides, animal viewing, the kids' play
+        area and the snack shack.
+    - label: Thanksgiving Monday, October 12
+      time: 10am – 4pm
+      detail: The full farm is open — pick your own, wagon rides, animals, play
+        area and snack shack.
+  feature_label: Monday · 12–2pm
+  feature_heading: Share a meal with us
+  feature_detail: Join us for free chole puri — chickpea curry with deep-fried
+    whole wheat flatbread, a beloved Punjabi meal. Rooted in the Sikh traditions
+    of seva (selfless service) and langar (sharing food freely with all), we're
+    grateful to share a meal with our community.
+  note: Entry on Saturday, Sunday and Monday is the usual $10 for adults 18+, $5
+    for children 2–17, and free for under 2.
+
 launch:
   show: false
   eyebrow: You're invited · Soft launch
@@ -118,7 +145,7 @@ visit:
 season:
   eyebrow: On the trees now
   heading: What's in season
-  updated: Updated September 28, 2026
+  updated: Updated October 9, 2026
   note: Varieties come on a few weeks apart. Call ahead if you're driving for
     something specific — we'll tell you honestly whether it's worth the trip yet.
   groups:
@@ -126,7 +153,7 @@ season:
       status: Picking now
       tone: green
       varieties:
-        - Honeycrisp
+        - Honeycrisp — sold out
         - Royal Gala
         - Ambrosia
         - Fuji
@@ -148,10 +175,28 @@ season:
         - Rising Star
       note: Sold out for the season.
 
+shop:
+  show: true
+  eyebrow: From the farm shop
+  heading: Fresh pressed apple cider
+  lede: Pressed on the farm from our own apples. One ingredient — apples — and
+    nothing added.
+  image: img/apple-cider.jpg
+  image_alt: A jug of Rai Orchards fresh pressed apple cider held up among the
+    apple rows at sunset
+  price: ""
+  size: 1L and 2L bottles
+  details:
+    - Unpasteurized, the way cider tastes before it's cooked
+    - Keep refrigerated at 0–4°C
+    - Best within three days of opening
+  availability: Sold at the farm shop. Please speak with staff for availability.
+
 upick:
   eyebrow: U-pick & the farm stand
   heading: How a morning here usually goes
-  image_alt: Apples ripening along the trellised rows
+  image_alt: Two members of the Rai Orchards team welcoming visitors outside the
+    farm shop, with pumpkins, hay bales and mums by the door
   steps:
     - Park in the field and pick up a bag at the stand. We'll tell you which rows
       are ready.
