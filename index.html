@@ -175,6 +175,24 @@
       </div>
     </section>
 
+    {% if copy.shop.show %}
+    {% assign shop = copy.shop %}
+    <section class="morning-section" id="shop" style="background:var(--cream)">
+      <div class="shell split-media">
+        <div>
+          <p class="eyebrow">{{ shop.eyebrow | escape }}</p>
+          <h2 class="section-title">{{ shop.heading | escape }}</h2>
+          <p class="section-intro">{{ shop.lede | escape }}</p>
+          {% if shop.size != blank or shop.price != blank %}<p style="margin:1.1rem 0 .35rem;font-family:var(--serif);font-size:1.5rem;color:var(--forest)">{{ shop.size | escape }}{% if shop.price != blank %} <span style="font-family:var(--sans);font-size:1rem;color:var(--ink-soft)">· {{ shop.price | escape }}</span>{% endif %}</p>{% endif %}
+          <ul class="visit-notes">{% for item in shop.details %}<li>{{ item | escape }}</li>{% endfor %}</ul>
+          {% if shop.availability %}<p class="season-note">{{ shop.availability | escape }}</p>{% endif %}
+          {% if shop.note %}<p style="margin:.75rem 0 0;font-size:.85rem;line-height:1.5;color:var(--ink-soft)">{{ shop.note | escape }}</p>{% endif %}
+        </div>
+        <div class="split-media__image"><img src="/{{ shop.image }}" alt="{{ shop.image_alt | escape }}" width="1200" height="1600" loading="lazy" decoding="async"></div>
+      </div>
+    </section>
+    {% endif %}
+
     <section class="morning-section">
       <div class="shell split-media">
         <div class="split-media__image"><img src="/img/apples-on-tree.jpg" alt="{{ copy.upick.image_alt | escape }}" width="1500" height="1125" loading="lazy" decoding="async"></div>
