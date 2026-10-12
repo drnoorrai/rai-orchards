@@ -175,6 +175,25 @@ season:
         - Rising Star
       note: Sold out for the season.
 
+shop:
+  show: true
+  eyebrow: From the farm shop
+  heading: Fresh pressed apple cider
+  lede: Pressed on the farm from our own apples. One ingredient — apples — and
+    nothing added.
+  image: img/apple-cider.jpg
+  image_alt: A jug of Rai Orchards fresh pressed apple cider held up among the
+    apple rows at sunset
+  price: ""
+  size: 1L and 2L bottles
+  details:
+    - Unpasteurized, the way cider tastes before it's cooked
+    - Keep refrigerated at 0–4°C
+    - Best within three days of opening
+  availability: Sold at the farm shop. Please speak with staff for availability.
+  note: Unpasteurized cider isn't recommended for young children, pregnant
+    people, older adults, or anyone with a weakened immune system.
+
 upick:
   eyebrow: U-pick & the farm stand
   heading: How a morning here usually goes
