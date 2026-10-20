@@ -4,15 +4,16 @@ brand:
   name: Rai Orchards
 
 seo:
-  title: Rai Orchards — U-Pick Apple Orchard & Farm Animals · Puslinch, Ontario
-  description: Family fruit farm on Wellington 35 in Puslinch, Ontario. U-pick
-    apples, wagon rides, and a paddock full of friendly
-    animals, Friday to Sunday, 10am–6pm. Farm shop open Monday to Thursday,
-    9am–6pm. Through October 31.
-  og_title: Rai Orchards — Pick your own, say hello to the alpacas
-  og_description: A family orchard in Puslinch, Ontario. U-pick apples, wagon
-    rides, and a very social herd — Friday to Sunday, 10am–6pm.
-    Farm shop open Monday to Thursday.
+  title: Rai Orchards — Pumpkins, Fresh Cider & Farm Animals · Puslinch, Ontario
+  description: Family farm on Wellington 35 in Puslinch, Ontario. Pumpkins, fresh
+    pressed apple cider, tractor wagon rides and a paddock full of friendly
+    animals, Friday to Sunday, 10am–6pm. Kids get in free on Halloween,
+    Saturday, October 31.
+    Through October 31.
+  og_title: Rai Orchards — Pick a pumpkin, say hello to the alpacas
+  og_description: A family orchard in Puslinch, Ontario. Pumpkins, fresh pressed
+    cider, tractor wagon rides and a very social herd — Friday to Sunday,
+    10am–6pm. Kids get in free on Halloween, October 31.
   story_title: Our Story — Rai Orchards
   story_description: A Kashmiri family farming in Puslinch, Ontario since 2021.
     Sixty trees, a lot of nerve, and a paddock full of animals.
@@ -21,7 +22,7 @@ contact:
   email: info@raiorchards.ca
   phone: "+15198270854"
   phone_display: +1 519-827-0854
-  phone_note: Best for same-day questions about what's ripe.
+  phone_note: Best for same-day questions about what's available.
   address_line_1: 3977 Wellington 35
   address_line_2: Puslinch, ON N0B 2J0
   maps_url: https://maps.google.com/?q=3977+Wellington+35,+Puslinch,+ON+N0B+2J0
@@ -40,17 +41,18 @@ hours:
   schedule:
     - days: Mon – Thu
       time: 9am – 6pm
-      detail: The farm shop is open for apples, garlic, eggs and produce for
-        purchase, based on availability.
+      detail: The farm shop is open for fresh pressed apple cider and pumpkins,
+        based on availability.
       notes:
         - There is no admission fee to visit the farm shop.
-        - U-pick, wagon rides, the animals and play areas are not open to the
-          public Monday to Thursday.
+        - Wagon rides, the animals, the play area and the snack shack are not
+          open to the public Monday to Thursday.
         - Ask Honey Rai during weekend hours about private weekday bookings.
     - days: Fri – Sun
       time: 10am – 6pm
-      detail: Rai Orchards is open for pick-your-own apples, wagon rides, animal
-        viewing, the kids' play area and the snack shack.
+      detail: Come for the whole afternoon — tractor wagon rides, the animals,
+        the kids' play area, pumpkins to take home, and warm cider, chai and
+        cookies at the snack shack, all on the house.
       entry_label: Entry
       prices:
         - label: Adults 18+
@@ -59,7 +61,8 @@ hours:
           value: $5
         - label: Under 2
           value: Free
-      entry_note: Pay at the door, cash or card ($1 card fee per transaction).
+      entry_note: Children 2–17 get in free on Halloween, Saturday, October 31.
+        Pay at the door, cash or card ($1 card fee per transaction).
   season_note: Open through October 31
 
 nav:
@@ -74,47 +77,48 @@ nav:
 
 hero:
   eyebrow: Puslinch · Walk-ins welcome
-  headline: Pick your own, say hello to the alpacas.
-  lede: A family orchard on Wellington 35 — apples, pears and peaches grown the
-    patient way, with a paddock full of animals who are very used to visitors.
+  headline: Pick a pumpkin, say hello to the alpacas.
+  lede: The apples are all picked, but the farm's still in full swing — pumpkins
+    to take home, fresh pressed cider, tractor wagon rides, and a paddock full of
+    animals who are very used to visitors.
   cta_primary: Plan your visit
   cta_secondary: Get the harvest note
   image_alt: Red apples on the branch at dusk
+  season_link: Pumpkins & cider
 
 ribbon:
   headline: Farm open Fri–Sun, 10–6
   items:
     - Farm shop Mon–Thu, 9–6
-    - U-pick, wagon rides & animals
-    - Kids' play area & snack shack
+    - Pumpkins, fresh cider & tractor wagon rides
+    - Kids free on Halloween, Sat Oct 31
     - Cash & tap · Dogs on leash welcome
 
 holiday:
-  show: false
-  until: "2026-10-12"
-  eyebrow: Thanksgiving weekend
-  heading: Open Friday to Monday
+  show: true
+  until: "2026-10-31"
+  eyebrow: Halloween at the farm
+  heading: Kids get in free on Halloween, Saturday, October 31
   days:
-    - label: Friday, October 9
-      time: 9am – 6pm
-      detail: Farm shop only — apples, garlic, eggs and produce. No pick-your-own
-        or farm fun on Friday this week.
-    - label: Saturday & Sunday, October 10–11
+    - label: Pumpkins
+      time: $3 – $4
+      detail: Small and medium pumpkins are $3; large and extra-large are $4.
+        Pick out the perfect one for carving.
+    - label: Fresh pressed cider
+      time: 1L $5.99 · 2L $11.99
+      detail: Our apples are sold out for the season, but they live on in a
+        bottle — pressed here on the farm.
+    - label: Friday to Sunday
       time: 10am – 6pm
-      detail: Pick your own apples, wagon rides, animal viewing, the kids' play
-        area and the snack shack.
-    - label: Thanksgiving Monday, October 12
-      time: 10am – 4pm
-      detail: The full farm is open — pick your own, wagon rides, animals, play
-        area and snack shack.
-  feature_label: Monday · 12–2pm
-  feature_heading: Share a meal with us
-  feature_detail: Join us for free chole puri — chickpea curry with deep-fried
-    whole wheat flatbread, a beloved Punjabi meal. Rooted in the Sikh traditions
-    of seva (selfless service) and langar (sharing food freely with all), we're
-    grateful to share a meal with our community.
-  note: Entry on Saturday, Sunday and Monday is the usual $10 for adults 18+, $5
-    for children 2–17, and free for under 2.
+      detail: Tractor wagon rides, the animals and the kids' play area are all
+        open.
+  feature_label: At the snack shack · On the house
+  feature_heading: Warm cider, chai and a cookie
+  feature_detail: Warm up with mulled apple cider spiced with cinnamon, a cup of
+    chai and a cookie, all complimentary with your visit.
+  note: Halloween treat — children 2–17 get in free on Saturday, October 31.
+    Every other day, entry is $10 for adults 18+, $5 for children 2–17, and free
+    for under 2.
 
 launch:
   show: false
@@ -130,12 +134,12 @@ visit:
   paragraphs:
     - Walk in whenever we're open. Friday to Sunday is the full farm experience;
       Monday to Thursday is for a quick stop at the farm shop.
-    - "For a weekend visit, give yourself an hour or two. Most people mean to pick
-      a bag and end up sitting with the goats."
+    - "For a weekend visit, give yourself an hour or two. Most people mean to grab
+      a pumpkin and end up sitting with the goats."
   hours_label: Hours
   entry_label: Entry
   entry_line: Adults 18+ <strong>$10</strong> · Children 2–17 <strong>$5</strong>
-    · Under 2 <strong>free</strong>
+    (free on Halloween, Oct 31) · Under 2 <strong>free</strong>
   entry_note: Fri–Sun only — no entry fee to visit the farm shop Mon–Thu. Pay at
     the door, cash or card ($1 card fee per transaction).
   find_label: Find us
@@ -143,37 +147,36 @@ visit:
   phone_label: Ring us
 
 season:
-  eyebrow: On the trees now
-  heading: What's in season
-  updated: Updated October 9, 2026
-  note: Varieties come on a few weeks apart. Call ahead if you're driving for
-    something specific — we'll tell you honestly whether it's worth the trip yet.
+  eyebrow: At the farm now
+  heading: What's available
+  updated: Updated October 20, 2026
+  note: Thank you for a wonderful apple season — every last one has been picked.
+    Here's what we have for you through October 31. Call ahead if you're driving
+    out for something specific.
   groups:
-    - name: Apples
-      status: Picking now
+    - name: Pumpkins
+      status: Available now
       tone: green
       varieties:
-        - Honeycrisp — sold out
+        - Small & medium — $3
+        - Large & extra-large — $4
+      note: Perfect for carving, porches and pie.
+    - name: Apple cider
+      status: Available now
+      tone: green
+      varieties:
+        - 1L bottle — $5.99
+        - 2L bottle — $11.99
+      note: Fresh pressed on the farm from our own apples.
+    - name: Apples
+      status: Sold out
+      tone: amber
+      varieties:
+        - Honeycrisp
         - Royal Gala
         - Ambrosia
         - Fuji
-      note: <strong>$1.99 / lb</strong> u-pick, every apple variety, all season.
-    - name: Pears
-      status: Sold out
-      tone: amber
-      varieties:
-        - Bartlett
-        - Bosc OP-5
-        - Dewdrop
-      note: Sold out for the season.
-    - name: Peaches
-      status: Sold out
-      tone: amber
-      varieties:
-        - Allstar
-        - Early Blush
-        - Rising Star
-      note: Sold out for the season.
+      note: Sold out for the season. See you at picking time next year!
 
 shop:
   show: true
@@ -198,18 +201,18 @@ shop:
   availability: Sold at the farm shop. Please speak with staff for availability.
 
 upick:
-  eyebrow: U-pick & the farm stand
-  heading: How a morning here usually goes
+  eyebrow: Pumpkins & the farm stand
+  heading: How an afternoon here usually goes
   image_alt: Two members of the Rai Orchards team welcoming visitors outside the
     farm shop, with pumpkins, hay bales and mums by the door
   steps:
-    - Park in the field and pick up a bag at the stand. We'll tell you which rows
-      are ready.
-    - Pick at your own pace. Twist, don't tug — the tree keeps next year's bud
-      that way.
-    - Weigh up at the stand — apples are a flat $1.99 a pound, whatever the
-      variety. Cash or card ($1 card fee per transaction). Then take a wagon ride
-      and meet the animals before you drive home.
+    - Park in the field and come say hello at the stand. On Halloween, Saturday,
+      October 31, kids get in free.
+    - Hop on the tractor wagon, meet the animals, and let the little ones loose
+      in the play area.
+    - Warm up at the snack shack with cinnamon-spiced cider, chai and a cookie,
+      on the house. Then choose your pumpkins ($3 or $4) and a bottle of fresh
+      cider to take home.
 
 animals:
   eyebrow: The welcoming committee
@@ -292,10 +295,15 @@ faq:
       answer: No. Walk in any time Friday to Sunday, 10 to 6. Saturdays and
         Sundays are busiest around 1pm.
     - question: What's open Monday to Thursday?
-      answer: The farm shop, 9 to 6 — apples, garlic, eggs and produce, depending
-        on what's available. There's no entry fee on those days. U-pick, wagon
-        rides, the animals, the kids' play area and the snack shack are Friday to
-        Sunday.
+      answer: The farm shop, 9 to 6 — fresh pressed cider and pumpkins, depending
+        on what's available. There's no entry fee on those days. Wagon rides, the
+        animals, the kids' play area and the snack shack are Friday to Sunday.
+    - question: Can we still pick apples?
+      answer: Not this year — the apples are sold out for the season. We do have
+        fresh pressed cider made from our own apples, and plenty of pumpkins.
+    - question: Do kids pay to get in?
+      answer: Children 2–17 are $5, and under 2 is free. As our Halloween treat,
+        children 2–17 get in free on Saturday, October 31. Adults 18+ are $10.
     - question: Can we bring the dog?
       answer: Yes, on a leash. Just keep a little distance from the paddock fence.
     - question: When are the animals out?

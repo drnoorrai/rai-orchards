@@ -42,7 +42,7 @@
     "sameAs": [{{ copy.contact.instagram_url | jsonify }}],
     "openingHoursSpecification": [
       {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "18:00", "description": "Farm shop only"},
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "18:00", "description": "U-pick, wagon rides, animals, kids' play area and snack shack"}
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "18:00", "description": "Tractor wagon rides, animals, kids' play area, snack shack, pumpkins and cider"}
     ]
   }
   </script>
@@ -81,7 +81,7 @@
       <div class="utility-actions">
         <a class="utility-action" href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener"><svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Directions</a>
         <a class="utility-action" href="tel:{{ copy.contact.phone }}"><svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
-        <a class="utility-action" href="#season">What’s picking</a>
+        <a class="utility-action" href="#season">What’s available</a>
       </div>
     </div>
   </section>
@@ -89,7 +89,7 @@
   <main id="main">
     {% if copy.holiday.show %}
     {% assign hol = copy.holiday %}
-    <section class="holiday-banner" data-holiday{% if hol.until %} data-holiday-until="{{ hol.until }}"{% endif %} aria-label="Holiday hours" style="background:var(--forest);color:var(--cream)">
+    <section class="holiday-banner" data-holiday{% if hol.until %} data-holiday-until="{{ hol.until }}"{% endif %} aria-label="{{ hol.eyebrow | default: 'Seasonal news' | escape }}" style="background:var(--forest);color:var(--cream)">
       <div class="shell" style="padding:1.75rem 0 2rem">
         <p class="eyebrow eyebrow--light" style="margin-bottom:.4rem">{{ hol.eyebrow | escape }}</p>
         <h2 style="margin:0 0 1.25rem;font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.15">{{ hol.heading | escape }}</h2>
@@ -120,7 +120,7 @@
           <p class="eyebrow">{{ copy.hero.eyebrow | escape }}</p>
           <h1 class="display">{{ copy.hero.headline | escape }}</h1>
           <p class="lede">{{ copy.hero.lede | escape }}</p>
-          <div class="hero-actions"><a class="button button--gold" href="#visit">{{ copy.hero.cta_primary | escape }}</a><a class="button button--outline" href="#season">What’s picking today</a></div>
+          <div class="hero-actions"><a class="button button--gold" href="#visit">{{ copy.hero.cta_primary | escape }}</a><a class="button button--outline" href="#season">{{ copy.hero.season_link | default: "What’s available" | escape }}</a></div>
         </div>
         <div class="hero-image">
           <img src="/img/apples.jpeg" alt="{{ copy.hero.image_alt | escape }}" width="1500" height="2000" fetchpriority="high">
@@ -258,7 +258,7 @@
   <nav class="mobile-actions" aria-label="Quick actions">
     <a href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Directions</a>
     <a href="tel:{{ copy.contact.phone }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
-    <a href="#season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21c-4.4 0-8-3.3-8-8.2C4 8.5 7 5 12 5s8 3.5 8 7.8C20 17.7 16.4 21 12 21Z"/><path d="M12 5c0-2 1.2-3.2 3.4-3.6M12 6 9.6 3.6"/></svg>What’s picking</a>
+    <a href="#season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21c-4.4 0-8-3.3-8-8.2C4 8.5 7 5 12 5s8 3.5 8 7.8C20 17.7 16.4 21 12 21Z"/><path d="M12 5c0-2 1.2-3.2 3.4-3.6M12 6 9.6 3.6"/></svg>What’s available</a>
   </nav>
 
   <script src="/assets/site.js" defer></script>
