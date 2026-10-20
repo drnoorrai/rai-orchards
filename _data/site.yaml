@@ -7,12 +7,13 @@ seo:
   title: Rai Orchards — Pumpkins, Fresh Cider & Farm Animals · Puslinch, Ontario
   description: Family farm on Wellington 35 in Puslinch, Ontario. Pumpkins, fresh
     pressed apple cider, tractor wagon rides and a paddock full of friendly
-    animals, Friday to Sunday, 10am–6pm. Kids get in free for Halloween.
+    animals, Friday to Sunday, 10am–6pm. Kids get in free on Halloween,
+    Saturday, October 31.
     Through October 31.
   og_title: Rai Orchards — Pick a pumpkin, say hello to the alpacas
   og_description: A family orchard in Puslinch, Ontario. Pumpkins, fresh pressed
     cider, tractor wagon rides and a very social herd — Friday to Sunday,
-    10am–6pm. Kids get in free for Halloween.
+    10am–6pm. Kids get in free on Halloween, October 31.
   story_title: Our Story — Rai Orchards
   story_description: A Kashmiri family farming in Puslinch, Ontario since 2021.
     Sixty trees, a lot of nerve, and a paddock full of animals.
@@ -57,10 +58,11 @@ hours:
         - label: Adults 18+
           value: $10
         - label: Children 2–17
-          value: Free for Halloween
+          value: $5
         - label: Under 2
           value: Free
-      entry_note: Pay at the door, cash or card ($1 card fee per transaction).
+      entry_note: Children 2–17 get in free on Halloween, Saturday, October 31.
+        Pay at the door, cash or card ($1 card fee per transaction).
   season_note: Open through October 31
 
 nav:
@@ -89,14 +91,14 @@ ribbon:
   items:
     - Farm shop Mon–Thu, 9–6
     - Pumpkins, fresh cider & tractor wagon rides
-    - Kids get in free for Halloween
+    - Kids free on Halloween, Sat Oct 31
     - Cash & tap · Dogs on leash welcome
 
 holiday:
   show: true
   until: "2026-10-31"
   eyebrow: Halloween at the farm
-  heading: Kids get in free, every weekend until October 31
+  heading: Kids get in free on Halloween, Saturday, October 31
   days:
     - label: Pumpkins
       time: $3 – $4
@@ -114,7 +116,9 @@ holiday:
   feature_heading: Warm cider, chai and a cookie
   feature_detail: Warm up with mulled apple cider spiced with cinnamon, a cup of
     chai and a cookie, all complimentary with your visit.
-  note: Children 2–17 get in free as our Halloween treat. Adults 18+ are $10.
+  note: Halloween treat — children 2–17 get in free on Saturday, October 31.
+    Every other day, entry is $10 for adults 18+, $5 for children 2–17, and free
+    for under 2.
 
 launch:
   show: false
@@ -134,8 +138,8 @@ visit:
       a pumpkin and end up sitting with the goats."
   hours_label: Hours
   entry_label: Entry
-  entry_line: Adults 18+ <strong>$10</strong> · Children 2–17 <strong>free for
-    Halloween</strong> · Under 2 <strong>free</strong>
+  entry_line: Adults 18+ <strong>$10</strong> · Children 2–17 <strong>$5</strong>
+    (free on Halloween, Oct 31) · Under 2 <strong>free</strong>
   entry_note: Fri–Sun only — no entry fee to visit the farm shop Mon–Thu. Pay at
     the door, cash or card ($1 card fee per transaction).
   find_label: Find us
@@ -202,8 +206,8 @@ upick:
   image_alt: Two members of the Rai Orchards team welcoming visitors outside the
     farm shop, with pumpkins, hay bales and mums by the door
   steps:
-    - Park in the field and come say hello at the stand. Kids get in free
-      through October 31.
+    - Park in the field and come say hello at the stand. On Halloween, Saturday,
+      October 31, kids get in free.
     - Hop on the tractor wagon, meet the animals, and let the little ones loose
       in the play area.
     - Warm up at the snack shack with cinnamon-spiced cider, chai and a cookie,
@@ -298,8 +302,8 @@ faq:
       answer: Not this year — the apples are sold out for the season. We do have
         fresh pressed cider made from our own apples, and plenty of pumpkins.
     - question: Do kids pay to get in?
-      answer: Not until October 31. As our Halloween treat, children 2–17 get in
-        free. Adults 18+ are $10.
+      answer: Children 2–17 are $5, and under 2 is free. As our Halloween treat,
+        children 2–17 get in free on Saturday, October 31. Adults 18+ are $10.
     - question: Can we bring the dog?
       answer: Yes, on a leash. Just keep a little distance from the paddock fence.
     - question: When are the animals out?
