@@ -41,8 +41,7 @@
     },
     "sameAs": [{{ copy.contact.instagram_url | jsonify }}],
     "openingHoursSpecification": [
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "18:00", "description": "Farm shop only"},
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "18:00", "description": "Tractor wagon rides, animals, kids' play area, snack shack, pumpkins and cider"}
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "08:00", "closes": "18:00", "description": "Farm shop only, while supplies last"}
     ]
   }
   </script>
@@ -77,7 +76,7 @@
   <section class="utility-bar" aria-label="Today's farm information">
     <div class="shell utility-row">
       <div class="utility-status" aria-live="polite"><span class="status-dot" data-status-dot></span><div class="utility-copy"><strong data-live-status>{{ copy.hours.status_line | escape }}</strong><span>{{ copy.season.updated | default: 'Season information updated regularly' | escape }}</span></div></div>
-      <div class="utility-schedule"><div><strong>Mon–Thu · Farm shop only</strong>Fri–Sun · Full farm experience</div></div>
+      <div class="utility-schedule"><div><strong>{{ copy.hours.utility_primary | escape }}</strong>{{ copy.hours.utility_secondary | escape }}</div></div>
       <div class="utility-actions">
         <a class="utility-action" href="{{ copy.contact.directions_url | escape }}" target="_blank" rel="noopener"><svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Directions</a>
         <a class="utility-action" href="tel:{{ copy.contact.phone }}"><svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
@@ -107,6 +106,7 @@
           <p style="margin:0;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light)">{{ hol.feature_label | escape }}</p>
           <p style="margin:0;font-family:var(--serif);font-size:1.3rem">{{ hol.feature_heading | escape }}</p>
           <p style="margin:0;max-width:70ch;font-size:.95rem;line-height:1.6;color:rgba(248,243,232,.88)">{{ hol.feature_detail | escape }}</p>
+          {% if hol.feature_cta %}<p style="margin:.6rem 0 0"><a class="button button--gold" href="mailto:{{ copy.contact.email }}?subject={{ hol.feature_email_subject | default: hol.feature_heading | url_encode }}">{{ hol.feature_cta | escape }}</a></p>{% endif %}
         </div>
         {% endif %}
         {% if hol.note %}<p style="margin:1rem 0 0;font-size:.88rem;color:rgba(248,243,232,.7)">{{ hol.note | escape }}</p>{% endif %}
@@ -124,7 +124,7 @@
         </div>
         <div class="hero-image">
           <img src="/img/apples.jpeg" alt="{{ copy.hero.image_alt | escape }}" width="1500" height="2000" fetchpriority="high">
-          <div class="hero-badge"><strong>Walk-ins welcome</strong><span>No booking needed. Pay at the gate Friday to Sunday.</span></div>
+          <div class="hero-badge"><strong>{{ copy.hero.badge_title | escape }}</strong><span>{{ copy.hero.badge_note | escape }}</span></div>
         </div>
       </div>
     </section>
@@ -144,7 +144,7 @@
           <div class="visit-cards">
             {% for slot in copy.hours.schedule %}
             <article class="visit-card">
-              <div class="visit-card__title"><strong>{{ slot.days | escape }}</strong><span>{{ slot.time | escape }}</span>{% if forloop.first %}<span>Farm shop only</span>{% else %}<span>Full farm experience</span>{% endif %}</div>
+              <div class="visit-card__title"><strong>{{ slot.days | escape }}</strong><span>{{ slot.time | escape }}</span>{% if slot.label %}<span>{{ slot.label | escape }}</span>{% endif %}</div>
               <div class="visit-card__body">
                 <p>{{ slot.detail | escape }}</p>
                 {% if slot.notes %}<ul class="visit-notes">{% for line in slot.notes %}<li>{{ line | escape }}</li>{% endfor %}</ul>{% endif %}

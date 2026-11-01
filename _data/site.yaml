@@ -4,16 +4,14 @@ brand:
   name: Rai Orchards
 
 seo:
-  title: Rai Orchards — Pumpkins, Fresh Cider & Farm Animals · Puslinch, Ontario
-  description: Family farm on Wellington 35 in Puslinch, Ontario. Pumpkins, fresh
-    pressed apple cider, tractor wagon rides and a paddock full of friendly
-    animals, Friday to Sunday, 10am–6pm. Kids get in free on Halloween,
-    Saturday, October 31.
-    Through October 31.
-  og_title: Rai Orchards — Pick a pumpkin, say hello to the alpacas
-  og_description: A family orchard in Puslinch, Ontario. Pumpkins, fresh pressed
-    cider, tractor wagon rides and a very social herd — Friday to Sunday,
-    10am–6pm. Kids get in free on Halloween, October 31.
+  title: Rai Orchards — Farm Shop, Fresh Cider & Private Bookings · Puslinch, Ontario
+  description: Family farm on Wellington 35 in Puslinch, Ontario. Farm visits have
+    closed for the season, but the farm shop is open Monday to Saturday, 8am–6pm,
+    with fresh pressed apple cider, garlic and eggs while supplies last.
+  og_title: Rai Orchards — Thank you for a wonderful season
+  og_description: Farm visits have closed for the season. The farm shop is open
+    Monday to Saturday, 8am–6pm, with fresh pressed cider, garlic and eggs while
+    supplies last.
   story_title: Our Story — Rai Orchards
   story_description: A Kashmiri family farming in Puslinch, Ontario since 2021.
     Sixty trees, a lot of nerve, and a paddock full of animals.
@@ -22,7 +20,7 @@ contact:
   email: info@raiorchards.ca
   phone: "+15198270854"
   phone_display: +1 519-827-0854
-  phone_note: Best for same-day questions about what's available.
+  phone_note: Best for same-day questions about what's in the shop.
   address_line_1: 3977 Wellington 35
   address_line_2: Puslinch, ON N0B 2J0
   maps_url: https://maps.google.com/?q=3977+Wellington+35,+Puslinch,+ON+N0B+2J0
@@ -33,37 +31,33 @@ contact:
   instagram_url: https://www.instagram.com/raiorchards
 
 hours:
-  status_line: Farm Fri–Sun 10–6 · Shop Mon–Thu 9–6
-  daily: Fri–Sun, 10am – 6pm
-  through: Farm shop only Mon–Thu, 9am – 6pm · Through October 31
-  footer_line: Fri–Sun 10am – 6pm<br>Farm shop Mon–Thu 9am – 6pm<br>Through October 31
-  panel_line: Fri–Sun 10am–6pm<br />Farm shop Mon–Thu 9am–6pm<br />3977 Wellington 35, Puslinch
+  status_line: Farm shop Mon–Sat 8–6
+  utility_primary: Farm shop · Mon–Sat 8–6
+  utility_secondary: Farm visits closed for the season
+  daily: Mon–Sat, 8am – 6pm
+  through: Farm shop only · While supplies last
+  footer_line: Farm shop Mon–Sat 8am – 6pm<br>While supplies last<br>Farm visits closed for the season
+  panel_line: Farm shop Mon–Sat 8am–6pm<br />While supplies last<br />3977 Wellington 35, Puslinch
   schedule:
-    - days: Mon – Thu
-      time: 9am – 6pm
-      detail: The farm shop is open for fresh pressed apple cider and pumpkins,
-        based on availability.
+    - days: Mon – Sat
+      time: 8am – 6pm
+      label: Farm shop
+      detail: Stop by for a bottle of our fresh pressed apple cider, farm garlic
+        and fresh eggs, while supplies last.
       notes:
-        - There is no admission fee to visit the farm shop.
-        - Wagon rides, the animals, the play area and the snack shack are not
-          open to the public Monday to Thursday.
-        - Ask Honey Rai during weekend hours about private weekday bookings.
-    - days: Fri – Sun
-      time: 10am – 6pm
-      detail: Come for the whole afternoon — tractor wagon rides, the animals,
-        the kids' play area, pumpkins to take home, and warm cider, chai and
-        cookies at the snack shack, all on the house.
-      entry_label: Entry
-      prices:
-        - label: Adults 18+
-          value: $10
-        - label: Children 2–17
-          value: $5
-        - label: Under 2
-          value: Free
-      entry_note: Children 2–17 get in free on Halloween, Saturday, October 31.
-        Pay at the door, cash or card ($1 card fee per transaction).
-  season_note: Open through October 31
+        - There's no admission fee to visit the farm shop.
+        - Closed on Sundays.
+        - Pay with cash or card ($1 card fee per transaction).
+    - days: Farm visits
+      time: Closed for the season
+      label: See you next year
+      detail: The wagon rides, the animals, the play area and the snack shack have
+        wrapped up for the year. Thank you to everyone who came out and made our
+        season so special.
+      notes:
+        - Planning something over the winter? Email us at info@raiorchards.ca to
+          ask about private bookings.
+  season_note: Farm shop open while supplies last
 
 nav:
   visit: Visit
@@ -76,49 +70,46 @@ nav:
   call_button: Call the farm
 
 hero:
-  eyebrow: Puslinch · Walk-ins welcome
-  headline: Pick a pumpkin, say hello to the alpacas.
-  lede: The apples are all picked, but the farm's still in full swing — pumpkins
-    to take home, fresh pressed cider, tractor wagon rides, and a paddock full of
-    animals who are very used to visitors.
-  cta_primary: Plan your visit
+  eyebrow: Puslinch · Farm shop open
+  headline: Thank you for a wonderful season.
+  lede: Farm visits have closed for the year, but the farm shop is still open
+    Monday to Saturday, 8am to 6pm — with fresh pressed apple cider, garlic and
+    eggs while supplies last.
+  cta_primary: Visit the farm shop
   cta_secondary: Get the harvest note
+  season_link: What's in the shop
+  badge_title: Farm shop open
+  badge_note: Monday to Saturday, 8am–6pm, while supplies last.
   image_alt: Red apples on the branch at dusk
-  season_link: Pumpkins & cider
 
 ribbon:
-  headline: Farm open Fri–Sun, 10–6
+  headline: Farm shop open Mon–Sat, 8–6
   items:
-    - Farm shop Mon–Thu, 9–6
-    - Pumpkins, fresh cider & tractor wagon rides
-    - Kids free on Halloween, Sat Oct 31
-    - Cash & tap · Dogs on leash welcome
+    - Fresh pressed apple cider
+    - Farm garlic & fresh eggs
+    - While supplies last
+    - Private winter bookings by email
 
 holiday:
   show: true
-  until: "2026-10-31"
-  eyebrow: Halloween at the farm
-  heading: Kids get in free on Halloween, Saturday, October 31
+  eyebrow: Season update
+  heading: Farm visits have closed for the season — the farm shop is still open
   days:
-    - label: Pumpkins
-      time: $3 – $4
-      detail: Small and medium pumpkins are $3; large and extra-large are $4.
-        Pick out the perfect one for carving.
-    - label: Fresh pressed cider
-      time: 1L $5.99 · 2L $11.99
-      detail: Our apples are sold out for the season, but they live on in a
-        bottle — pressed here on the farm.
-    - label: Friday to Sunday
-      time: 10am – 6pm
-      detail: Tractor wagon rides, the animals and the kids' play area are all
-        open.
-  feature_label: At the snack shack · On the house
-  feature_heading: Warm cider, chai and a cookie
-  feature_detail: Warm up with mulled apple cider spiced with cinnamon, a cup of
-    chai and a cookie, all complimentary with your visit.
-  note: Halloween treat — children 2–17 get in free on Saturday, October 31.
-    Every other day, entry is $10 for adults 18+, $5 for children 2–17, and free
-    for under 2.
+    - label: Farm shop · Monday to Saturday
+      time: 8am – 6pm
+      detail: Take home our fresh pressed apple cider (1L $5.99 · 2L $11.99), farm
+        garlic and fresh eggs, while supplies last. Closed Sundays.
+    - label: Farm visits
+      time: Closed for the season
+      detail: The wagon rides, the animals, the play area and the snack shack have
+        wrapped up for the year. Thank you for a wonderful season — we can't wait
+        to welcome you back.
+  feature_label: Over the winter months
+  feature_heading: Private bookings
+  feature_detail: Hoping to gather at the farm this winter? Email us at
+    info@raiorchards.ca and we'll be happy to talk through what's possible.
+  feature_cta: Email us about a booking
+  feature_email_subject: Private winter booking enquiry
 
 launch:
   show: false
@@ -130,53 +121,48 @@ launch:
 
 visit:
   eyebrow: Visiting
-  heading: Choose the day that fits your visit.
+  heading: The farm shop is open while supplies last.
   paragraphs:
-    - Walk in whenever we're open. Friday to Sunday is the full farm experience;
-      Monday to Thursday is for a quick stop at the farm shop.
-    - "For a weekend visit, give yourself an hour or two. Most people mean to grab
-      a pumpkin and end up sitting with the goats."
+    - Farm visits have closed for the season, but you're welcome to stop by the
+      farm shop Monday to Saturday, 8am to 6pm, for cider, garlic and eggs.
+    - Supplies are limited, so if you're driving out for something specific, give
+      us a call first and we'll let you know what's left.
   hours_label: Hours
   entry_label: Entry
-  entry_line: Adults 18+ <strong>$10</strong> · Children 2–17 <strong>$5</strong>
-    (free on Halloween, Oct 31) · Under 2 <strong>free</strong>
-  entry_note: Fri–Sun only — no entry fee to visit the farm shop Mon–Thu. Pay at
-    the door, cash or card ($1 card fee per transaction).
+  entry_line: No entry fee to visit the farm shop
+  entry_note: Pay with cash or card ($1 card fee per transaction).
   find_label: Find us
   maps_link: Open in Maps →
   phone_label: Ring us
 
 season:
-  eyebrow: At the farm now
+  eyebrow: In the farm shop
   heading: What's available
-  updated: Updated October 20, 2026
-  note: Thank you for a wonderful apple season — every last one has been picked.
-    Here's what we have for you through October 31. Call ahead if you're driving
-    out for something specific.
+  updated: Updated November 1, 2026
+  note: Thank you for a wonderful season. Here's what's left in the farm shop —
+    available while supplies last, so call ahead if you're making a special trip.
   groups:
-    - name: Pumpkins
-      status: Available now
-      tone: green
-      varieties:
-        - Small & medium — $3
-        - Large & extra-large — $4
-      note: Perfect for carving, porches and pie.
     - name: Apple cider
-      status: Available now
+      status: While supplies last
       tone: green
       varieties:
         - 1L bottle — $5.99
         - 2L bottle — $11.99
       note: Fresh pressed on the farm from our own apples.
-    - name: Apples
+    - name: Garlic & eggs
+      status: While supplies last
+      tone: green
+      varieties:
+        - Farm garlic
+        - Fresh eggs
+      note: Grown and gathered right here on the farm.
+    - name: Apples & pumpkins
       status: Sold out
       tone: amber
       varieties:
-        - Honeycrisp
-        - Royal Gala
-        - Ambrosia
-        - Fuji
-      note: Sold out for the season. See you at picking time next year!
+        - Apples
+        - Pumpkins
+      note: All gone for this year. See you next season!
 
 shop:
   show: true
@@ -198,27 +184,26 @@ shop:
     - Unpasteurized, the way cider tastes before it's cooked
     - Keep refrigerated at 0–4°C
     - Best within three days of opening
-  availability: Sold at the farm shop. Please speak with staff for availability.
+  availability: Available at the farm shop, Monday to Saturday, 8am–6pm, while
+    supplies last.
 
 upick:
-  eyebrow: Pumpkins & the farm stand
-  heading: How an afternoon here usually goes
+  eyebrow: The farm shop
+  heading: Stopping by the farm shop
   image_alt: Two members of the Rai Orchards team welcoming visitors outside the
     farm shop, with pumpkins, hay bales and mums by the door
   steps:
-    - Park in the field and come say hello at the stand. On Halloween, Saturday,
-      October 31, kids get in free.
-    - Hop on the tractor wagon, meet the animals, and let the little ones loose
-      in the play area.
-    - Warm up at the snack shack with cinnamon-spiced cider, chai and a cookie,
-      on the house. Then choose your pumpkins ($3 or $4) and a bottle of fresh
-      cider to take home.
+    - Pull in off Wellington 35 and park by the farm shop. There's no entry fee.
+    - Pick up a bottle or two of fresh pressed cider, along with farm garlic and
+      fresh eggs.
+    - Pay with cash or card ($1 card fee per transaction). Supplies are limited, so
+      call ahead if you're coming for something specific.
 
 animals:
   eyebrow: The welcoming committee
   heading: Meet the animals
-  note: They're out to say hello Friday to Sunday, 10 to 6, and the wagon runs
-    those days too. Feed is sold at the stand — please don't bring your own.
+  note: The animals are settling in for the winter, and farm visits have closed
+    for the season. They'll be back at the fence to say hello next year.
   cards:
     - image: img/02-alpacas.jpg
       alt: Alpacas
@@ -272,12 +257,12 @@ story_teaser:
 
 events:
   eyebrow: Private events
-  heading: Weddings and gatherings under the trees
-  paragraph: In 2026 we're hosting a small number of private events — intimate
-    weddings, family celebrations, the odd company day out. A pilot season, so we
-    can learn how to host you properly.
-  note: Dates are intentionally limited this year. Full rentals open in 2027.
-  cta: Tell us about your event
+  heading: Private bookings over the winter
+  paragraph: Farm visits have closed for the season, but we're taking enquiries for
+    private bookings through the winter months — family celebrations, small
+    gatherings, the odd company day out.
+  note: Email us to ask about dates. Full rentals open in 2027.
+  cta: Email us about a booking
   email_subject: Private event enquiry
   image_alt: The Rai Orchards sign at sunset
 
@@ -291,29 +276,22 @@ faq:
   eyebrow: Before you come
   heading: Questions we get<br>at the gate
   items:
-    - question: Do I need to book?
-      answer: No. Walk in any time Friday to Sunday, 10 to 6. Saturdays and
-        Sundays are busiest around 1pm.
-    - question: What's open Monday to Thursday?
-      answer: The farm shop, 9 to 6 — fresh pressed cider and pumpkins, depending
-        on what's available. There's no entry fee on those days. Wagon rides, the
-        animals, the kids' play area and the snack shack are Friday to Sunday.
-    - question: Can we still pick apples?
-      answer: Not this year — the apples are sold out for the season. We do have
-        fresh pressed cider made from our own apples, and plenty of pumpkins.
-    - question: Do kids pay to get in?
-      answer: Children 2–17 are $5, and under 2 is free. As our Halloween treat,
-        children 2–17 get in free on Saturday, October 31. Adults 18+ are $10.
-    - question: Can we bring the dog?
-      answer: Yes, on a leash. Just keep a little distance from the paddock fence.
-    - question: When are the animals out?
-      answer: Friday to Sunday, 10 to 6, along with the wagon rides, kids' play
-        area and snack shack.
+    - question: Is the farm still open?
+      answer: Farm visits have closed for the season, but the farm shop is open
+        Monday to Saturday, 8am to 6pm, while supplies last. It's closed on Sundays.
+    - question: What can I buy at the farm shop?
+      answer: Fresh pressed apple cider (1L $5.99, 2L $11.99), farm garlic and fresh
+        eggs, while supplies last. Apples and pumpkins are sold out for the year.
+    - question: Is there an entry fee?
+      answer: No. There's no entry fee to visit the farm shop.
+    - question: Can we book the farm privately over the winter?
+      answer: Yes, we're happy to hear from you. Email us at info@raiorchards.ca to
+        ask about private bookings during the winter months.
+    - question: When do farm visits open again?
+      answer: Next season. Follow @raiorchards on Instagram or join the harvest note
+        below to hear when we reopen.
     - question: How do we pay?
-      answer: Cash or card at the stand. Card payments have a $1 transaction fee.
-    - question: Is it stroller-friendly?
-      answer: Mostly. The rows are grass and mown short — a sturdy stroller is fine,
-        a light one will bump.
+      answer: Cash or card at the farm shop. Card payments have a $1 transaction fee.
 
 signup:
   heading: Know what's ripe before you drive out
@@ -326,12 +304,12 @@ signup:
 find_us:
   eyebrow: Find us
   heading: On Wellington 35, just south of Guelph
-  paragraph: Look for the green sign at the roadside and turn in — parking is in
-    the field by the stand. If the lot looks full, keep coming; there's more room
-    than it looks.
+  paragraph: Look for the green sign at the roadside and turn in — parking is
+    right by the farm shop.
   address_label: Address
   open_label: Open
-  open_line: Fri–Sun 10am – 6pm. Farm shop Mon–Thu 9am – 6pm. Through October 31.
+  open_line: Farm shop Mon–Sat 8am – 6pm, while supplies last. Farm visits are
+    closed for the season.
   directions_button: Get directions
   apple_button: Apple Maps
   map_title: Map showing Rai Orchards at 3977 Wellington 35, Puslinch, Ontario
@@ -392,6 +370,7 @@ story:
     - value: "14"
       label: Animals on the welcoming committee.
   cta_heading: Come see it for yourself
-  cta_note: Friday to Sunday, 10am to 6pm, with the farm shop open Monday to
-    Thursday, 9am to 6pm. Through October 31. 3977 Wellington 35, Puslinch.
-  cta_button: Plan your visit
+  cta_note: Farm visits have closed for the season, but the farm shop is open
+    Monday to Saturday, 8am to 6pm, while supplies last. 3977 Wellington 35,
+    Puslinch.
+  cta_button: Visit the farm shop
